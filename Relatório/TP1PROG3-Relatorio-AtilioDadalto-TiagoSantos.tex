@@ -1,0 +1,161 @@
+\documentclass[12pt, oneside, a4paper, brazil]{abntex2}
+% \usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+% \usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{float}
+\usepackage[a4paper, left=3cm, right=2.5cm, top=3cm, bottom = 2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{titlesec}
+%\usepackage[alf]{abntex2cite}
+% \usepackage{times}
+\usepackage[scaled]{helvet}
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+\usepackage{lipsum}
+
+
+%%% Definição de variáveis. %%%
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Análise de desempenho de estruturas de dados para um indexador de arquivos}
+\autor{Atílio Antônio Dadalto \\ Tiago da Cruz Santos}
+\local{Vitória}
+\data{2019}
+\instituicao{%
+  Universidade Federal do Espírito Santo
+  \par Departamento de Informática}
+\tipotrabalho{Relatório}
+\preambulo{Relatório apresentado como requisito parcial para aprovação na disciplina de Programação I, pela Universidade Federal do Espírito Santo.}
+
+\newcommand{\versao}{2.0}
+\newcommand{\subtitulo}{Anteprojeto}
+
+
+%--- Configurações do environment lstlisting ---
+\newfontfamily{\consolas}{Consolas.ttf}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\lstset{
+  language=C,
+  basicstyle=\footnotesize\consolas,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=tb,
+  tabsize=4,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  columns=fixed,
+  showstringspaces=false,
+  showtabs=false,
+  keepspaces,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue}
+}
+
+% Macros específicas do trabalho.
+% (*) Inclua aqui termos que são utilizados muitas vezes e que demandam formatação especial.
+% Os exemplos abaixo incluem i* (substituindo o asterisco por uma estrela) e Java com TM em superscript.
+% Use sempre \xspace para que o LaTeX inclua espaço em branco após a macro somente quando necessário.
+\newcommand{\istar}{\textit{i}$^\star$\xspace}
+\newcommand{\java}{Java\texttrademark\xspace}
+\newcommand{\latex}{\LaTeX\xspace}
+
+
+%%% Configurações finais de aparência. %%%
+
+% Altera o aspecto da cor azul.
+\definecolor{blue}{RGB}{41,5,195}
+
+% Informações do PDF.
+\makeatletter
+\hypersetup{
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2},
+	pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+	colorlinks=true,				% Colore os links (ao invés de usar caixas).
+	linkcolor=blue,					% Cor dos links.
+	citecolor=blue,					% Cor dos links na bibliografia.
+	filecolor=magenta,				% Cor dos links de arquivo.
+	urlcolor=blue,					% Cor das URLs.
+	bookmarksdepth=4
+}
+\makeatother
+
+% Espaçamentos entre linhas e parágrafos.
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}
+
+
+
+%%% Páginas iniciais do documento: capa, folha de rosto, ficha, resumo, tabelas, etc. %%%
+
+% Compila o índice. <--- Desnecessário em Plano de Estudo.
+%\makeindex
+
+% Inicia o documento.
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+
+% Brasão da instituição.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.055]{figuras/brasao}
+\end{figure} 
+
+% Capa do trabalho.
+\imprimircapa
+\imprimirfolhaderosto
+
+% Lista de silgas.
+% (*) Indicar as siglas utilizadas no trabalho como no exemplo abaixo.
+%\begin{siglas}
+    %\item [UML] Linguagem de Modelagem Unificada, do inglês \textit{Unified Modeling Language}
+%\end{siglas}
+
+% Índice de capítulos.
+\tableofcontents*
+
+
+%%% Início da parte de conteúdo do documento. %%%
+
+% Marca o início dos elementos textuais.
+\clearpage
+\textual
+
+% Inclusão dos capítulos.
+% (*) Para facilitar a organização, os capítulos foram divididos em arquivo separados e colocados dentro da.
+% pasta capitulos/. Caso o aluno prefira trabalhar com um só arquivo, basta substituir os comandos \input 
+% pelos conteúdos dos arquivos que estão sendo incluídos, excluindo a pasta capitulos/ em seguida.
+
+\input{cap1.tex}
+\input{cap2.tex}
+\input{cap3.tex}
+\input{cap4.tex}
+\input{cap5.tex}
+
+
+% Finaliza a parte no bookmark do PDF para que se inicie o bookmark na raiz e adiciona espaço de parte no sumário.
+\phantompart
+
+% Marca o fim dos elementos textuais.
+\postextual
+
+% Referências bibliográficas
+\clearpage
+\bibliography{bibliografia}
+
+% Fim do documento.
+\end{document}
