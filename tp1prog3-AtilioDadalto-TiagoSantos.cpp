@@ -1,4 +1,6 @@
 #include <iostream>
+// #include "include/Artista.hpp"
+// #include "include/Assinante.hpp"
 
 using namespace std;
 
