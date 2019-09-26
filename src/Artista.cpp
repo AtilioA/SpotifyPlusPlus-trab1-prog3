@@ -16,6 +16,6 @@ void Artista::setAlbuns(vector<Album*> albuns){
     this->albuns = albuns;
 }
 
-vector<Albun*> Artista::getAlbuns(){
+vector<Album*> Artista::getAlbuns(){
     return this->albuns;
 }

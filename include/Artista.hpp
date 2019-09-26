@@ -14,7 +14,7 @@ class Artista: public Produtor{
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
         void setAlbuns(vector<Album*> albuns);
-        vector<Albun*> getAlbuns();
+        vector<Album*> getAlbuns();
 };
 
 #endif
