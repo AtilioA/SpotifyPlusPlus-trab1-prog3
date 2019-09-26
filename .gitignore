@@ -353,3 +353,5 @@ tags
 .vscode
 *.exe
 *.json
+
+*.out
