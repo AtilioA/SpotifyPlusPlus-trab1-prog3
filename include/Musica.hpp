@@ -11,7 +11,7 @@ class Musica: public Midia{
         void formataDuracao();
     public:
         Musica();
-        //Filme(string nome, int clas, string genero, int duracao, int ano); n tem tipo de retorno explicitado na UML
+        Musica(string nome, int clas, string genero, int duracao, int ano);
         void imprimeInfoProduto();
         void imprimeNoArquivo();
         void carregaArquivo();

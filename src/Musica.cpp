@@ -8,6 +8,10 @@ Musica::Musica(){
     //
 }
 
+Musica::Musica(string nome, int clas, string genero, int duracao, int ano){
+    //
+}
+
 void Musica::imprimeInfoProduto(){
     //
 }
