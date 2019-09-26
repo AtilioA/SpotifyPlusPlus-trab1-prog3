@@ -9,6 +9,8 @@ class Midia{
         string nome;
     public:
         static int qtdProdutos;
+        string getNome();
+        void setNome(string nome);
         Midia();
         Midia(string nome, bool explicito, string genero);
         static void imprimeQtdProdutos();
@@ -21,6 +23,10 @@ class Midia{
                 string sigla;
                 string nome;
             public:
+                string getNome();
+                string getSigla();
+                void setNome(string nome);
+                void setSigla(string sigla);
                 Genero();
                 Genero(string nome, string sigla);
         };
