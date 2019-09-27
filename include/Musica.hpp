@@ -11,11 +11,11 @@ class Musica: public Midia{
     private:
         int duracao;
         int anoLancamento;
-        void formataDuracao();
+        void formataDuracao(string duracao);
         Album* album;
     public:
         Musica();
-        Musica(string nome, int clas, string genero, int duracao, int ano);
+        Musica(string nome, int clas, string genero, string duracao, int ano);
         void setDuracao(int duracao);
         void setAnoLancamento(int anoLancamento);
         int getAnoLancamento();

@@ -1,15 +1,20 @@
 #include "../include/Musica.hpp"
 
-void Musica::formataDuracao(){
-    //
+void Musica::formataDuracao(string duracao){
+    //this->duracao recebe uma versão formatada da string
 }
 
 Musica::Musica(){
     //
 }
 
-Musica::Musica(string nome, int clas, string genero, int duracao, int ano){
-    //
+Musica::Musica(string nome, int clas, string genero, string duracao, int ano){
+    this->nome = nome;
+    Midia::Genero gen;
+    gen.setNome(genero);
+    this->setGenero(gen);
+    formataDuracao(duracao);
+    this->anoLancamento = ano;
 }
 
 void Musica::imprimeInfoProduto(){
