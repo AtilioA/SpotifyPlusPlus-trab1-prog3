@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 
+class Midia;
+
 using namespace std;
 
 class Produtor: public Usuario{
@@ -16,7 +18,10 @@ class Produtor: public Usuario{
         Produtor(string _nome);
         void criarProduto();
         void imprimeProdutosDesenvolvidos();
+        void setProdutosDesenvolvidos(vector<Midia*> produtosDesenvolvidos);
         vector<Midia*> getProdutosDesenvolvidos();
+        string getBiografia();
+        void setBiografia(string biografia);
         virtual void imprimeNoArquivo(ofstream &outfile);
         virtual void carregaArquivo(ifstream &infile);
 };

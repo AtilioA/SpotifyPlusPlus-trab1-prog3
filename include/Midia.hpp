@@ -1,6 +1,9 @@
 #ifndef _MIDIA_
 #define _MIDIA_
 #include <iostream>
+#include "Produtor.hpp"
+
+class Produtor;
 
 using namespace std;
 
@@ -34,6 +37,7 @@ class Midia{
     private:
         bool explicito;
         Genero genero;
+        Produtor* produtor;
 };
 
 #endif

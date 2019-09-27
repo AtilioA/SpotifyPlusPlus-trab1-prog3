@@ -7,8 +7,6 @@
 using namespace std;
 
 class Podcaster: public Produtor{
-    private:
-        vector<Podcast*> podcasts;
     public:
         Podcaster();
         void imprimeNoArquivo(ofstream &outfile);

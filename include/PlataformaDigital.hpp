@@ -28,6 +28,11 @@ class PlataformaDigital{
         void carregaArquivo(ifstream &infile);
         void exportarBiblioteca();
         void gerarRelatorios();
+
+        string getNome();
+        void setNome(string nome);
+        void setAssinantes(vector<Assinante*> assinantes);
+        void setProdutosCadastrados(vector<Midia*> produtosCadastrados);
 };
 
 #endif

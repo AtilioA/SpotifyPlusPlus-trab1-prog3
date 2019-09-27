@@ -13,6 +13,9 @@ class Podcast: public Midia{
         void imprimeInfoProduto();
         void imprimeNoArquivo();
         void carregaArquivo();
+
+        int getQtdTemporadas();
+        void setQtdTemporadas(int qtdTemporadas);
 };
 
 #endif

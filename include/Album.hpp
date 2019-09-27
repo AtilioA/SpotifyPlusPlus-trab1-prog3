@@ -3,6 +3,8 @@
 #include "Musica.hpp"
 #include <vector>
 
+class Musica;
+
 using namespace std;
 
 class Album{
