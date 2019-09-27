@@ -19,3 +19,11 @@ void Podcast::imprimeNoArquivo(){
 void Podcast::carregaArquivo(){
 
 }
+
+int Podcast::getQtdTemporadas(){
+   return this->qtdTemporadas; 
+}
+
+void Podcast::setQtdTemporadas(int qtdTemporadas){
+    this->qtdTemporadas = qtdTemporadas;
+}

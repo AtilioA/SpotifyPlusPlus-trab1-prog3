@@ -23,3 +23,19 @@ void Musica::imprimeNoArquivo(){
 void Musica::carregaArquivo(){
     //
 }
+
+void Musica::setDuracao(int duracao){
+    this->duracao = duracao;
+}
+
+void Musica::setAnoLancamento(int anoLancamento){
+    this->anoLancamento = anoLancamento;
+}
+
+int Musica::getAnoLancamento(){
+    return this->anoLancamento;
+}
+
+int Musica::getDuracao(){
+    return this->duracao;
+}

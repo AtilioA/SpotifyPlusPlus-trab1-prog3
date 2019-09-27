@@ -37,11 +37,11 @@ void PlataformaDigital::inserirProdutoAssinante(){
 }
 
 vector<Midia*> PlataformaDigital::getProdutosCadastrados(){
-    //
+    return this->produtosCadastrados;
 }
 
 vector<Assinante*> PlataformaDigital::getAssinantes(){
-    //
+    return this->assinantes;
 }
 
 void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
@@ -58,4 +58,20 @@ void PlataformaDigital::exportarBiblioteca(){
 
 void PlataformaDigital::gerarRelatorios(){
     //
+}
+
+string PlataformaDigital::getNome(){
+    return this->nome;
+}
+
+void PlataformaDigital::setNome(string nome){
+    this->nome = nome;
+}
+
+void PlataformaDigital::setAssinantes(vector<Assinante*> assinantes){
+    this->assinantes = assinantes;
+}
+
+void PlataformaDigital::setProdutosCadastrados(vector<Midia*> produtosCadastrados){
+    this->produtosCadastrados = produtosCadastrados;
 }
