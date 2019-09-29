@@ -5,7 +5,7 @@ Assinante::Assinante(){
 }
 
 Assinante::Assinante(string _nome){
-    //
+    this->nome = _nome;
 }
 
 Assinante::~Assinante(){

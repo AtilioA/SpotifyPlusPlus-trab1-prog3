@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
 #include "../include/Artista.hpp"
 #include "../include/Assinante.hpp"
 #include "../include/Album.hpp"
@@ -49,7 +50,15 @@ int main(int argc, char *argv[])
         }
     }
     cout << "|usuarios: " << user << "| |genero: " << gen << "| |midia: " << midia << "| |favoritos: " << favs << "|" << endl;
-    if (argv[1] == NULL)
+    ifstream file_user;
+    ifstream file_gen;
+    ifstream file_midia;
+    ifstream file_favs;
+    file_user.open(user);
+    file_gen.open(gen);
+    file_midia.open(midia);
+    file_favs.open(favs);
+    if (argv[1] == NULL || !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
     {
         printf("Entrada de buscas invalida.\n");
         exit(1);
@@ -63,5 +72,28 @@ int main(int argc, char *argv[])
     cout << prod->getProdutosDesenvolvidos().at(0)->getGenero().getNome() << endl;
     delete prod;
     delete musi;
+    string test;
+    string nome;
+    string tipo;
+    int cod;
+    vector<Usuario*> vetorzin;
+    while(!file_user.eof()){
+        file_user >> cod;
+        cout << cod << endl;
+        file_user.ignore(1, ';');
+        getline(file_user, tipo, ';');
+        cout << tipo << endl;
+        getline(file_user, nome);
+        cout << nome << endl;
+        if(tipo == "AS"){
+            vetorzin.push_back(new Assinante(nome));
+        }else if(tipo == "PC"){
+            vetorzin.push_back(new Podcaster())
+        }
+    }
+    file_user.close();
+    file_gen.close();
+    file_midia.close();
+    file_favs.close();
     return 0;
 }
