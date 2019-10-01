@@ -11,7 +11,7 @@ class Assinante: public Usuario{
         vector<Midia*> favoritos;
     public:
         Assinante();
-        Assinante(string _nome);
+        Assinante(string _nome, int codigo);
         ~Assinante();
         void imprimeFavoritos();
         void insereFavoritos(Midia * favorito);

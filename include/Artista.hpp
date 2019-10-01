@@ -10,7 +10,7 @@ class Artista: public Produtor{
     private:
         vector<Album*> albuns;
     public:
-        Artista();
+        Artista(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
         void setAlbuns(vector<Album*> albuns);

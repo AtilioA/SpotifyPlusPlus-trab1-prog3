@@ -15,7 +15,7 @@ class Produtor: public Usuario{
         vector<Midia*> produtosDesenvolvidos;
     public:
         Produtor();
-        Produtor(string _nome);
+        Produtor(string _nome, int codigo);
         void criarProduto();
         void imprimeProdutosDesenvolvidos();
         void setProdutosDesenvolvidos(vector<Midia*> produtosDesenvolvidos);

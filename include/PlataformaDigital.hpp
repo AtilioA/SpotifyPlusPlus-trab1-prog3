@@ -2,6 +2,7 @@
 #define _PLATAFORMA_DIGITAL_
 #include <iostream>
 #include <vector>
+#include "Produtor.hpp"
 #include "Assinante.hpp"
 #include "Midia.hpp"
 
@@ -12,6 +13,8 @@ class PlataformaDigital{
         string nome;
         vector<Assinante*> assinantes;
         vector<Midia*> produtosCadastrados;
+        vector<Produtor*> prodrutoresCadastrados;
+        vector<Midia::Genero> generosCadastrados;
     public:
         PlataformaDigital();
         PlataformaDigital(string _nome);

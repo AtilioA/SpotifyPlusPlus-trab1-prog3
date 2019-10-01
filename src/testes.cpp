@@ -54,16 +54,17 @@ int main(int argc, char *argv[])
     ifstream file_gen;
     ifstream file_midia;
     ifstream file_favs;
-    file_user.open(user);
-    file_gen.open(gen);
-    file_midia.open(midia);
-    file_favs.open(favs);
+    file_user.open(user.c_str(), ios::in);
+    file_gen.open(gen.c_str(), ios::in);
+    file_midia.open(midia.c_str(), ios::in);
+    file_favs.open(favs.c_str(), ios::in);
     if (argv[1] == NULL || !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
     {
-        printf("Entrada de buscas invalida.\n");
+        //printf("Entrada de buscas invalida.\n");
+        cout << "Entrada de buscas invalida." << endl;
         exit(1);
     }
-    Produtor * prod = new Produtor("Ramon fodase");
+    Produtor * prod = new Produtor("Ramon fodase", 13);
     Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
     cout << prod->getNome() << endl;
     vector<Midia*> seila;
@@ -85,10 +86,10 @@ int main(int argc, char *argv[])
         cout << tipo << endl;
         getline(file_user, nome);
         cout << nome << endl;
-        if(tipo == "AS"){
-            vetorzin.push_back(new Assinante(nome));
-        }else if(tipo == "PC"){
-            vetorzin.push_back(new Podcaster())
+        if(tipo == "A"){
+            vetorzin.push_back(new Assinante(nome, cod));
+        }else if(tipo == "P"){
+            vetorzin.push_back(new Produtor(nome, cod));
         }
     }
     file_user.close();
