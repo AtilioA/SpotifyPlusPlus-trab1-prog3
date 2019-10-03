@@ -4,7 +4,7 @@ Produtor::Produtor(){
     //
 }
 
-Produtor::Produtor(string _nome){
+Produtor::Produtor(string _nome, int codigo){
     this->nome = _nome;
 }
 

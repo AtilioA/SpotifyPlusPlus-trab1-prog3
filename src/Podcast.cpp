@@ -4,7 +4,7 @@ Podcast::Podcast(){
 
 }
 
-Podcast::Podcast(string nome, bool explicito, string gen, int qtdTemp){
+Podcast::Podcast(string nome, Midia::Genero gen, int qtdTemp){
 
 }
 

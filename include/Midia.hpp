@@ -10,6 +10,9 @@ using namespace std;
 class Midia{
     protected:
         string nome;
+        int codigo;
+        int duracao;
+        int anoLancamento;
     public:
         static int qtdProdutos;
         Midia();

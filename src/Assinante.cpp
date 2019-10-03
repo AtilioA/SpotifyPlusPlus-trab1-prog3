@@ -4,8 +4,9 @@ Assinante::Assinante(){
     //
 }
 
-Assinante::Assinante(string _nome){
+Assinante::Assinante(string _nome, int codigo){
     this->nome = _nome;
+    this->codigo = codigo;
 }
 
 Assinante::~Assinante(){

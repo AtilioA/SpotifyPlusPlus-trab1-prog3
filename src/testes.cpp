@@ -64,34 +64,6 @@ int main(int argc, char *argv[])
         cout << "Entrada de buscas invalida." << endl;
         exit(1);
     }
-    Produtor * prod = new Produtor("Ramon fodase", 13);
-    Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
-    cout << prod->getNome() << endl;
-    vector<Midia*> seila;
-    seila.push_back(musi);
-    prod->setProdutosDesenvolvidos(seila);
-    cout << prod->getProdutosDesenvolvidos().at(0)->getGenero().getNome() << endl;
-    delete prod;
-    delete musi;
-    string test;
-    string nome;
-    string tipo;
-    int cod;
-    vector<Usuario*> vetorzin;
-    while(!file_user.eof()){
-        file_user >> cod;
-        cout << cod << endl;
-        file_user.ignore(1, ';');
-        getline(file_user, tipo, ';');
-        cout << tipo << endl;
-        getline(file_user, nome);
-        cout << nome << endl;
-        if(tipo == "A"){
-            vetorzin.push_back(new Assinante(nome, cod));
-        }else if(tipo == "P"){
-            vetorzin.push_back(new Produtor(nome, cod));
-        }
-    }
     file_user.close();
     file_gen.close();
     file_midia.close();

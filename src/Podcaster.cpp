@@ -1,6 +1,6 @@
 #include "../include/Podcaster.hpp"
 
-Podcaster::Podcaster(){
+Podcaster::Podcaster(string _nome, int codigo){
     //
 }
 

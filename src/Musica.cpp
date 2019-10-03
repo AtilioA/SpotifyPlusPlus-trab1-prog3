@@ -8,13 +8,8 @@ Musica::Musica(){
     //
 }
 
-Musica::Musica(string nome, int clas, string genero, string duracao, int ano){
-    this->nome = nome;
-    Midia::Genero gen;
-    gen.setNome(genero);
-    this->setGenero(gen);
-    formataDuracao(duracao);
-    this->anoLancamento = ano;
+Musica::Musica(string nome, Midia::Genero genero, int duracao, int ano){
+    //
 }
 
 void Musica::imprimeInfoProduto(){

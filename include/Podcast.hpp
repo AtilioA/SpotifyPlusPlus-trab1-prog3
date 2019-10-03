@@ -9,7 +9,7 @@ class Podcast: public Midia{
         int qtdTemporadas;
     public:
         Podcast();
-        Podcast(string nome, bool explicito, string gen, int qtdTemp);
+        Podcast(string nome, Midia::Genero gen, int qtdTemp);
         void imprimeInfoProduto();
         void imprimeNoArquivo();
         void carregaArquivo();

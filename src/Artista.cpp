@@ -1,6 +1,6 @@
 #include "../include/Artista.hpp"
 
-Artista::Artista(){
+Artista::Artista(string _nome, int codigo){
     //
 }
 
