@@ -54,16 +54,19 @@ int main(int argc, char *argv[])
     ifstream file_gen;
     ifstream file_midia;
     ifstream file_favs;
-    file_user.open(user.c_str(), ios::in);
-    file_gen.open(gen.c_str(), ios::in);
-    file_midia.open(midia.c_str(), ios::in);
-    file_favs.open(favs.c_str(), ios::in);
+    file_user.open(user.c_str());
+    file_gen.open(gen.c_str());
+    file_midia.open(midia.c_str());
+    file_favs.open(favs.c_str());
     if (argv[1] == NULL || !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
     {
         //printf("Entrada de buscas invalida.\n");
         cout << "Entrada de buscas invalida." << endl;
         exit(1);
     }
+    PlataformaDigital* spotifyzada = new PlataformaDigital("spplitfy");
+    spotifyzada->carregaArquivoGeneros(file_gen);
+    spotifyzada->imprimeGeneros();
     file_user.close();
     file_gen.close();
     file_midia.close();

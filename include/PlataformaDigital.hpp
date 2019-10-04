@@ -14,7 +14,7 @@ class PlataformaDigital{
         vector<Assinante*> assinantes;
         vector<Midia*> produtosCadastrados;
         vector<Produtor*> prodrutoresCadastrados;
-        vector<Midia::Genero> generosCadastrados;
+        vector<Midia::Genero*> generosCadastrados;
     public:
         PlataformaDigital();
         PlataformaDigital(string _nome);
@@ -28,7 +28,11 @@ class PlataformaDigital{
         vector<Midia*> getProdutosCadastrados();
         vector<Assinante*> getAssinantes();
         void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);
+        void carregaArquivoMidias(ifstream &infile);
+        void carregaArquivoGeneros(ifstream &infile);
+        void carregaArquivoFavoritos(ifstream &infile);
+        void carregaArquivoAssinantes(ifstream &infile);
+        void imprimeGeneros();
         void exportarBiblioteca();
         void gerarRelatorios();
 
