@@ -49,10 +49,7 @@ void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
 }
 
 void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
-    int cod;
-    string nome;
-    char tipo;
-    int prodCod;
+    
     while(!infile.eof()){
 
     }
