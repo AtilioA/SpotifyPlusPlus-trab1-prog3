@@ -20,7 +20,6 @@ class Musica: public Midia{
         int getDuracao();
         void imprimeInfoProduto();
         void imprimeNoArquivo();
-        void carregaArquivo();
 };
 
 #endif

@@ -20,10 +20,6 @@ void Musica::imprimeNoArquivo(){
     //
 }
 
-void Musica::carregaArquivo(){
-    //
-}
-
 void Musica::setDuracao(int duracao){
     this->duracao = duracao;
 }

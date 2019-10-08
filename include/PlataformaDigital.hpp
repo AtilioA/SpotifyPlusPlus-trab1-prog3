@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "Produtor.hpp"
+#include "Artista.hpp"
+#include "Podcaster.hpp"
 #include "Assinante.hpp"
 #include "Midia.hpp"
 
@@ -31,8 +33,10 @@ class PlataformaDigital{
         void carregaArquivoMidias(ifstream &infile);
         void carregaArquivoGeneros(ifstream &infile);
         void carregaArquivoFavoritos(ifstream &infile);
-        void carregaArquivoAssinantes(ifstream &infile);
+        void carregaArquivoUsuarios(ifstream &infile);
         void imprimeGeneros();
+        void imprimeUsuarios();
+        void imprimeProdutores();
         void exportarBiblioteca();
         void gerarRelatorios();
 

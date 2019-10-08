@@ -20,7 +20,6 @@ class Midia{
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;
         virtual void imprimeNoArquivo() = 0;
-        virtual void carregaArquivo() = 0;
 
         class Genero{
             private:

@@ -65,14 +65,14 @@ int main(int argc, char *argv[])
         exit(1);
     }
     Produtor * prod = new Produtor("Ramon fodase", 13);
-    Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
+    //Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
     cout << prod->getNome() << endl;
     vector<Midia*> seila;
-    seila.push_back(musi);
+    //seila.push_back(musi);
     prod->setProdutosDesenvolvidos(seila);
     cout << prod->getProdutosDesenvolvidos().at(0)->getGenero().getNome() << endl;
     delete prod;
-    delete musi;
+    //delete musi;
     string test;
     string nome;
     string tipo;

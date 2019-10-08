@@ -67,6 +67,11 @@ int main(int argc, char *argv[])
     PlataformaDigital* spotifyzada = new PlataformaDigital("spplitfy");
     spotifyzada->carregaArquivoGeneros(file_gen);
     spotifyzada->imprimeGeneros();
+    spotifyzada->carregaArquivoUsuarios(file_user);
+    cout << "\n\n\n";
+    spotifyzada->imprimeUsuarios();
+    cout << "\n-\n";
+    spotifyzada->imprimeProdutores();
     file_user.close();
     file_gen.close();
     file_midia.close();

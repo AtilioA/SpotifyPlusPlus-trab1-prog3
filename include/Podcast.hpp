@@ -12,7 +12,6 @@ class Podcast: public Midia{
         Podcast(string nome, Midia::Genero gen, int qtdTemp);
         void imprimeInfoProduto();
         void imprimeNoArquivo();
-        void carregaArquivo();
 
         int getQtdTemporadas();
         void setQtdTemporadas(int qtdTemporadas);
