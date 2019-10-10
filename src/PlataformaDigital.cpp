@@ -101,7 +101,8 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
         vector<Midia::Genero*>::iterator i;
         for(i = this->generosCadastrados.begin(); i != this->generosCadastrados.end(); i++){
             if((*i)->getSigla() == genPrim){
-                cout << (*i)->getNome() << "]\n";
+                cout << (*i)->getNome() << "\n";
+                break;
             }
         }
         cout << cod << "][" << nome << "][" << tipo  << "]["  << codProd << "][" << minFloat << "][" << genPrim << "][" << temporada << "][" << album << "][" << ano << '\n';
