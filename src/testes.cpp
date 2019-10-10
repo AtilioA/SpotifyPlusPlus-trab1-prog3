@@ -14,6 +14,8 @@
 
 using namespace std;
 
+int Midia::qtdProdutos = 0;
+
 int main(int argc, char *argv[])
 {
     string gen;
@@ -61,7 +63,7 @@ int main(int argc, char *argv[])
     if (argv[1] == NULL || !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
     {
         //printf("Entrada de buscas invalida.\n");
-        cout << "Entrada de buscas invalida." << endl;
+        cerr << "Entrada de buscas invalida." << endl;
         exit(1);
     }
     PlataformaDigital* spotifyzada = new PlataformaDigital("spplitfy");
@@ -72,6 +74,8 @@ int main(int argc, char *argv[])
     spotifyzada->imprimeUsuarios();
     cout << "\n-\n";
     spotifyzada->imprimeProdutores();
+    cout << "\n-\n";
+    spotifyzada->carregaArquivoMidias(file_midia);
     file_user.close();
     file_gen.close();
     file_midia.close();

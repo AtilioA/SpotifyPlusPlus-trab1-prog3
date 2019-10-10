@@ -39,13 +39,13 @@ Código;Nome;Tipo;Produtores;Duração;Gênero;Temporada;Álbum;Publicação
 38;Érico Borgo // POUCAS #39;P;39;50,22;AT;3;;2019
 39;Gordox // POUCAS #38;P;39;47,20;AT;3;;2019
 40;Mauricio Meirelles // POUCAS #37;P;39;65,00;AT;3;;2019
-41;Uma nora pra cada dia;M;52;2,18;FK2019
-42;Credo que delicia;M;52;2,05;FK2019
-43;Facilita;M;52;2,63;FK2019
-44;Agora é tudo meu;M;52;2,85;FK2019
-45;Terremoto;M;52;2,43;FK2019
-46;Reboladinha;M;52;2,37;FK2019
-47;O bebê;M;52;2,97;FK2019
+41;Uma nora pra cada dia;M;52;2,18;FK;;;2019
+42;Credo que delicia;M;52;2,05;FK;;;2019
+43;Facilita;M;52;2,63;FK;;;2019
+44;Agora é tudo meu;M;52;2,85;FK;;;2019
+45;Terremoto;M;52;2,43;FK;;;2019
+46;Reboladinha;M;52;2,37;FK;;;2019
+47;O bebê;M;52;2,97;FK;;;2019
 48;Cheio de Marra;M;53;3,77;FK;;Vagabundo RomÃ¢ntico;2016
 49;Tudo de Bom;M;53;2,32;FK;;Vagabundo RomÃ¢ntico;2016
 50;Foi bom;M;53;3,78;FK;;Vagabundo RomÃ¢ntico;2016
@@ -69,10 +69,10 @@ Código;Nome;Tipo;Produtores;Duração;Gênero;Temporada;Álbum;Publicação
 68;Primeira Semana;M;56;3,13;ST;;1997;2016
 69;Eu, você, o Mar e Ela;M;56;3,12;ST;;1997;2016
 70;Estava Zero;M;56;2,77;ST;;1997;2016
-71;Hear Me Now;M;57;3,23;EL2016
-72;All the Lies;M;57;2,00;EL2016
-73;Favela;M;57;3,08;EL2016
-74;Fuego;M;57;3,13;EL2016
+71;Hear Me Now;M;57;3,23;EL;;;2016
+72;All the Lies;M;57;2,00;EL;;;2016
+73;Favela;M;57;3,08;EL;;;2016
+74;Fuego;M;57;3,13;EL;;;2016
 75;Peace Of Mind;M;58;3,00;EL;;TIM;2019
 76;Heaven;M;58;4,62;EL;;TIM;2019
 77;SOS;M;58;2,62;EL;;TIM;2019

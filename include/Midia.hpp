@@ -2,6 +2,7 @@
 #define _MIDIA_
 #include <iostream>
 #include "Produtor.hpp"
+#include <vector>
 
 class Produtor;
 
@@ -14,12 +15,6 @@ class Midia{
         int duracao;
         int anoLancamento;
     public:
-        static int qtdProdutos;
-        Midia();
-        Midia(string nome, bool explicito, string genero);
-        static void imprimeQtdProdutos();
-        virtual void imprimeInfoProduto() = 0;
-        virtual void imprimeNoArquivo() = 0;
 
         class Genero{
             private:
@@ -33,17 +28,23 @@ class Midia{
                 Genero();
                 Genero(string nome, string sigla);
         };
+        static int qtdProdutos;
+        Midia();
+        Midia(string nome, int codigo, Genero* genero);
+        static void imprimeQtdProdutos();
+        virtual void imprimeInfoProduto() = 0;
+        virtual void imprimeNoArquivo() = 0;
         string getNome();
         void setNome(string nome);
-        Genero getGenero();
-        void setGenero(Genero genero);
-        Produtor* getProdutor();
-        void setProdutor(Produtor* produtor);
+        Genero* getGenero();
+        void setGenero(Genero* genero);
+        vector<Produtor*> getProdutor();
+        void setProdutor(vector<Produtor*> produtor);
         
     private:
         bool explicito;
-        Genero genero;
-        Produtor* produtor;
+        Genero* genero;
+        vector<Produtor*> produtor;
 };
 
 #endif

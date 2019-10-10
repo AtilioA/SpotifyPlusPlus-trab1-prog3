@@ -4,8 +4,11 @@ Midia::Midia(){
     //
 }
 
-Midia::Midia(string nome, bool explicito, string genero){
-    //
+Midia::Midia(string nome, int codigo, Midia::Genero* genero){
+    this->nome = nome;
+    this->codigo = codigo;
+    this->genero = genero;
+    Midia::qtdProdutos++;
 }
 
 Midia::Genero::Genero(){
@@ -41,18 +44,18 @@ void Midia::Genero::setSigla(string sigla){
     this->sigla = sigla;
 }
 
-Midia::Genero Midia::getGenero(){
+Midia::Genero* Midia::getGenero(){
     return this->genero;
 }
 
-void Midia::setGenero(Midia::Genero genero){
+void Midia::setGenero(Midia::Genero* genero){
     this->genero = genero;
 }
 
-Produtor* Midia::getProdutor(){
+vector<Produtor*> Midia::getProdutor(){
     return this->produtor;
 }
 
-void Midia::setProdutor(Produtor* produtor){
+void Midia::setProdutor(vector<Produtor*> produtor){
     this->produtor = produtor;
 }

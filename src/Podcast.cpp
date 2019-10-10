@@ -4,8 +4,8 @@ Podcast::Podcast(){
 
 }
 
-Podcast::Podcast(string nome, Midia::Genero gen, int qtdTemp){
-
+Podcast::Podcast(string nome, int codigo, Midia::Genero* gen, int qtdTemp): Midia(nome, codigo, gen){
+    this->qtdTemporadas = qtdTemp;
 }
 
 void Podcast::imprimeInfoProduto(){

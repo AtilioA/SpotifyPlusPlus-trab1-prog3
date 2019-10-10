@@ -13,7 +13,7 @@ class Musica: public Midia{
         Album* album;
     public:
         Musica();
-        Musica(string nome, Midia::Genero genero, int duracao, int ano);
+        Musica(string nome, int codigo, Midia::Genero* genero, int duracao, int ano);
         void setDuracao(int duracao);
         void setAnoLancamento(int anoLancamento);
         int getAnoLancamento();

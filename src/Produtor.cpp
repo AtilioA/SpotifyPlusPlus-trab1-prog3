@@ -8,10 +8,6 @@ Produtor::Produtor(string _nome, int codigo){
     this->nome = _nome;
 }
 
-void Produtor::criarProduto(){
-    //
-}
-
 void Produtor::imprimeProdutosDesenvolvidos(){
     //
 }
@@ -32,10 +28,6 @@ vector<Midia*> Produtor::getProdutosDesenvolvidos(){
     return this->produtosDesenvolvidos;
 }
 
-string Produtor::getBiografia(){
-    return this->biografia;
-}
-
-void Produtor::setBiografia(string biografia){
-    this->biografia = biografia;
+void Produtor::novoProduto(Midia* produto){
+    this->produtosDesenvolvidos.push_back(produto);
 }

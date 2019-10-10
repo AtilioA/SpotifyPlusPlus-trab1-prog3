@@ -15,7 +15,7 @@ class PlataformaDigital{
         string nome;
         vector<Assinante*> assinantes;
         vector<Midia*> produtosCadastrados;
-        vector<Produtor*> prodrutoresCadastrados;
+        vector<Produtor*> produtoresCadastrados;
         vector<Midia::Genero*> generosCadastrados;
     public:
         PlataformaDigital();

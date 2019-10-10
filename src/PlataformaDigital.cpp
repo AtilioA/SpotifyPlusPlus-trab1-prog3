@@ -50,9 +50,55 @@ void PlataformaDigital::imprimeNoArquivo(ofstream &outfile){
 
 void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
     int cod;
-    
+    string nome;
+    char tipo;
+    int codProd;
+    float minFloat;
+    int minDur;
+    string genPrim;
+    int temporada;
+    string album;
+    int ano;
+    string linha_1;
+    // vector<Produtor*> produtores;
+    getline(infile, linha_1);
     while(!infile.eof()){
-
+        infile >> cod;
+        infile.ignore(1, ';');
+        getline(infile, nome, ';');
+        infile >> tipo;
+        infile.ignore(1, ';');
+        vector<int> produtores;
+        infile >> codProd;
+        produtores.push_back(codProd);
+        if(infile.peek() == ','){
+            infile.ignore(1, ',');
+        }
+        while(infile.peek() != ';'){
+            infile >> codProd;
+            produtores.push_back(codProd);
+            if(infile.peek() == ','){
+                infile.ignore(1, ',');
+            }
+        }
+        infile.ignore(1, ';');
+        infile >> minDur;
+        infile.ignore(1, ',');
+        infile >> minFloat;
+        minFloat = minDur + minFloat;
+        infile.ignore(1, ';');
+        getline(infile, genPrim, ';');
+        genPrim.resize(2);
+        if(tipo == 'P'){
+            infile >> temporada;
+            infile.ignore(1,';');
+        }else{
+            temporada = -1;
+            infile.ignore(1,';');
+        }
+        getline(infile, album, ';');
+        infile >> ano;
+        cout << cod << "][" << nome << "][" << tipo  << "]["  << codProd << "][" << minFloat << "][" << genPrim << "][" << temporada << "][" << album << "][" << ano << '\n';
     }
 }
 
@@ -95,16 +141,15 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile){
         infile >> tipo;
         infile.ignore(1, ';');
         getline(infile, nome);
-        nome.pop_back();
         if(infile.eof()){
             break;
         }
         switch(tipo){
             case 'A':
-                this->prodrutoresCadastrados.push_back(new Artista(nome, cod));
+                this->produtoresCadastrados.push_back(new Artista(nome, cod));
                 break;
             case 'P':
-                this->prodrutoresCadastrados.push_back(new Podcaster(nome, cod));
+                this->produtoresCadastrados.push_back(new Podcaster(nome, cod));
                 break;
             case 'U':
                 this->assinantes.push_back(new Assinante(nome, cod));
@@ -117,13 +162,13 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile){
 
 void PlataformaDigital::imprimeUsuarios(){
     for(int i = 0; i < this->assinantes.size(); i++){
-        cout << this->assinantes[i]->getNome() << ";" << this->assinantes[i]->getCodigo() << endl;
+        cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
     }
 }
 
 void PlataformaDigital::imprimeProdutores(){
     for(int i = 0; i < this->assinantes.size(); i++){
-        cout << this->prodrutoresCadastrados[i]->getNome() << ";" << this->prodrutoresCadastrados[i]->getCodigo() << endl;
+        cout << this->produtoresCadastrados[i]->getCodigo() << ";" << this->produtoresCadastrados[i]->getNome() << endl;
     }
 } 
 
