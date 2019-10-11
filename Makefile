@@ -1,22 +1,24 @@
-OBJ      := obj
-SRC      := src
-INC      := include
-CFLAGS   := -g -w -O3
-EXE 	 := spotify==
-PROJETO  := tp1prog3-AtilioDadalto-TiagoSantos
+CXX		  	:= g++
+CXX_FLAGS 	:= -std=c++17 -ggdb -g #-Wall -Wextra
 
-main: $(OBJ)/$(PROJETO).o
-	g++ $(OBJ)/*.o -o $(EXE) $(CFLAGS)
+SRC			:= src
+INCLUDE		:= include
+OBJ 		:= obj
 
-$(OBJ)/$(PROJETO).o: $(PROJETO).cpp
-	g++ -c $(CFLAGS) $(PROJETO).cpp -o "$(OBJ)/$(PROJETO).o"
+LIBRARIES	:=
+EXECUTABLE	:= main
 
-# Limpa objetos e o executável do programa (para Linux)
+all: $(EXECUTABLE)
+
+# valgrind ./a.out -u entradas/usuarios\ copy.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas_corrigidas.csv
+
+$(EXECUTABLE): $(SRC)/*.cpp
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
+
+run: clean all
+	clean
+	$(EXECUTABLE)
+
 clean:
-	-rm $(OBJ)/*.o
-	-rm $(EXE)
-
-# Limpa objetos e o executável do programa (para Windows)
-cleanW:
-	del /F/Q/S "$(OBJ)\*.o"
-	del /F/Q/S "$(EXE).exe"
+	# -rm $(OBJ)/*
+	make
