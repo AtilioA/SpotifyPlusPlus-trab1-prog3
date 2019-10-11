@@ -60,6 +60,11 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
     string album;
     int ano;
     string linha_1;
+    Midia* produto;
+    vector<int> produtores;
+    Album* albumOB;
+    vector<Album*>* albunsDeArtista;
+    vector<Podcast*>* podcasts;
     // vector<Produtor*> produtores;
     getline(infile, linha_1);
     while(!infile.eof()){
@@ -68,12 +73,13 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
         getline(infile, nome, ';');
         infile >> tipo;
         infile.ignore(1, ';');
-        vector<int> produtores;
         infile >> codProd;
         produtores.push_back(codProd);
+
         if(infile.peek() == ','){
             infile.ignore(1, ',');
         }
+
         while(infile.peek() != ';'){
             infile >> codProd;
             produtores.push_back(codProd);
@@ -81,6 +87,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
                 infile.ignore(1, ',');
             }
         }
+
         infile.ignore(1, ';');
         infile >> minDur;
         infile.ignore(1, ',');
@@ -89,6 +96,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
         infile.ignore(1, ';');
         getline(infile, genPrim, ';');
         genPrim.resize(2);
+
         if(tipo == 'P'){
             infile >> temporada;
             infile.ignore(1,';');
@@ -98,13 +106,40 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile){
         }
         getline(infile, album, ';');
         infile >> ano;
+
         vector<Midia::Genero*>::iterator i;
         for(i = this->generosCadastrados.begin(); i != this->generosCadastrados.end(); i++){
             if((*i)->getSigla() == genPrim){
-                cout << (*i)->getNome() << "\n";
                 break;
             }
         }
+
+        if(tipo == 'P'){
+            produto = new Podcast(nome, cod, (*i), temporada);
+        }else{
+            produto = new Musica(nome, cod, (*i), minFloat, ano);
+            if(!album.empty()){
+                albumOB = new Album(album, minFloat, ano, 1);
+                albumOB->adicionarMusica((Musica*) produto);
+            }
+        }
+        
+        this->produtosCadastrados.push_back(produto);
+        for(vector<int>::iterator it = produtores.begin(); it != produtores.end(); it++){
+            for(vector<Produtor*>::iterator it2 = this->produtoresCadastrados.begin(); it2 != this->produtoresCadastrados.end(); it2++){
+                if((*it) == (*it2)->getCodigo()){
+                    if(typeid(*(*it2)) == typeid(Podcaster)){
+                        podcasts = ((Podcaster*)(*it2))->getPodcasts();
+                        podcasts->push_back((Podcast*) produto);
+                    }else{
+                        //albunsDeArtista = ((Artista*)(*it2))->getAlbuns();
+                        
+                    }
+                }
+            }
+        }
+        produtores.clear();
+
         cout << cod << "][" << nome << "][" << tipo  << "]["  << codProd << "][" << minFloat << "][" << genPrim << "][" << temporada << "][" << album << "][" << ano << '\n';
     }
 }
@@ -117,6 +152,7 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile){
     while(!infile.eof()){
         getline(infile, sigla, ';');
         getline(infile, nome);
+        //nome.resize(nome.size() - 1);
         if(infile.eof()){
             break;
         }
@@ -148,6 +184,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile){
         infile >> tipo;
         infile.ignore(1, ';');
         getline(infile, nome);
+        //nome.resize(nome.size() - 1);
         if(infile.eof()){
             break;
         }

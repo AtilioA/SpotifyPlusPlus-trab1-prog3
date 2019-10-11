@@ -5,7 +5,10 @@ Album::Album(){
 }
 
 Album::Album(string nome, int duracao, int ano, int qtd){
-    //
+    this->nome = nome;
+    this->duracao = duracao;
+    this->anoLancamento = ano;
+    this->qtdMusicas = qtd;
 }
 
 void Album::imprimeNoArquivo(ofstream &outfile){
@@ -50,4 +53,8 @@ void Album::setMusicas(vector<Musica*> musicas){
 
 vector<Musica*> Album::getMusica(){
     return this->musicas;
+}
+
+void Album::adicionarMusica(Musica* musica){
+    this->musicas.push_back(musica);
 }

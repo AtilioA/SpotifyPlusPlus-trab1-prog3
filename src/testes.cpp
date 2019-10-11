@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
     spotifyzada->imprimeProdutores();
     cout << "\n-\n";
     spotifyzada->carregaArquivoMidias(file_midia);
+    cout << Midia::qtdProdutos << "\n";
     file_user.close();
     file_gen.close();
     file_midia.close();

@@ -1,7 +1,7 @@
 #include "../include/Midia.hpp"
 
 Midia::Midia(){
-    //
+    Midia::qtdProdutos++;
 }
 
 Midia::Midia(string nome, int codigo, Midia::Genero* genero){

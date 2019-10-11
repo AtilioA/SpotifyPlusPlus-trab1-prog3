@@ -28,6 +28,7 @@ class Album{
         int getAnoLancamento();
         void setMusicas(vector<Musica*> musicas);
         vector<Musica*> getMusica();
+        void adicionarMusica(Musica* musica);
 };
 
 

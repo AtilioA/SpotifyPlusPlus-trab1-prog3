@@ -6,6 +6,7 @@ Produtor::Produtor(){
 
 Produtor::Produtor(string _nome, int codigo){
     this->nome = _nome;
+    this->codigo = codigo;
 }
 
 void Produtor::imprimeProdutosDesenvolvidos(){

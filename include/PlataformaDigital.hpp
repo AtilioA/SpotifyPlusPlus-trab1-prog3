@@ -2,6 +2,7 @@
 #define _PLATAFORMA_DIGITAL_
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 #include "Produtor.hpp"
 #include "Artista.hpp"
 #include "Podcaster.hpp"
