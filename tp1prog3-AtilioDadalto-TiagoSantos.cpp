@@ -63,9 +63,9 @@ int main(int argc, char *argv[])
     file_gen.open(gen.c_str(), ios::in);
     file_midia.open(midia.c_str(), ios::in);
     file_favs.open(favs.c_str(), ios::in);
-    if (argv[1] == NULL || !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
+    if (/*argv[1] == NULL ||*/!file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
     {
-        cout << "Entrada de buscas invalida." << endl;
+        cerr << "Erro de I/O" << endl;
         exit(1);
     }
 

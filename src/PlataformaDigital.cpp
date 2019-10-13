@@ -79,10 +79,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     string primeiraLinha;
     Midia *produto;
     vector<int> produtores;
-    Album *albumOB;
-    vector<Album *> *albunsDeArtista;
-    vector<Podcast *> *podcasts;
     // vector<Produtor*> produtores;
+    Album *albumOB;
+    vector<Podcast *> *podcasts;
+    // vector<Album *> *albunsDeArtista;
     getline(infile, primeiraLinha);  // Ignorando primeira linha
     while (!infile.eof())
     {
@@ -132,13 +132,23 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(infile, album, ';');
         infile >> ano;
 
+        int achaste = 0;
         vector<Midia::Genero *>::iterator itGeneros;
         for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
         {
             if ((*itGeneros)->getSigla() == primeiroGenero)
             {
+                achaste = 1;
                 break;
             }
+        }
+        if (achaste == 0)
+        {
+            /* Inconsistência nos dados de entrada:
+             * por exemplo, uso de Código de gênero ou usuário inexistente nos respectivos cadastros, etc
+             */
+            cerr << "Inconsistências na entrada" << endl;
+            exit(3);
         }
 
         // Criando objeto de acordo com Tipo
@@ -157,12 +167,14 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         this->produtosCadastrados.push_back(produto);
 
+        size_t achastesProd = 0;
         for (vector<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
         {
             for (vector<Produtor *>::iterator itProdutoresCad = this->produtoresCadastrados.begin(); itProdutoresCad != this->produtoresCadastrados.end(); itProdutoresCad++)
             {
                 if ((*itProdutores) == (*itProdutoresCad)->getCodigo())
                 {
+                    achastesProd++;
                     if (typeid(*(*itProdutoresCad)) == typeid(Podcaster))
                     {
                         podcasts = ((Podcaster *)(*itProdutoresCad))->getPodcasts();
@@ -175,9 +187,14 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 }
             }
         }
+        if (achastesProd != produtores.size()) // não sei se tá certo, é só uma ideia
+        {
+            cerr << "Inconsistências na entrada" << endl;
+            exit(3);
+        }
         produtores.clear();
 
-        cout << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << minFloat << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << '\n';
+        cout << '[' << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << minFloat << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << "]\n";
     }
 }
 

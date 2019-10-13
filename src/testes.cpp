@@ -68,7 +68,10 @@ int main(int argc, char *argv[])
     fileFavs.open(favs.c_str());
     if (/*argv[1] == NULL ||*/ !fileGen.is_open() || !fileMidia.is_open() || !fileGen.is_open() || !fileFavs.is_open()) // Verificação de arquivos
     {
-        cerr << "Entrada de buscas invalida." << endl;
+        /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
+        * ou o programa não ter permissão para ler ou escrever em um arquivo
+        */
+        cerr << "Erro de I/O" << endl;
         exit(1);
     }
 
