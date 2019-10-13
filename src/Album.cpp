@@ -1,60 +1,73 @@
 #include "../include/Album.hpp"
 
-Album::Album(){
+Album::Album()
+{
     //
 }
 
-Album::Album(string nome, int duracao, int ano, int qtd){
+Album::Album(string nome, int duracao, int ano, int qtd)
+{
     this->nome = nome;
     this->duracao = duracao;
     this->anoLancamento = ano;
     this->qtdMusicas = qtd;
 }
 
-void Album::imprimeNoArquivo(ofstream &outfile){
-    //
+void Album::imprimeNoArquivo(ofstream &outfile)
+{
 }
 
-void Album::setQtdMusicas(int qtdMusicas) {
+void Album::setQtdMusicas(int qtdMusicas)
+{
     this->qtdMusicas = qtdMusicas;
 }
 
-int Album::getQtdMusicas() {
+int Album::getQtdMusicas()
+{
     return qtdMusicas;
 }
 
-void Album::setNome(string nome) {
+void Album::setNome(string nome)
+{
     this->nome = nome;
 }
 
-string Album::getNome() {
+string Album::getNome()
+{
     return nome;
 }
 
-void Album::setDuracao(int duracao) {
+void Album::setDuracao(int duracao)
+{
     this->duracao = duracao;
 }
 
-int Album::getDuracao() {
+int Album::getDuracao()
+{
     return duracao;
 }
 
-void Album::setAnoLancamento(int anoLancamento) {
+void Album::setAnoLancamento(int anoLancamento)
+{
     this->anoLancamento = anoLancamento;
 }
 
-int Album::getAnoLancamento() {
+int Album::getAnoLancamento()
+{
     return anoLancamento;
 }
 
-void Album::setMusicas(vector<Musica*> musicas){
+void Album::setMusicas(vector<Musica *> musicas)
+{
     this->musicas = musicas;
 }
 
-vector<Musica*> Album::getMusica(){
+vector<Musica *> Album::getMusica()
+{
     return this->musicas;
 }
 
-void Album::adicionarMusica(Musica* musica){
+void Album::adicionarMusica(Musica *musica)
+{
     this->musicas.push_back(musica);
 }

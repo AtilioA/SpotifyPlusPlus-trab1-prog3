@@ -10,9 +10,11 @@ class Midia;
 
 using namespace std;
 
-class Produtor: public Usuario{
+class Produtor: public Usuario
+{
     protected:
         vector<Midia*> produtosDesenvolvidos;
+        
     public:
         Produtor();
         Produtor(string _nome, int codigo);

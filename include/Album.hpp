@@ -7,13 +7,15 @@ class Musica;
 
 using namespace std;
 
-class Album{
+class Album
+{
     private:
         int anoLancamento;
         int duracao;
         string nome;
         int qtdMusicas;
         vector<Musica*> musicas;
+
     public:
         Album();
         Album(string nome, int duracao, int ano, int qtd);

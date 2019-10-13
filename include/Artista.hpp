@@ -6,9 +6,11 @@
 
 using namespace std;
 
-class Artista: public Produtor{
+class Artista: public Produtor
+{
     private:
         vector<Album*> albuns;
+
     public:
         Artista(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);

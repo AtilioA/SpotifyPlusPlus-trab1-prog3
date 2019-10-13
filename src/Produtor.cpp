@@ -1,34 +1,42 @@
 #include "../include/Produtor.hpp"
 
-Produtor::Produtor(){
+Produtor::Produtor()
+{
     //
 }
 
-Produtor::Produtor(string _nome, int codigo){
+Produtor::Produtor(string _nome, int codigo)
+{
     this->nome = _nome;
     this->codigo = codigo;
 }
 
-void Produtor::imprimeProdutosDesenvolvidos(){
+void Produtor::imprimeProdutosDesenvolvidos()
+{
     //
 }
 
-void Produtor::imprimeNoArquivo(ofstream &outfile){
+void Produtor::imprimeNoArquivo(ofstream &outfile)
+{
     //
 }
 
-void Produtor::carregaArquivo(ifstream &infile){
+void Produtor::carregaArquivo(ifstream &infile)
+{
     //
 }
 
-void Produtor::setProdutosDesenvolvidos(vector<Midia*> produtosDesenvolvidos){
+void Produtor::setProdutosDesenvolvidos(vector<Midia *> produtosDesenvolvidos)
+{
     this->produtosDesenvolvidos = produtosDesenvolvidos;
 }
 
-vector<Midia*> Produtor::getProdutosDesenvolvidos(){
+vector<Midia *> Produtor::getProdutosDesenvolvidos()
+{
     return this->produtosDesenvolvidos;
 }
 
-void Produtor::novoProduto(Midia* produto){
+void Produtor::novoProduto(Midia *produto)
+{
     this->produtosDesenvolvidos.push_back(produto);
 }

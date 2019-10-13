@@ -7,10 +7,12 @@ class Album;
 
 using namespace std;
 
-class Musica: public Midia{
+class Musica: public Midia
+{
     private:
         void formataDuracao(string duracao);
         Album* album;
+
     public:
         Musica();
         Musica(string nome, int codigo, Midia::Genero* genero, int duracao, int ano);

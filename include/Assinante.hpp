@@ -6,9 +6,11 @@
 
 using namespace std;
 
-class Assinante: public Usuario{
+class Assinante: public Usuario
+{
     private:
         vector<Midia*> favoritos;
+
     public:
         Assinante();
         Assinante(string _nome, int codigo);

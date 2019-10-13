@@ -6,9 +6,11 @@
 
 using namespace std;
 
-class Podcaster: public Produtor{
+class Podcaster: public Produtor
+{
     private:
         vector<Podcast*> podcasts;
+
     public:
         Podcaster(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);

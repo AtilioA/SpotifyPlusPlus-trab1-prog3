@@ -12,6 +12,7 @@ int Usuario::getCodigo(){
     return this->codigo;
 }
 
-void Usuario::setCodigo(int codigo){
+void Usuario::setCodigo(int codigo)
+{
     this->codigo = codigo;
 }

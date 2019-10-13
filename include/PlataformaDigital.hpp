@@ -11,13 +11,15 @@
 
 using namespace std;
 
-class PlataformaDigital{
+class PlataformaDigital
+{
     private:
         string nome;
         vector<Assinante*> assinantes;
         vector<Midia*> produtosCadastrados;
         vector<Produtor*> produtoresCadastrados;
         vector<Midia::Genero*> generosCadastrados;
+
     public:
         PlataformaDigital();
         PlataformaDigital(string _nome);

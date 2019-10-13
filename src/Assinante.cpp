@@ -1,43 +1,52 @@
 #include "../include/Assinante.hpp"
 
-Assinante::Assinante(){
+Assinante::Assinante()
+{
     //
 }
 
-Assinante::Assinante(string _nome, int codigo){
+Assinante::Assinante(string _nome, int codigo)
+{
     this->nome = _nome;
     this->codigo = codigo;
 }
 
-Assinante::~Assinante(){
+Assinante::~Assinante()
+{
     //
 }
 
-void Assinante::imprimeFavoritos(){
+void Assinante::imprimeFavoritos()
+{
     //
 }
 
-void Assinante::insereFavoritos(Midia * favorito){
+void Assinante::insereFavoritos(Midia *favorito)
+{
     //
 }
 
-void Assinante::removerFavorito(){
+void Assinante::removerFavorito()
+{
     //
 }
 
-vector<Midia*> Assinante::getFavoritos(){
+vector<Midia *> Assinante::getFavoritos()
+{
     return this->favoritos;
 }
 
-void Assinante::setFavoritos(vector<Midia*> favoritos){
+void Assinante::setFavoritos(vector<Midia *> favoritos)
+{
     this->favoritos = favoritos;
 }
 
-void Assinante::imprimeNoArquivo(ofstream &outfile){
+void Assinante::imprimeNoArquivo(ofstream &outfile)
+{
     //
 }
 
-void Assinante::carregaArquivo(ifstream &infile){
+void Assinante::carregaArquivo(ifstream &infile)
+{
     //
 }
- 

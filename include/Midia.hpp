@@ -8,18 +8,21 @@ class Produtor;
 
 using namespace std;
 
-class Midia{
+class Midia
+{
     protected:
         string nome;
         int codigo;
         int duracao;
         int anoLancamento;
-    public:
 
-        class Genero{
+    public:
+        class Genero
+        {
             private:
                 string sigla;
                 string nome;
+
             public:
                 string getNome();
                 string getSigla();
@@ -28,23 +31,24 @@ class Midia{
                 Genero();
                 Genero(string nome, string sigla);
         };
+
         static int qtdProdutos;
         Midia();
-        Midia(string nome, int codigo, Genero* genero);
+        Midia(string nome, int codigo, Genero *genero);
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;
         virtual void imprimeNoArquivo() = 0;
         string getNome();
         void setNome(string nome);
-        Genero* getGenero();
-        void setGenero(Genero* genero);
-        vector<Produtor*> getProdutor();
-        void setProdutor(vector<Produtor*> produtor);
-        
+        Genero *getGenero();
+        void setGenero(Genero *genero);
+        vector<Produtor *> getProdutor();
+        void setProdutor(vector<Produtor *> produtor);
+
     private:
         bool explicito;
-        Genero* genero;
-        vector<Produtor*> produtor;
+        Genero *genero;
+        vector<Produtor *> produtor;
 };
 
 #endif

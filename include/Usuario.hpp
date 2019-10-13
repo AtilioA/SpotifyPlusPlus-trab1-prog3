@@ -4,10 +4,12 @@
 
 using namespace std;
 
-class Usuario{
+class Usuario
+{
     protected:
         string nome;
         int codigo;
+        
     public:
         string getNome();
         void setNome(string nome);
