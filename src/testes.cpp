@@ -71,11 +71,14 @@ int main(int argc, char *argv[])
         /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
         * ou o programa não ter permissão para ler ou escrever em um arquivo
         */
+       cout << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
+       
         cerr << "Erro de I/O" << endl;
         exit(1);
     }
 
     PlataformaDigital *spotifyzada = new PlataformaDigital("Spotify==");
+    cout << "Plataforma digital criada.\n";
 
     spotifyzada->carregaArquivoGeneros(fileGen);
     cout << "Generos:\n";
