@@ -1,0 +1,9 @@
+O arquivo .zip deverá também incluir dois conjuntos de arquivos de entrada (generos.csv, usuarios.csv, midias.csv e  favoritos.csv) que atendam os seguintes critérios:
+    • Não conter trechos iguais a outros arquivos de testes disponíveis no site;
+    • Conter o cadastro de pelo menos 5 gêneros, 30 usuários, 20 mídias e 10 favoritos
+
+entradas1:
+    Gêneros: 10
+    Usuários: 40
+    Mídias: 20
+    Favoritos: 10
