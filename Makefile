@@ -1,6 +1,5 @@
 CXX		  	:= g++
-CXX_FLAGS 	:= -ggdb -g # -Wall -Wextra -std=c++17
-CPP17_FLAGS := -std=c++17
+CXX_FLAGS 	:= -ggdb -g -Wall # -Wextra -std=c++17
 SRC			:= src
 INCLUDE		:= include
 OBJ 		:= obj
@@ -14,11 +13,8 @@ $(EXECUTABLE): $(SRC)/*.cpp
 run:
 	$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas_corrigidas.csv
 
-c17: $(EXECUTABLE)
-	$(CXX) $(CXX_FLAGS) -std=c++17 -I$(INCLUDE) $^ -o $@
-
-warns: $(EXECUTABLE)
-	$(CXX) $(CXX_FLAGS) -Wall -Wextra -I$(INCLUDE) $^ -o $@
+warns: $(SRC)/*.cpp
+	$(CXX) $(CXX_FLAGS) -Wextra -I$(INCLUDE) $^ -o $@
 
 clean:
 	-rm $(OBJ)/*.o

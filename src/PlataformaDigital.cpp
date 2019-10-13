@@ -33,11 +33,15 @@ void PlataformaDigital::removerAssinante()
 int PlataformaDigital::inserirProduto(Midia *novoProduto, string nomeProdutor)
 {
     //
+
+    return 0;
 }
 
 int PlataformaDigital::selecionaAssinante()
 {
     //
+
+    return 0;
 }
 
 void PlataformaDigital::inserirProdutoAssinante()
@@ -196,7 +200,7 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
 
 void PlataformaDigital::imprimeGeneros()
 {
-    for (int i = 0; i < this->generosCadastrados.size(); i++)
+    for (size_t i = 0; i < this->generosCadastrados.size(); i++)
     {
         cout << this->generosCadastrados.at(i)->getSigla() << ";" << this->generosCadastrados.at(i)->getNome() << endl;
     }
@@ -247,7 +251,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
 
 void PlataformaDigital::imprimeUsuarios()
 {
-    for (int i = 0; i < this->assinantes.size(); i++)
+    for (size_t i = 0; i < this->assinantes.size(); i++)
     {
         cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
     }
@@ -255,7 +259,7 @@ void PlataformaDigital::imprimeUsuarios()
 
 void PlataformaDigital::imprimeProdutores()
 {
-    for (int i = 0; i < this->assinantes.size(); i++)
+    for (size_t i = 0; i < this->assinantes.size(); i++)
     {
         cout << this->produtoresCadastrados[i]->getCodigo() << ";" << this->produtoresCadastrados[i]->getNome() << endl;
     }
