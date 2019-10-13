@@ -58,15 +58,15 @@ int main(int argc, char *argv[])
     // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|" << endl;
 
     // Abrindo arquivos de entrada
-    ifstream file_user;
-    ifstream file_gen;
-    ifstream file_midia;
-    ifstream file_favs;
-    file_user.open(user.c_str());
-    file_gen.open(gen.c_str());
-    file_midia.open(midia.c_str());
-    file_favs.open(favs.c_str());
-    if (/*argv[1] == NULL ||*/ !file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open()) // Verificação de arquivos
+    ifstream fileUser;
+    ifstream fileGen;
+    ifstream fileMidia;
+    ifstream fileFavs;
+    fileUser.open(user.c_str());
+    fileGen.open(gen.c_str());
+    fileMidia.open(midia.c_str());
+    fileFavs.open(favs.c_str());
+    if (/*argv[1] == NULL ||*/ !fileGen.is_open() || !fileMidia.is_open() || !fileGen.is_open() || !fileFavs.is_open()) // Verificação de arquivos
     {
         cerr << "Entrada de buscas invalida." << endl;
         exit(1);
@@ -74,11 +74,11 @@ int main(int argc, char *argv[])
 
     PlataformaDigital *spotifyzada = new PlataformaDigital("Spotify==");
 
-    spotifyzada->carregaArquivoGeneros(file_gen);
+    spotifyzada->carregaArquivoGeneros(fileGen);
     cout << "Generos:\n";
     spotifyzada->imprimeGeneros();
 
-    spotifyzada->carregaArquivoUsuarios(file_user);
+    spotifyzada->carregaArquivoUsuarios(fileUser);
     cout << "\nUsuarios:\n";
 
     spotifyzada->imprimeUsuarios();
@@ -87,13 +87,13 @@ int main(int argc, char *argv[])
     spotifyzada->imprimeProdutores();
     cout << "\nMidias:\n";
 
-    spotifyzada->carregaArquivoMidias(file_midia);
+    spotifyzada->carregaArquivoMidias(fileMidia);
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
-    file_user.close();
-    file_gen.close();
-    file_midia.close();
-    file_favs.close();
+    fileUser.close();
+    fileGen.close();
+    fileMidia.close();
+    fileFavs.close();
 
     return 0;
 }

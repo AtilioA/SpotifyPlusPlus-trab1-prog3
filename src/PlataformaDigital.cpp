@@ -72,18 +72,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     int codProd;
     float minFloat;
     int minDur;
-    string genPrim;
+    string primeiroGenero;
     int temporada;
     string album;
     int ano;
-    string linha_1;
+    string primeiraLinha;
     Midia *produto;
     vector<int> produtores;
     Album *albumOB;
     vector<Album *> *albunsDeArtista;
     vector<Podcast *> *podcasts;
     // vector<Produtor*> produtores;
-    getline(infile, linha_1);
+    getline(infile, primeiraLinha);  // Ignorando primeira linha
     while (!infile.eof())
     {
         infile >> cod;
@@ -115,9 +115,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         infile >> minFloat;
         minFloat = minDur + minFloat;
         infile.ignore(1, ';');
-        getline(infile, genPrim, ';');
-        genPrim.resize(2);
+        getline(infile, primeiroGenero, ';');
+        primeiroGenero.resize(2); // Limita ao primeiro gênero
 
+        // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
             infile >> temporada;
@@ -131,51 +132,52 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(infile, album, ';');
         infile >> ano;
 
-        vector<Midia::Genero *>::iterator i;
-        for (i = this->generosCadastrados.begin(); i != this->generosCadastrados.end(); i++)
+        vector<Midia::Genero *>::iterator itGeneros;
+        for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
         {
-            if ((*i)->getSigla() == genPrim)
+            if ((*itGeneros)->getSigla() == primeiroGenero)
             {
                 break;
             }
         }
 
+        // Criando objeto de acordo com Tipo
         if (tipo == 'P')
         {
-            produto = new Podcast(nome, cod, (*i), temporada);
+            produto = new Podcast(nome, cod, (*itGeneros), temporada);
         }
         else
         {
-            produto = new Musica(nome, cod, (*i), minFloat, ano);
+            produto = new Musica(nome, cod, (*itGeneros), minFloat, ano);
             if (!album.empty())
             {
                 albumOB = new Album(album, minFloat, ano, 1);
                 albumOB->adicionarMusica((Musica *)produto);
             }
         }
-
         this->produtosCadastrados.push_back(produto);
-        for (vector<int>::iterator it = produtores.begin(); it != produtores.end(); it++)
+
+        for (vector<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
         {
-            for (vector<Produtor *>::iterator it2 = this->produtoresCadastrados.begin(); it2 != this->produtoresCadastrados.end(); it2++)
+            for (vector<Produtor *>::iterator itProdutoresCad = this->produtoresCadastrados.begin(); itProdutoresCad != this->produtoresCadastrados.end(); itProdutoresCad++)
             {
-                if ((*it) == (*it2)->getCodigo())
+                if ((*itProdutores) == (*itProdutoresCad)->getCodigo())
                 {
-                    if (typeid(*(*it2)) == typeid(Podcaster))
+                    if (typeid(*(*itProdutoresCad)) == typeid(Podcaster))
                     {
-                        podcasts = ((Podcaster *)(*it2))->getPodcasts();
+                        podcasts = ((Podcaster *)(*itProdutoresCad))->getPodcasts();
                         podcasts->push_back((Podcast *)produto);
                     }
                     else
                     {
-                        //albunsDeArtista = ((Artista*)(*it2))->getAlbuns();
+                        //albunsDeArtista = ((Artista*)(*itProdutoresCad))->getAlbuns();
                     }
                 }
             }
         }
         produtores.clear();
 
-        cout << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << minFloat << "][" << genPrim << "][" << temporada << "][" << album << "][" << ano << '\n';
+        cout << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << minFloat << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << '\n';
     }
 }
 
@@ -183,8 +185,8 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
 {
     string sigla;
     string nome;
-    string linha_1;
-    getline(infile, linha_1);
+    string primeiraLinha;
+    getline(infile, primeiraLinha);  // Ignorando primeira linha
     while (!infile.eof())
     {
         getline(infile, sigla, ';');
@@ -215,11 +217,12 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 
 void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
 {
-    string linha_1;
-    getline(infile, linha_1);
+    string primeiraLinha;
+    getline(infile, primeiraLinha);  // Ignorando primeira linha
     int cod;
     string nome;
     char tipo;
+
     while (!infile.eof())
     {
         infile >> cod;
@@ -232,7 +235,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
         {
             break;
         }
-        switch (tipo)
+        switch (tipo) // Switch para cadastrar de acordo com tipo de usuário
         {
         case 'A':
             this->produtoresCadastrados.push_back(new Artista(nome, cod));
