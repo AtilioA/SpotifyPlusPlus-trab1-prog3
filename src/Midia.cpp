@@ -24,6 +24,11 @@ Midia::Genero::Genero(string nome, string sigla)
     this->sigla = sigla;
 }
 
+int Midia::getCodigo()
+{
+    return this->codigo;
+}
+
 string Midia::getNome()
 {
     return this->nome;

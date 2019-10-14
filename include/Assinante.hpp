@@ -16,7 +16,7 @@ class Assinante: public Usuario
         Assinante(string _nome, int codigo);
         ~Assinante();
         void imprimeFavoritos();
-        void insereFavoritos(Midia * favorito);
+        void insereFavoritos(Midia *favorito);
         void removerFavorito();
         vector<Midia*> getFavoritos();
         void setFavoritos(vector<Midia*> favoritos);

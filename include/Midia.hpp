@@ -38,6 +38,7 @@ class Midia
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;
         virtual void imprimeNoArquivo() = 0;
+        int getCodigo();
         string getNome();
         void setNome(string nome);
         Genero *getGenero();

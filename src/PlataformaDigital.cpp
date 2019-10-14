@@ -1,6 +1,7 @@
 #include "../include/PlataformaDigital.hpp"
 
-void retiraCR(string &ent){
+void retiraCR(string &ent)
+{
     if(ent.at(ent.size() - 1) == '\r'){
         ent.resize(ent.size() - 1);
     }
@@ -92,7 +93,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     getline(infile, primeiraLinha);  // Ignorando primeira linha
     while (!infile.eof())
     {
-        infile >> cod;
+        infile >> cod;  // Verificar se é número (Erro 2)
         infile.ignore(1, ';');
         getline(infile, nome, ';');
         infile >> tipo;
@@ -233,8 +234,81 @@ void PlataformaDigital::imprimeGeneros()
 
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 {
+    char teste;
+    string primeiraLinha;
+    int cod = 0;
+    int favoritoAtual = 0;
+    vector<int> favoritos;
+    getline(infile, primeiraLinha);  // Ignorando primeira linha
+
     while (!infile.eof())
     {
+        infile >> cod;  // Verificar se é número (Erro 2)
+        infile.ignore(1, ';');
+        cout << cod << " a vamo nessa\n";
+
+        if (infile.eof())
+        {
+            cout << "eof\n";
+            break;
+        }
+
+        int c = infile.peek();
+        if (c == EOF)  // Caso não haja favoritos
+        {
+            if (infile.eof())
+            {
+                cout << "supostamente acabou\n";
+            }
+            else
+            {
+                cout << "disney\n";
+            }
+            // infile >> teste;
+            // infile.ignore(3, '\r');
+            // getline(infile, primeiraLinha);
+            cout << "peek = -1\n";
+            continue;
+        }
+        else
+        {
+            infile >> favoritoAtual;
+            favoritos.push_back(favoritoAtual);
+            // cout << "tHiago\n";
+            while (infile.peek() == ',')
+            {
+                infile.ignore(1, ',');
+                infile >> favoritoAtual;
+                favoritos.push_back(favoritoAtual);
+                // cout << "icaro\n";
+            }
+
+            /*
+            vector<Assinante*>::iterator itAssinante;
+
+            for (itAssinante = this->assinantes.begin(); itAssinante != this->assinantes.end(); itAssinante++){
+                if ((*itAssinante)->getCodigo() == cod)
+                {
+                    break;
+                }
+            }
+
+            vector<Midia*>::iterator itMidias;
+            for (vector<int>::iterator itFavoritos = favoritos.begin(); itFavoritos != favoritos.end(); itFavoritos++)
+            {
+                for (itMidias = this->produtosCadastrados.begin(); itMidias != this->produtosCadastrados.end(); itMidias++)
+                {
+                    if ((*itFavoritos) == (*itMidias)->getCodigo())
+                    {
+                        (*itAssinante)->insereFavoritos((*itMidias));
+                        break;
+                    }
+                }
+            }
+
+            */
+            favoritos.clear();
+        }
     }
 }
 
@@ -248,7 +322,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
 
     while (!infile.eof())
     {
-        infile >> cod;
+        infile >> cod;  // Verificar se é número (Erro 2)
         infile.ignore(1, ';');
         infile >> tipo;
         infile.ignore(1, ';');
@@ -270,6 +344,8 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
             this->assinantes.push_back(new Assinante(nome, cod));
             break;
         default:
+            cerr << "Erro de formatação" << endl;
+            exit(2);
             break;
         }
     }
@@ -280,6 +356,12 @@ void PlataformaDigital::imprimeUsuarios()
     for (size_t i = 0; i < this->assinantes.size(); i++)
     {
         cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
+        /*
+        for (size_t size_favoritos = 0; size_favoritos < this->assinantes[i]->getFavoritos().size(); size_favoritos++)
+        {
+            cout << (this->assinantes[i]->getFavoritos())[size_favoritos]->getCodigo() << '\n';
+        }
+        */
     }
 }
 

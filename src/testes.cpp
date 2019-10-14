@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         * ou o programa não ter permissão para ler ou escrever em um arquivo
         */
        cout << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
-       
+
         cerr << "Erro de I/O" << endl;
         exit(1);
     }
@@ -87,7 +87,6 @@ int main(int argc, char *argv[])
     spotifyzada->carregaArquivoUsuarios(fileUser);
     cout << "\nUsuarios:\n";
 
-    spotifyzada->imprimeUsuarios();
 
     cout << "\nProdutores:\n";
     spotifyzada->imprimeProdutores();
@@ -95,6 +94,9 @@ int main(int argc, char *argv[])
 
     spotifyzada->carregaArquivoMidias(fileMidia);
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
+
+    spotifyzada->carregaArquivoFavoritos(fileFavs);
+    spotifyzada->imprimeUsuarios();
 
     fileUser.close();
     fileGen.close();
