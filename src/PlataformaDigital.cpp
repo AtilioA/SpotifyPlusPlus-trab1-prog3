@@ -1,5 +1,11 @@
 #include "../include/PlataformaDigital.hpp"
 
+void retiraCR(string &ent){
+    if(ent.at(ent.size() - 1) == '\r'){
+        ent.resize(ent.size() - 1);
+    }
+}
+
 PlataformaDigital::PlataformaDigital()
 {
     //

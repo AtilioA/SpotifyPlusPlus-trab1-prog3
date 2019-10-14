@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <typeinfo>
+#include <cstdlib>
 #include "Produtor.hpp"
 #include "Artista.hpp"
 #include "Podcaster.hpp"
