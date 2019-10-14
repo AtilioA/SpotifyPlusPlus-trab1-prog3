@@ -16,12 +16,56 @@ run:
 runV:
 	valgrind ./$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
-
-run_a:
+# RECEITINHAS PARA TESTES
+# Entradas autorais
+run_a1:
 	$(EXECUTABLE) -u entradas_autorais/usuarios1.csv -f entradas_autorais/favoritos1.csv -g entradas_autorais/generos1.csv -m entradas_autorais/midias1.csv
 
-run_e:
-	$(EXECUTABLE) -u entradas_autorais/usuarios_e.csv -f entradas_autorais/favoritos_e.csv -g entradas_autorais/generos_e.csv -m entradas_autorais/midias_e.csv
+run_a2:
+	$(EXECUTABLE) -u entradas_autorais/usuarios2.csv -f entradas_autorais/favoritos2.csv -g entradas_autorais/generos2.csv -m entradas_autorais/midias2.csv
+
+# Entradas com erros
+# Erro 1
+run_e1:  # Simbora
+	make && make run_e11 && make run_e12 && make run_e13 && make run_e14
+
+run_e11:  # Dando Erro 2 erroneamente
+	./$(EXECUTABLE) -u entradas/naoexiste.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
+
+run_e12:
+	./$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/naoexiste.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
+
+run_e13:
+	./$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/naoexiste.csv -m entradas/midias_corrigidas.csv
+
+run_e14:
+	./$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/naoexiste.csv
+
+# Erro 2
+run_e2:
+	# ss
+
+# Erro 3
+# Tipo de usuário sem correspondente (Não é A ou P ou U)
+run_e31:
+	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e31.csv -f entradas_autorais/testes/favoritos_e31.csv -g entradas_autorais/testes/generos_e31.csv -m entradas_autorais/testes/midias_e31.csv
+
+# Mídia sem sigla de gênero correspondente
+run_e32:
+	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e32.csv -f entradas_autorais/testes/favoritos_e32.csv -g entradas_autorais/testes/generos_e32.csv -m entradas_autorais/testes/midias_e32.csv
+
+# Mídia sem tipo correspondente
+run_e33:
+	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e33.csv -f entradas_autorais/testes/favoritos_e33.csv -g entradas_autorais/testes/generos_e33.csv -m entradas_autorais/testes/midias_e33.csv
+
+# Mídia sem código de produtor correspondente
+run_e34:
+	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e34.csv -f entradas_autorais/testes/favoritos_e34.csv -g entradas_autorais/testes/generos_e34.csv -m entradas_autorais/testes/midias_e34.csv
+
+# Favorito sem mídia correspondente
+run_e35:
+	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e35.csv -f entradas_autorais/testes/favoritos_e35.csv -g entradas_autorais/testes/generos_e35.csv -m entradas_autorais/testes/midias_e35.csv
+
 
 warns: $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -Wextra -I$(INCLUDE) $^ -o $@
@@ -33,5 +77,3 @@ clean:
 cleanW:
 	del /S /F "*.o"
 	del /S /F "main.exe"
-
-# valgrind ./a.out -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas_corrigidas.csv
