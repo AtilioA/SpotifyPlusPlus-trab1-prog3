@@ -2,12 +2,14 @@ import random
 import names
 import pandas
 from faker import Faker
+
 fake = Faker('pt_BR')
+path = "entradas_autorais/python"
 
 
 def gera_usuarios(nUsuarios):
     tipos = ['A', 'P', 'U']
-    with open("usuarios_python.csv", "w+", encoding="utf8") as file:
+    with open(f"{path}/usuarios_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Tipo;Nome\n")
         for i in range(1, nUsuarios + 1):
             file.write(f"{i};{random.choice(tipos)};{names.get_full_name()}\n")
@@ -15,11 +17,11 @@ def gera_usuarios(nUsuarios):
 
 
 def gera_generos(nGeneros):
-    with open("genres.txt", "r", encoding="utf8") as fG:
+    with open(f"{path}/genres.txt", "r", encoding="utf8") as fG:
         genres = [line.strip().capitalize() for line in fG]
 
     texto = list()
-    with open("generos_python.csv", "w+", encoding="utf8") as file:
+    with open(f"{path}/generos_python.csv", "w+", encoding="utf8") as file:
         file.write("Sigla;Nome\n")
         while len(texto) != nGeneros:
             genero = random.choice(genres)
@@ -30,15 +32,13 @@ def gera_generos(nGeneros):
                 sigla = f"{genero[0]}{genero[1]}".upper()
             if sigla not in list(map(lambda x: x[0], texto)):
                 texto.append((sigla, genero))
-            print(texto)
         for i in range(nGeneros):
             file.write(f"{texto[i][0]};{texto[i][1]}\n")
-
     pass
 
 
 def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
-    with open("midias_python.csv", "w+", encoding="utf8") as file:
+    with open(f"{path}/midias_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Nome;Tipo;Produtores;Duração;Gênero;Temporada;Álbum;Publicação\n")
 
         generoCSV = pandas.read_csv(f"{arquivoGeneros}", sep=';')
@@ -91,7 +91,7 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
 
 
 def gera_favoritos(nFavoritos, nMidias):
-    with open("favoritos_python.csv", "w+", encoding="utf8") as file:
+    with open(f"{path}/favoritos_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Mídias Favoritas\n")
         for i in range(1, nFavoritos + 1):
             file.write(f"{i};")
@@ -114,4 +114,4 @@ nGeneros = 100
 gera_favoritos(nFavoritos, nMidias)
 gera_usuarios(nUsuarios)
 gera_generos(nGeneros)
-gera_midias(nMidias, "generos_python.csv", "usuarios_python.csv")
+gera_midias(nMidias, f"{path}/generos_python.csv", f"{path}/usuarios_python.csv")
