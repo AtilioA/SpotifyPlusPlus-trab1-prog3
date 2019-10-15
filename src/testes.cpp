@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
-    //spotifyzada->carregaArquivoFavoritos(fileFavs);
+    spotifyzada->carregaArquivoFavoritos(fileFavs);
     //spotifyzada->imprimeUsuarios();
     spotifyzada->gerarRelatorios();
     fileUser.close();

@@ -82,3 +82,17 @@ void Midia::setProdutor(list<Produtor *> produtor)
 void Midia::adicionarProdutor(Produtor* produtor){
     this->produtor.push_back(produtor);
 }
+
+void Midia::Genero::adicionarMidia(Midia* midia){
+    this->midias.push_back(midia);
+}
+
+void Midia::setDuracao(float duracao)
+{
+    this->duracao = duracao;
+}
+
+float Midia::getDuracao()
+{
+    return this->duracao;
+}

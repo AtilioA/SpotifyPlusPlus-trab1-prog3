@@ -176,6 +176,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             produto = new Musica(nome, cod, (*itGeneros), floatDur, ano);
         }
+        (*itGeneros)->adicionarMidia(produto);
 
         this->produtosCadastrados.push_back(produto);
         size_t achastesProd = 0;
@@ -267,72 +268,23 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 
     while (!infile.eof())
     {
-        infile >> cod;  // Verificar se é número (Erro 2)
+        infile >> cod;
         infile.ignore(1, ';');
-        cout << cod << " a vamo nessa\n";
-
-        if (infile.eof())
-        {
-            cout << "eof\n";
-            break;
-        }
-
-        int c = infile.peek();
-        if (c == EOF)  // Caso não haja favoritos
-        {
-            if (infile.eof())
-            {
-                cout << "supostamente acabou\n";
-            }
-            else
-            {
-                cout << "disney\n";
-            }
-            // infile >> teste;
-            // infile.ignore(3, '\r');
-            // getline(infile, primeiraLinha);
-            cout << "peek = -1\n";
+        if(infile.peek() == '\n'){
             continue;
         }
-        else
-        {
+
+        infile >> favoritoAtual;
+        favoritos.push_back(favoritoAtual);
+        while(infile.peek() == ','){
+            infile.ignore(1, ',');
             infile >> favoritoAtual;
             favoritos.push_back(favoritoAtual);
-            // cout << "tHiago\n";
-            while (infile.peek() == ',')
-            {
-                infile.ignore(1, ',');
-                infile >> favoritoAtual;
-                favoritos.push_back(favoritoAtual);
-                // cout << "icaro\n";
-            }
-
-            /*
-            list<Assinante*>::iterator itAssinante;
-
-            for (itAssinante = this->assinantes.begin(); itAssinante != this->assinantes.end(); itAssinante++){
-                if ((*itAssinante)->getCodigo() == cod)
-                {
-                    break;
-                }
-            }
-
-            list<Midia*>::iterator itMidias;
-            for (list<int>::iterator itFavoritos = favoritos.begin(); itFavoritos != favoritos.end(); itFavoritos++)
-            {
-                for (itMidias = this->produtosCadastrados.begin(); itMidias != this->produtosCadastrados.end(); itMidias++)
-                {
-                    if ((*itFavoritos) == (*itMidias)->getCodigo())
-                    {
-                        (*itAssinante)->insereFavoritos((*itMidias));
-                        break;
-                    }
-                }
-            }
-
-            */
-            favoritos.clear();
         }
+        for(list<int>::iterator it = favoritos.begin(); it != favoritos.end(); it++){
+            
+        }
+        cout << cod << "\n";
     }
 }
 
@@ -412,10 +364,13 @@ void PlataformaDigital::exportarBiblioteca()
     //
 }
 
+
 void PlataformaDigital::gerarRelatorios()
 {
     ofstream midias_prods;
+    ofstream estatistica;
     midias_prods.open("2-produtores.csv");
+    estatistica.open("1-estatisticas.txt");
     if(midias_prods.is_open()){
         for(list<Produtor*>::iterator it = this->produtoresCadastrados.begin(); it != this->produtoresCadastrados.end(); it++){
             (*it)->imprimeNoArquivo(midias_prods);
@@ -423,6 +378,7 @@ void PlataformaDigital::gerarRelatorios()
         }
     }
     midias_prods.close();
+    estatistica << "Horas Consumidas: " << 00 << endl;
 }
 
 string PlataformaDigital::getNome()
