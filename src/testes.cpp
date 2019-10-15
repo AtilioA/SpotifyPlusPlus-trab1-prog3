@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
                 i++;
                 break;
             default:
-                cerr << "OPÇÃO NÃO RECONHECIDA" << endl;
+                cerr << "OPÇÃO NÃO RECONHECIDA\n";
                 break;
             }
         }
     }
-    // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|" << endl;
+    // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|\n";
 
     // Abrindo arquivos de entrada
     ifstream fileUser;
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
         */
        cout << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
 
-        cerr << "Erro de I/O" << endl;
+        cerr << "Erro de I/O\n";
         exit(1);
     }
 
@@ -92,12 +92,12 @@ int main(int argc, char *argv[])
     spotifyzada->imprimeProdutores();
     cout << "\nMidias:\n";
     spotifyzada->carregaArquivoMidias(fileMidia);
-    
+
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
     spotifyzada->carregaArquivoFavoritos(fileFavs);
-    //spotifyzada->imprimeUsuarios();
-    spotifyzada->gerarRelatorios();
+    // spotifyzada->imprimeUsuarios();
+    spotifyzada->geraRelatorioMidiasProdutores();
     fileUser.close();
     fileGen.close();
     fileMidia.close();
