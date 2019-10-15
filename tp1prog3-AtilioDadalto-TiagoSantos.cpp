@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     Produtor *prod = new Produtor("Renan Boladao", 13);
     //Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
     cout << prod->getNome() << endl;
-    vector<Midia *> midiaTeste;
+    list<Midia *> midiaTeste;
     //midiaTeste.push_back(musi);
     prod->setProdutosDesenvolvidos(midiaTeste);
     // cout << prod->getProdutosDesenvolvidos().at(0)->getGenero().getNome() << endl;
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     string nome;
     string tipo;
     int cod;
-    vector<Usuario *> vetorzin;
+    list<Usuario *> vetorzin;
     while (!file_user.eof())
     {
         file_user >> cod;

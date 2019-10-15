@@ -1,7 +1,7 @@
 #ifndef _PLATAFORMA_DIGITAL_
 #define _PLATAFORMA_DIGITAL_
 #include <iostream>
-#include <vector>
+#include <list>
 #include <typeinfo>
 #include <cstdlib>
 #include "Produtor.hpp"
@@ -16,10 +16,10 @@ class PlataformaDigital
 {
     private:
         string nome;
-        vector<Assinante*> assinantes;
-        vector<Midia*> produtosCadastrados;
-        vector<Produtor*> produtoresCadastrados;
-        vector<Midia::Genero*> generosCadastrados;
+        list<Assinante*> assinantes;
+        list<Midia*> produtosCadastrados;
+        list<Produtor*> produtoresCadastrados;
+        list<Midia::Genero*> generosCadastrados;
 
     public:
         PlataformaDigital();
@@ -31,8 +31,8 @@ class PlataformaDigital
         int inserirProduto(Midia * novoProduto, string nomeProdutor);
         int selecionaAssinante();
         void inserirProdutoAssinante();
-        vector<Midia*> getProdutosCadastrados();
-        vector<Assinante*> getAssinantes();
+        list<Midia*> getProdutosCadastrados();
+        list<Assinante*> getAssinantes();
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivoMidias(ifstream &infile);
         void carregaArquivoGeneros(ifstream &infile);
@@ -46,8 +46,8 @@ class PlataformaDigital
 
         string getNome();
         void setNome(string nome);
-        void setAssinantes(vector<Assinante*> assinantes);
-        void setProdutosCadastrados(vector<Midia*> produtosCadastrados);
+        void setAssinantes(list<Assinante*> assinantes);
+        void setProdutosCadastrados(list<Midia*> produtosCadastrados);
 };
 
 #endif

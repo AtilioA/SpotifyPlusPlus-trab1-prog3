@@ -2,14 +2,14 @@
 #define _ASSINANTE_
 #include "Usuario.hpp"
 #include "Midia.hpp"
-#include <vector>
+#include <list>
 
 using namespace std;
 
 class Assinante: public Usuario
 {
     private:
-        vector<Midia*> favoritos;
+        list<Midia*> favoritos;
 
     public:
         Assinante();
@@ -18,8 +18,8 @@ class Assinante: public Usuario
         void imprimeFavoritos();
         void insereFavoritos(Midia *favorito);
         void removerFavorito();
-        vector<Midia*> getFavoritos();
-        void setFavoritos(vector<Midia*> favoritos);
+        list<Midia*> getFavoritos();
+        void setFavoritos(list<Midia*> favoritos);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
 };

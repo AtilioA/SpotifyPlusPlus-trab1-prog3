@@ -4,7 +4,16 @@ Podcaster::Podcaster(string _nome, int codigo) : Produtor(_nome, codigo) {}
 
 void Podcaster::imprimeNoArquivo(ofstream &outfile)
 {
-    //
+    outfile << this->getNome() << ";";
+    this->produtosDesenvolvidos.sort(ordenarPorNome<Midia>);
+    list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
+    if(this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end()){
+        outfile << (*it)->getNome();
+    }
+    for(advance(it, 1); it != this->produtosDesenvolvidos.end(); it++){
+        outfile << ", " << (*it)->getNome();
+    }
+    outfile << "\n";
 }
 
 void Podcaster::carregaArquivo(ifstream &infile)
@@ -12,7 +21,12 @@ void Podcaster::carregaArquivo(ifstream &infile)
     //
 }
 
-vector<Podcast *> *Podcaster::getPodcasts()
+list<Podcast *> *Podcaster::getPodcasts()
 {
     return &(this->podcasts);
+}
+
+void Podcaster::inserirPodcast(Podcast* podcast){
+    this->podcasts.push_back(podcast);
+    //this->produtosDesenvolvidos.push_back(podcast);
 }

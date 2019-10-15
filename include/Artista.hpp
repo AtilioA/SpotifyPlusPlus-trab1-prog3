@@ -1,6 +1,6 @@
 #ifndef _ARTISTA_
 #define _ARTISTA_
-#include <vector>
+#include <list>
 #include "Produtor.hpp"
 #include "Album.hpp"
 
@@ -9,14 +9,17 @@ using namespace std;
 class Artista: public Produtor
 {
     private:
-        vector<Album*> albuns;
+        list<Album*> albuns;
 
     public:
         Artista(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
-        void setAlbuns(vector<Album*> albuns);
-        vector<Album*>* getAlbuns();
+        void setAlbuns(list<Album*> albuns);
+        void inserirAlbum(Album* album);
+        void inserirMusica(Musica* musica);
+        Album* procurarAlbum(string album);
+        list<Album*>* getAlbuns();
 };
 
 #endif

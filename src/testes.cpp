@@ -86,18 +86,18 @@ int main(int argc, char *argv[])
 
     spotifyzada->carregaArquivoUsuarios(fileUser);
     cout << "\nUsuarios:\n";
-
+    spotifyzada->imprimeUsuarios();
 
     cout << "\nProdutores:\n";
     spotifyzada->imprimeProdutores();
     cout << "\nMidias:\n";
-
     spotifyzada->carregaArquivoMidias(fileMidia);
+    
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
-    spotifyzada->carregaArquivoFavoritos(fileFavs);
-    spotifyzada->imprimeUsuarios();
-
+    //spotifyzada->carregaArquivoFavoritos(fileFavs);
+    //spotifyzada->imprimeUsuarios();
+    spotifyzada->gerarRelatorios();
     fileUser.close();
     fileGen.close();
     fileMidia.close();

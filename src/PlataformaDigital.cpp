@@ -7,6 +7,7 @@ void retiraCR(string &ent)
     }
 }
 
+
 PlataformaDigital::PlataformaDigital()
 {
     //
@@ -56,12 +57,12 @@ void PlataformaDigital::inserirProdutoAssinante()
     //
 }
 
-vector<Midia *> PlataformaDigital::getProdutosCadastrados()
+list<Midia *> PlataformaDigital::getProdutosCadastrados()
 {
     return this->produtosCadastrados;
 }
 
-vector<Assinante *> PlataformaDigital::getAssinantes()
+list<Assinante *> PlataformaDigital::getAssinantes()
 {
     return this->assinantes;
 }
@@ -77,25 +78,27 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     string nome;
     char tipo;
     int codProd;
-    float minFloat;
-    int minDur;
+    float floatDur;
+    int intDur;
     string primeiroGenero;
     int temporada;
     string album;
     int ano;
     string primeiraLinha;
     Midia *produto;
-    vector<int> produtores;
-    // vector<Produtor*> produtores;
-    Album *albumOB;
-    vector<Podcast *> *podcasts;
-    // vector<Album *> *albunsDeArtista;
+    list<int> produtores;
+    // list<Produtor*> produtores;
+    Album *albumNovo;
+    //list<Podcast *> *podcasts;
+    // list<Album *> *albunsDeArtista;
+    int generoContador = 0;
     getline(infile, primeiraLinha);  // Ignorando primeira linha
     while (!infile.eof())
     {
         infile >> cod;  // Verificar se é número (Erro 2)
         infile.ignore(1, ';');
         getline(infile, nome, ';');
+        retiraCR(nome);
         infile >> tipo;
         infile.ignore(1, ';');
         infile >> codProd;
@@ -117,14 +120,20 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
 
         infile.ignore(1, ';');
-        infile >> minDur;
+        infile >> intDur;
         infile.ignore(1, ',');
-        infile >> minFloat;
-        minFloat = minDur + minFloat;
+        infile >> floatDur;
+        floatDur = intDur + (floatDur/100);
         infile.ignore(1, ';');
         getline(infile, primeiroGenero, ';');
-        primeiroGenero.resize(2); // Limita ao primeiro gênero
-
+        for(string::iterator itGenero = primeiroGenero.begin(); itGenero != primeiroGenero.end(); itGenero++){
+            if((*itGenero) == ','){
+                primeiroGenero.resize(generoContador); // Limita ao primeiro gênero
+                break;
+            }
+            generoContador++;
+        }
+        generoContador = 0;
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
@@ -140,7 +149,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         infile >> ano;
 
         int achaste = 0;
-        vector<Midia::Genero *>::iterator itGeneros;
+        list<Midia::Genero *>::iterator itGeneros;
         for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
         {
             if ((*itGeneros)->getSigla() == primeiroGenero)
@@ -165,35 +174,47 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         else
         {
-            produto = new Musica(nome, cod, (*itGeneros), minFloat, ano);
-            if (!album.empty())
-            {
-                albumOB = new Album(album, minFloat, ano, 1);
-                albumOB->adicionarMusica((Musica *)produto);
-            }
+            produto = new Musica(nome, cod, (*itGeneros), floatDur, ano);
         }
-        this->produtosCadastrados.push_back(produto);
 
+        this->produtosCadastrados.push_back(produto);
         size_t achastesProd = 0;
-        for (vector<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
+
+        for (list<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
         {
-            for (vector<Produtor *>::iterator itProdutoresCad = this->produtoresCadastrados.begin(); itProdutoresCad != this->produtoresCadastrados.end(); itProdutoresCad++)
+            for (list<Produtor *>::iterator itProdutoresCad = this->produtoresCadastrados.begin(); itProdutoresCad != this->produtoresCadastrados.end(); itProdutoresCad++)
             {
                 if ((*itProdutores) == (*itProdutoresCad)->getCodigo())
                 {
                     achastesProd++;
-                    if (typeid(*(*itProdutoresCad)) == typeid(Podcaster))
+                    produto->adicionarProdutor((*itProdutoresCad));
+                    (*itProdutoresCad)->novoProduto(produto);
+                    
+                    if (tipo == 'P')
                     {
-                        podcasts = ((Podcaster *)(*itProdutoresCad))->getPodcasts();
-                        podcasts->push_back((Podcast *)produto);
+                        ((Podcaster *)(*itProdutoresCad))->inserirPodcast((Podcast *)produto);
                     }
                     else
                     {
+                        //cout << produto->getNome() << ";" << produto->getCodigo() << '\n';
+                        //((Artista*)(*itProdutoresCad))->inserirMusica((Musica*) produto);
+                        if (!album.empty())
+                        {
+                            if(((Artista *)(*itProdutoresCad))->procurarAlbum(album) != NULL){
+                                albumNovo = ((Artista *)(*itProdutoresCad))->procurarAlbum(album);
+                                albumNovo->adicionarMusica((Musica*) produto);
+                            }else{
+                                albumNovo = new Album(album, floatDur, ano, 1);
+                                albumNovo->adicionarMusica((Musica*) produto);
+                                ((Artista *)(*itProdutoresCad))->inserirAlbum(albumNovo);
+                            }
+                        }
                         //albunsDeArtista = ((Artista*)(*itProdutoresCad))->getAlbuns();
                     }
                 }
             }
         }
+
         if (achastesProd != produtores.size()) // não sei se tá certo, é só uma ideia
         {
             cerr << "Inconsistências na entrada" << endl;
@@ -201,7 +222,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         produtores.clear();
 
-        cout << '[' << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << minFloat << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << "]\n";
+        //cout << '[' << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << floatDur << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << "]\n";
     }
 }
 
@@ -226,10 +247,13 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
 
 void PlataformaDigital::imprimeGeneros()
 {
-    for (size_t i = 0; i < this->generosCadastrados.size(); i++)
-    {
-        cout << this->generosCadastrados.at(i)->getSigla() << ";" << this->generosCadastrados.at(i)->getNome() << endl;
+    for(list<Midia::Genero*>::iterator it = this->generosCadastrados.begin(); it != this->generosCadastrados.end(); it++){
+        cout << (*it)->getSigla() << ";" << (*it)->getNome() << endl;
     }
+    // for (size_t i = 0; i < this->generosCadastrados.size(); i++)
+    // {
+    //     cout << this->generosCadastrados.at(i)->getSigla() << ";" << this->generosCadastrados.at(i)->getNome() << endl;
+    // }
 }
 
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
@@ -238,7 +262,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     string primeiraLinha;
     int cod = 0;
     int favoritoAtual = 0;
-    vector<int> favoritos;
+    list<int> favoritos;
     getline(infile, primeiraLinha);  // Ignorando primeira linha
 
     while (!infile.eof())
@@ -284,7 +308,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             }
 
             /*
-            vector<Assinante*>::iterator itAssinante;
+            list<Assinante*>::iterator itAssinante;
 
             for (itAssinante = this->assinantes.begin(); itAssinante != this->assinantes.end(); itAssinante++){
                 if ((*itAssinante)->getCodigo() == cod)
@@ -293,8 +317,8 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 }
             }
 
-            vector<Midia*>::iterator itMidias;
-            for (vector<int>::iterator itFavoritos = favoritos.begin(); itFavoritos != favoritos.end(); itFavoritos++)
+            list<Midia*>::iterator itMidias;
+            for (list<int>::iterator itFavoritos = favoritos.begin(); itFavoritos != favoritos.end(); itFavoritos++)
             {
                 for (itMidias = this->produtosCadastrados.begin(); itMidias != this->produtosCadastrados.end(); itMidias++)
                 {
@@ -349,28 +373,38 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
             break;
         }
     }
+    this->assinantes.sort(ordenarPorNome<Assinante>);
+    this->produtoresCadastrados.sort(ordenarPorNome<Produtor>);
 }
 
 void PlataformaDigital::imprimeUsuarios()
 {
-    for (size_t i = 0; i < this->assinantes.size(); i++)
-    {
-        cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
-        /*
-        for (size_t size_favoritos = 0; size_favoritos < this->assinantes[i]->getFavoritos().size(); size_favoritos++)
-        {
-            cout << (this->assinantes[i]->getFavoritos())[size_favoritos]->getCodigo() << '\n';
-        }
-        */
+
+    for(list<Assinante*>::iterator it = this->assinantes.begin(); it != this->assinantes.end(); it++){
+        cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
+
+    // for (size_t i = 0; i < this->assinantes.size(); i++)
+    // {
+    //     cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
+    //     /*
+    //     for (size_t size_favoritos = 0; size_favoritos < this->assinantes[i]->getFavoritos().size(); size_favoritos++)
+    //     {
+    //         cout << (this->assinantes[i]->getFavoritos())[size_favoritos]->getCodigo() << '\n';
+    //     }
+    //     */
+    // }
 }
 
 void PlataformaDigital::imprimeProdutores()
 {
-    for (size_t i = 0; i < this->assinantes.size(); i++)
-    {
-        cout << this->produtoresCadastrados[i]->getCodigo() << ";" << this->produtoresCadastrados[i]->getNome() << endl;
+    for(list<Produtor*>::iterator it = this->produtoresCadastrados.begin(); it != this->produtoresCadastrados.end(); it++){
+        cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
+    // for (size_t i = 0; i < this->assinantes.size(); i++)
+    // {
+    //     cout << this->produtoresCadastrados[i]->getCodigo() << ";" << this->produtoresCadastrados[i]->getNome() << endl;
+    // }
 }
 
 void PlataformaDigital::exportarBiblioteca()
@@ -380,7 +414,15 @@ void PlataformaDigital::exportarBiblioteca()
 
 void PlataformaDigital::gerarRelatorios()
 {
-    //
+    ofstream midias_prods;
+    midias_prods.open("2-produtores.csv");
+    if(midias_prods.is_open()){
+        for(list<Produtor*>::iterator it = this->produtoresCadastrados.begin(); it != this->produtoresCadastrados.end(); it++){
+            (*it)->imprimeNoArquivo(midias_prods);
+            //cout << "quero saber pq n chama\n";
+        }
+    }
+    midias_prods.close();
 }
 
 string PlataformaDigital::getNome()
@@ -393,12 +435,12 @@ void PlataformaDigital::setNome(string nome)
     this->nome = nome;
 }
 
-void PlataformaDigital::setAssinantes(vector<Assinante *> assinantes)
+void PlataformaDigital::setAssinantes(list<Assinante *> assinantes)
 {
     this->assinantes = assinantes;
 }
 
-void PlataformaDigital::setProdutosCadastrados(vector<Midia *> produtosCadastrados)
+void PlataformaDigital::setProdutosCadastrados(list<Midia *> produtosCadastrados)
 {
     this->produtosCadastrados = produtosCadastrados;
 }

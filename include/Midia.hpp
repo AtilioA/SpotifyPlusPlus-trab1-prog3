@@ -2,7 +2,7 @@
 #define _MIDIA_
 #include <iostream>
 #include "Produtor.hpp"
-#include <vector>
+#include <list>
 
 class Produtor;
 
@@ -13,7 +13,7 @@ class Midia
     protected:
         string nome;
         int codigo;
-        int duracao;
+        float duracao;
         int anoLancamento;
 
     public:
@@ -43,13 +43,13 @@ class Midia
         void setNome(string nome);
         Genero *getGenero();
         void setGenero(Genero *genero);
-        vector<Produtor *> getProdutor();
-        void setProdutor(vector<Produtor *> produtor);
-
+        list<Produtor *> getProdutor();
+        void setProdutor(list<Produtor *> produtor);
+        void adicionarProdutor(Produtor* produtor);
     private:
         bool explicito;
         Genero *genero;
-        vector<Produtor *> produtor;
+        list<Produtor *> produtor;
 };
 
 #endif
