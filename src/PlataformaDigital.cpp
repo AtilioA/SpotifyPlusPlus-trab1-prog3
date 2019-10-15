@@ -163,7 +163,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             /* Inconsistência nos dados de entrada:
              * por exemplo, uso de Código de gênero ou usuário inexistente nos respectivos cadastros, etc
              */
-            cerr << "Inconsistências na entrada" << endl;
+            cerr << "Inconsistências na entrada (não achou gênero)" << endl;
             exit(3);
         }
 
@@ -189,7 +189,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                     achastesProd++;
                     produto->adicionarProdutor((*itProdutoresCad));
                     (*itProdutoresCad)->novoProduto(produto);
-                    
+
                     if (tipo == 'P')
                     {
                         ((Podcaster *)(*itProdutoresCad))->inserirPodcast((Podcast *)produto);
@@ -217,7 +217,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         if (achastesProd != produtores.size()) // não sei se tá certo, é só uma ideia
         {
-            cerr << "Inconsistências na entrada" << endl;
+            cerr << "Inconsistências na entrada (não achou todos os produtores" << endl;
             exit(3);
         }
         produtores.clear();

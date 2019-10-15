@@ -24,6 +24,9 @@ run_a1:
 run_a2:
 	$(EXECUTABLE) -u entradas_autorais/usuarios2.csv -f entradas_autorais/favoritos2.csv -g entradas_autorais/generos2.csv -m entradas_autorais/midias2.csv
 
+run_p:
+	$(EXECUTABLE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
+
 # Entradas com erros
 # Erro 1
 run_e1:  # Simbora
