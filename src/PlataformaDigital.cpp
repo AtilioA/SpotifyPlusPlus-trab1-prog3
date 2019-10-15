@@ -265,7 +265,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     int favoritoAtual = 0;
     list<int> favoritos;
     getline(infile, primeiraLinha);  // Ignorando primeira linha
-
+    list<Assinante*>::iterator itAssinante;
     while (!infile.eof())
     {
         infile >> cod;
@@ -281,10 +281,22 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             infile >> favoritoAtual;
             favoritos.push_back(favoritoAtual);
         }
-        for(list<int>::iterator it = favoritos.begin(); it != favoritos.end(); it++){
 
+        for(itAssinante = this->assinantes.begin(); itAssinante != this->assinantes.end(); itAssinante++){
+            if((*itAssinante)->getCodigo() == cod){
+                break;
+            }
         }
-        cout << cod << "\n";
+
+        for(list<int>::iterator itFavs = favoritos.begin(); itFavs != favoritos.end(); itFavs++){
+            for(list<Midia*>::iterator itFavsM = this->produtosCadastrados.begin(); itFavsM != this->produtosCadastrados.end(); itFavsM++){
+                if(*itFavs == (*itFavsM)->getCodigo()){
+                    (*itAssinante)->insereFavoritos((*itFavsM));
+                    break;
+                }
+            }
+        }
+        //cout << cod << "\n";
     }
 }
 
