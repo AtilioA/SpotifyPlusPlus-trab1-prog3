@@ -69,12 +69,16 @@ void Midia::setGenero(Midia::Genero *genero)
     this->genero = genero;
 }
 
-vector<Produtor *> Midia::getProdutor()
+list<Produtor *> Midia::getProdutor()
 {
     return this->produtor;
 }
 
-void Midia::setProdutor(vector<Produtor *> produtor)
+void Midia::setProdutor(list<Produtor *> produtor)
 {
     this->produtor = produtor;
+}
+
+void Midia::adicionarProdutor(Produtor* produtor){
+    this->produtor.push_back(produtor);
 }

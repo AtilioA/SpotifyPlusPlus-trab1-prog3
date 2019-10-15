@@ -1,7 +1,7 @@
 #ifndef _ALBUM_
 #define _ALBUM_
 #include "Musica.hpp"
-#include <vector>
+#include <list>
 
 class Musica;
 
@@ -11,10 +11,10 @@ class Album
 {
     private:
         int anoLancamento;
-        int duracao;
+        float duracao;
         string nome;
         int qtdMusicas;
-        vector<Musica*> musicas;
+        list<Musica*> musicas;
 
     public:
         Album();
@@ -28,8 +28,8 @@ class Album
         int getDuracao();
         void setAnoLancamento(int anoLancamento);
         int getAnoLancamento();
-        void setMusicas(vector<Musica*> musicas);
-        vector<Musica*> getMusica();
+        void setMusicas(list<Musica*> musicas);
+        list<Musica*> getMusica();
         void adicionarMusica(Musica* musica);
 };
 

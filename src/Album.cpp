@@ -57,12 +57,12 @@ int Album::getAnoLancamento()
     return anoLancamento;
 }
 
-void Album::setMusicas(vector<Musica *> musicas)
+void Album::setMusicas(list<Musica *> musicas)
 {
     this->musicas = musicas;
 }
 
-vector<Musica *> Album::getMusica()
+list<Musica *> Album::getMusica()
 {
     return this->musicas;
 }
@@ -70,4 +70,7 @@ vector<Musica *> Album::getMusica()
 void Album::adicionarMusica(Musica *musica)
 {
     this->musicas.push_back(musica);
+    this->qtdMusicas++;
+    this->duracao += musica->getDuracao();
 }
+

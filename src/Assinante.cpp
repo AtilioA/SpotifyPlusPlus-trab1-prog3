@@ -11,6 +11,7 @@ Assinante::Assinante(string _nome, int codigo)
     this->codigo = codigo;
 }
 
+
 Assinante::~Assinante()
 {
     //
@@ -31,12 +32,12 @@ void Assinante::removerFavorito()
     //
 }
 
-vector<Midia *> Assinante::getFavoritos()
+list<Midia *> Assinante::getFavoritos()
 {
     return this->favoritos;
 }
 
-void Assinante::setFavoritos(vector<Midia *> favoritos)
+void Assinante::setFavoritos(list<Midia *> favoritos)
 {
     this->favoritos = favoritos;
 }

@@ -26,7 +26,7 @@ void Musica::imprimeNoArquivo()
     //
 }
 
-void Musica::setDuracao(int duracao)
+void Musica::setDuracao(float duracao)
 {
     this->duracao = duracao;
 }
@@ -41,7 +41,7 @@ int Musica::getAnoLancamento()
     return this->anoLancamento;
 }
 
-int Musica::getDuracao()
+float Musica::getDuracao()
 {
     return this->duracao;
 }

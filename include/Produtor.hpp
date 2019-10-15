@@ -2,7 +2,7 @@
 #define _PRODUTOR_
 #include "Usuario.hpp"
 #include "Midia.hpp"
-#include <vector>
+#include <list>
 #include <fstream>
 #include <limits>
 
@@ -13,17 +13,25 @@ using namespace std;
 class Produtor: public Usuario
 {
     protected:
-        vector<Midia*> produtosDesenvolvidos;
+        list<Midia*> produtosDesenvolvidos;
         
     public:
         Produtor();
         Produtor(string _nome, int codigo);
         void imprimeProdutosDesenvolvidos();
-        void setProdutosDesenvolvidos(vector<Midia*> produtosDesenvolvidos);
+        void setProdutosDesenvolvidos(list<Midia*> produtosDesenvolvidos);
         void novoProduto(Midia* produto);
-        vector<Midia*> getProdutosDesenvolvidos();
+        list<Midia*> getProdutosDesenvolvidos();
         virtual void imprimeNoArquivo(ofstream &outfile);
         virtual void carregaArquivo(ifstream &infile);
+};
+
+template <typename clss>
+bool ordenarPorNome(clss* p1, clss* p2){
+    if(p1->getNome().compare(p2->getNome()) < 0){
+        return 1;
+    }
+    return 0;
 };
 
 #endif
