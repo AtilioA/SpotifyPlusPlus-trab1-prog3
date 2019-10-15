@@ -28,7 +28,7 @@ class Midia
                 string getSigla();
                 void setNome(string nome);
                 void setSigla(string sigla);
-                void adicionarMidia(Midia* midia);
+                void adicionaMidia(Midia* midia);
                 Genero();
                 Genero(string nome, string sigla);
         };
@@ -36,9 +36,6 @@ class Midia
         static int qtdProdutos;
         Midia();
         Midia(string nome, int codigo, Genero *genero);
-        static void imprimeQtdProdutos();
-        virtual void imprimeInfoProduto() = 0;
-        virtual void imprimeNoArquivo() = 0;
         int getCodigo();
         string getNome();
         void setNome(string nome);
@@ -48,7 +45,11 @@ class Midia
         float getDuracao();
         void setDuracao(float duracao);
         void setProdutor(list<Produtor *> produtor);
-        void adicionarProdutor(Produtor* produtor);
+        void adicionaProdutor(Produtor* produtor);
+        static void imprimeQtdProdutos();
+        virtual void imprimeInfoProduto() = 0;
+        virtual void imprimeNoArquivo() = 0;
+
     private:
         bool explicito;
         Genero *genero;

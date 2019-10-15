@@ -19,7 +19,7 @@ void Produtor::imprimeProdutosDesenvolvidos()
 void Produtor::imprimeNoArquivo(ofstream &outfile)
 {
     outfile << this->getNome() << ";";
-    this->produtosDesenvolvidos.sort(ordenarPorNome<Midia>);
+    this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
     list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
     if(this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end()){
         outfile << (*it)->getNome();

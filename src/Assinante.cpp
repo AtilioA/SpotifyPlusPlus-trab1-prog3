@@ -27,7 +27,7 @@ void Assinante::insereFavoritos(Midia *favorito)
     this->favoritos.push_back(favorito);
 }
 
-void Assinante::removerFavorito()
+void Assinante::removeFavorito()
 {
     //
 }

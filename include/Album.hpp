@@ -30,7 +30,7 @@ class Album
         int getAnoLancamento();
         void setMusicas(list<Musica*> musicas);
         list<Musica*> getMusica();
-        void adicionarMusica(Musica* musica);
+        void adicionaMusica(Musica* musica);
 };
 
 

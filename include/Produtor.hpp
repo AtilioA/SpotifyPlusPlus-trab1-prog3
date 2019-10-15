@@ -10,11 +10,11 @@ class Midia;
 
 using namespace std;
 
-class Produtor: public Usuario
+class Produtor : public Usuario
 {
     protected:
         list<Midia*> produtosDesenvolvidos;
-        
+
     public:
         Produtor();
         Produtor(string _nome, int codigo);
@@ -27,8 +27,10 @@ class Produtor: public Usuario
 };
 
 template <typename clss>
-bool ordenarPorNome(clss* p1, clss* p2){
-    if(p1->getNome().compare(p2->getNome()) < 0){
+bool ordenaPorNome(clss *prod1, clss *prod2)
+{
+    if (prod1->getNome().compare(prod2->getNome()) < 0)
+    {
         return 1;
     }
     return 0;

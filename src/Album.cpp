@@ -67,10 +67,9 @@ list<Musica *> Album::getMusica()
     return this->musicas;
 }
 
-void Album::adicionarMusica(Musica *musica)
+void Album::adicionaMusica(Musica *musica)
 {
     this->musicas.push_back(musica);
     this->qtdMusicas++;
     this->duracao += musica->getDuracao();
 }
-

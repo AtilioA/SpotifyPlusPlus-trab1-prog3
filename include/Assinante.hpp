@@ -17,7 +17,7 @@ class Assinante: public Usuario
         ~Assinante();
         void imprimeFavoritos();
         void insereFavoritos(Midia *favorito);
-        void removerFavorito();
+        void removeFavorito();
         list<Midia*> getFavoritos();
         void setFavoritos(list<Midia*> favoritos);
         void imprimeNoArquivo(ofstream &outfile);

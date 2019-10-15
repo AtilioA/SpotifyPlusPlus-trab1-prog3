@@ -15,7 +15,7 @@ class Podcaster: public Produtor
         Podcaster(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
-        void inserirPodcast(Podcast* podcast);
+        void inserePodcast(Podcast* podcast);
         list<Podcast*>* getPodcasts();
 };
 

@@ -24,29 +24,38 @@ class PlataformaDigital
     public:
         PlataformaDigital();
         PlataformaDigital(string _nome);
-        void imprimeProdutos(string genero);
-        void imprimeAssinantes();
-        void inserirAssinante();
-        void removerAssinante();
-        int inserirProduto(Midia * novoProduto, string nomeProdutor);
-        int selecionaAssinante();
-        void inserirProdutoAssinante();
-        list<Midia*> getProdutosCadastrados();
-        list<Assinante*> getAssinantes();
-        void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivoMidias(ifstream &infile);
-        void carregaArquivoGeneros(ifstream &infile);
-        void carregaArquivoFavoritos(ifstream &infile);
-        void carregaArquivoUsuarios(ifstream &infile);
-        void imprimeGeneros();
-        void imprimeUsuarios();
-        void imprimeProdutores();
-        void exportarBiblioteca();
-        void gerarRelatorios();
         string getNome();
         void setNome(string nome);
         void setAssinantes(list<Assinante*> assinantes);
         void setProdutosCadastrados(list<Midia*> produtosCadastrados);
+        list<Midia*> getProdutosCadastrados();
+        list<Assinante*> getAssinantes();
+
+        void imprimeProdutos(string genero);
+        void imprimeAssinantes();
+        void insereAssinante();
+        void removeAssinante();
+        int insereProduto(Midia * novoProduto, string nomeProdutor);
+        int selecionaAssinante();
+        void insereProdutoAssinante();
+        void imprimeNoArquivo(ofstream &outfile);
+
+        void carregaArquivoMidias(ifstream &infile);
+        void carregaArquivoGeneros(ifstream &infile);
+        void carregaArquivoFavoritos(ifstream &infile);
+        void carregaArquivoUsuarios(ifstream &infile);
+
+        void imprimeGeneros();
+        void imprimeUsuarios();
+        void imprimeProdutores();
+
+        void exportaBiblioteca();
+        void geraRelatorios();
+        void geraRelatorioEstatisticas();
+        void geraRelatorioMidiasProdutores();
+
+        void geraRelatorioFavoritos();
+        void geraRelatorioBackup();
 };
 
 #endif

@@ -16,9 +16,9 @@ class Artista: public Produtor
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
         void setAlbuns(list<Album*> albuns);
-        void inserirAlbum(Album* album);
-        void inserirMusica(Musica* musica);
-        Album* procurarAlbum(string album);
+        void insereAlbum(Album* album);
+        void insereMusica(Musica* musica);
+        Album* procuraAlbum(string album);
         list<Album*>* getAlbuns();
 };
 
