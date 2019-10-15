@@ -259,7 +259,7 @@ void PlataformaDigital::imprimeGeneros()
 
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 {
-    char teste;
+    // char teste;
     string primeiraLinha;
     int cod = 0;
     int favoritoAtual = 0;
@@ -282,7 +282,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             favoritos.push_back(favoritoAtual);
         }
         for(list<int>::iterator it = favoritos.begin(); it != favoritos.end(); it++){
-            
+
         }
         cout << cod << "\n";
     }
