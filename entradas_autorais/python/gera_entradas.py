@@ -52,7 +52,7 @@ def gera_midias(n, arquivoGeneros, arquivoUsuarios):
             produtores = list()
 
             if tipoMidia is 'M':
-                duracaoMidia = round(random.uniform(1, 10), 2)
+                duracaoMidia = f"{random.randint(1, 10)},{random.randint(0,99)}"
                 temporadaMidia = ''
                 albumMidia = fake.catch_phrase()
                 while len(produtores) < random.randint(1, 3):
@@ -60,7 +60,7 @@ def gera_midias(n, arquivoGeneros, arquivoUsuarios):
                     if tipoUsuario[randProd] is "A":
                         produtores.append(randProd + 1)
             else:
-                duracaoMidia = round(random.uniform(1, 120), 2)
+                duracaoMidia = duracaoMidia = f"{random.randint(1, 120)},{random.randint(0,99)}"
                 temporadaMidia = random.randint(1, 20)
                 albumMidia = ''
                 while len(produtores) < random.randint(1, 3):
