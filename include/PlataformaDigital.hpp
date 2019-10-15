@@ -43,7 +43,6 @@ class PlataformaDigital
         void imprimeProdutores();
         void exportarBiblioteca();
         void gerarRelatorios();
-
         string getNome();
         void setNome(string nome);
         void setAssinantes(list<Assinante*> assinantes);

@@ -22,12 +22,13 @@ class Midia
             private:
                 string sigla;
                 string nome;
-
+                list<Midia*> midias;
             public:
                 string getNome();
                 string getSigla();
                 void setNome(string nome);
                 void setSigla(string sigla);
+                void adicionarMidia(Midia* midia);
                 Genero();
                 Genero(string nome, string sigla);
         };
@@ -44,6 +45,8 @@ class Midia
         Genero *getGenero();
         void setGenero(Genero *genero);
         list<Produtor *> getProdutor();
+        float getDuracao();
+        void setDuracao(float duracao);
         void setProdutor(list<Produtor *> produtor);
         void adicionarProdutor(Produtor* produtor);
     private:
