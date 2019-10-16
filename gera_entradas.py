@@ -90,17 +90,22 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
     pass
 
 
-def gera_favoritos(nFavoritos, nMidias):
+def gera_favoritos(arquivoUsuarios, nMidias):
+    usuariosCSV = pandas.read_csv(f"{arquivoUsuarios}", sep=';')
+    usuarios = usuariosCSV[(usuariosCSV['Tipo'] == 'U')]
+
     with open(f"{path}/favoritos_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Mídias Favoritas\n")
-        for i in range(1, nFavoritos + 1):
+        for i in range(1, usuariosCSV["Código"].size + 1):
             file.write(f"{i};")
-            rangeMidias = range(round(abs(random.gauss(15, 8))))
-            for f in rangeMidias:
-                if f != rangeMidias[-1]:
-                    file.write(f"{random.randrange(1, nMidias)},")
-                else:
-                    file.write(f"{random.randrange(1, nMidias)}")
+
+            if i in usuarios["Código"].tolist():
+                rangeMidias = range(round(abs(random.gauss(15, 8))))
+                for f in rangeMidias:
+                    if f != rangeMidias[-1]:
+                        file.write(f"{random.randrange(1, nMidias + 1)},")
+                    else:
+                        file.write(f"{random.randrange(1, nMidias + 1)}")
             file.write("\n")
     pass
 
@@ -111,7 +116,7 @@ nFavoritos = nUsuarios
 nMidias = 500
 nGeneros = 100
 
-gera_favoritos(nFavoritos, nMidias)
-gera_usuarios(nUsuarios)
-gera_generos(nGeneros)
-gera_midias(nMidias, f"{path}/generos_python.csv", f"{path}/usuarios_python.csv")
+# gera_usuarios(nUsuarios)
+gera_favoritos(f"{path}/usuarios_python.csv", nFavoritos, nMidias)
+# gera_generos(nGeneros)
+# gera_midias(nMidias, f"{path}/generos_python.csv", f"{path}/usuarios_python.csv")
