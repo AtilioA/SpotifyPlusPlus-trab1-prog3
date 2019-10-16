@@ -330,8 +330,13 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (*itFavs == (*itFavsM)->getCodigo())
                 {
-                    (*itAssinante)->insereFavoritos((*itFavsM));
-                    break;
+                    if(itAssinante != this->assinantes.end()){ // dps vamo tentar fazer com try catch
+                        (*itAssinante)->insereFavoritos((*itFavsM));
+                        break;
+                    }else{
+                        cerr << "Entrada invalida (código não pertence a algum assinante)\n";
+                        exit(3);
+                    }
                 }
             }
         }
