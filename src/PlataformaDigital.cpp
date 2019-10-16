@@ -324,23 +324,21 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             }
         }
 
+        if(itAssinante == this->assinantes.end()){ // dps vamo tentar fazer com try catch
+            cerr << "Entrada invalida (código não pertence a algum assinante)\n";
+            exit(3);
+        }
+
         for (list<int>::iterator itFavs = favoritos.begin(); itFavs != favoritos.end(); itFavs++)
         {
             for (list<Midia *>::iterator itFavsM = this->produtosCadastrados.begin(); itFavsM != this->produtosCadastrados.end(); itFavsM++)
             {
                 if (*itFavs == (*itFavsM)->getCodigo())
                 {
-                    if(itAssinante != this->assinantes.end()){ // dps vamo tentar fazer com try catch
-                        (*itAssinante)->insereFavoritos((*itFavsM));
-                        break;
-                    }else{
-                        cerr << "Entrada invalida (código não pertence a algum assinante)\n";
-                        exit(3);
-                    }
+                    (*itAssinante)->insereFavoritos((*itFavsM));                    
                 }
             }
         }
-        //cout << cod << "\n";
     }
 }
 
