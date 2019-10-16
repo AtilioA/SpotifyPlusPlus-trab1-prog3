@@ -133,12 +133,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             infile >> codProd;
             produtores.push_back(codProd);
+            if(infile.peek() == -1){
+                break;
+            }
             if (infile.peek() == ',')
             {
                 infile.ignore(1, ',');
             }
         }
-
+        if(infile.peek() == -1){
+            break;
+        }
+        cout << cod << "\n";
         infile.ignore(1, ';');
         infile >> intDur;
         infile.ignore(1, ',');
