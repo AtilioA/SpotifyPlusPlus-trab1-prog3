@@ -325,7 +325,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         }
 
         if(itAssinante == this->assinantes.end()){ // dps vamo tentar fazer com try catch
-            cerr << "Entrada invalida (código não pertence a algum assinante)\n";
+            cerr << "Inconsistências na entrada (código não pertence a algum assinante)\n";
             exit(3);
         }
 
@@ -335,7 +335,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (*itFavs == (*itFavsM)->getCodigo())
                 {
-                    (*itAssinante)->insereFavoritos((*itFavsM));                    
+                    (*itAssinante)->insereFavoritos((*itFavsM));
                 }
             }
         }

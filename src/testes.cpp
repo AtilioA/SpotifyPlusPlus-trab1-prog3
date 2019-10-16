@@ -66,12 +66,12 @@ int main(int argc, char *argv[])
     fileGen.open(gen.c_str());
     fileMidia.open(midia.c_str());
     fileFavs.open(favs.c_str());
-    if (/*argv[1] == NULL ||*/ !fileGen.is_open() || !fileMidia.is_open() || !fileGen.is_open() || !fileFavs.is_open()) // Verificação de arquivos
+    if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open()) // Verificação de arquivos (precisa do argv[1] == NULL?)
     {
         /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
         * ou o programa não ter permissão para ler ou escrever em um arquivo
         */
-       cout << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
+       cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
 
         cerr << "Erro de I/O\n";
         exit(1);

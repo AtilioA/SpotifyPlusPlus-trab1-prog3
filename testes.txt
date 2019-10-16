@@ -16,9 +16,9 @@ Erro 3: Inconsistências na entrada
 "Inconsistência nos dados de entrada: por exemplo, uso de Código de gênero ou
 usuário inexistente nos respectivos cadastros, etc."
     Casos possíveis:
-        usuarios.csv:
+        usuarios.csv: (na verdade é erro de formatação?)
             Tipo de usuário sem correspondente (Não é A ou P ou U)
-            Supostamente feito (perguntar pra Jordana se pode cair tudo no default do switch)
+            (Potencialmente feito)
 
         midias.csv:
             Mídia sem sigla de gênero correspondente
@@ -27,7 +27,7 @@ usuário inexistente nos respectivos cadastros, etc."
 
         favoritos.csv:
             Favorito sem mídia correspondente
-            (Supostamente feito)
+            (Potencialmente feito)
 
         generos.csv:
             Vale tudo, neste caso a mídia pode estar inconsistente
