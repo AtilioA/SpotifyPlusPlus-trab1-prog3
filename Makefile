@@ -29,10 +29,7 @@ run_p:
 
 # Entradas com erros
 # Erro 1
-run_e1:  # Simbora
-	make && make run_e11 && make run_e12 && make run_e13 && make run_e14
-
-run_e11:  # Dando Erro 2 erroneamente
+run_e11:
 	./$(EXECUTABLE) -u entradas/naoexiste.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
 run_e12:
@@ -46,12 +43,13 @@ run_e14:
 
 # Erro 2
 run_e2:
-	# ss
+	echo ainda faremos?!
 
 # Erro 3
 # Tipo de usuário sem correspondente (Não é A ou P ou U)
-run_e31:
+run_e31: # (na verdade é erro de formatação?)
 	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e31.csv -f entradas_autorais/testes/favoritos_e31.csv -g entradas_autorais/testes/generos_e31.csv -m entradas_autorais/testes/midias_e31.csv
+	# (Supostamente feito)
 
 # Mídia sem sigla de gênero correspondente
 run_e32:
@@ -65,9 +63,11 @@ run_e33:
 run_e34:
 	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e34.csv -f entradas_autorais/testes/favoritos_e34.csv -g entradas_autorais/testes/generos_e34.csv -m entradas_autorais/testes/midias_e34.csv
 
+
 # Favorito sem mídia correspondente
 run_e35:
 	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e35.csv -f entradas_autorais/testes/favoritos_e35.csv -g entradas_autorais/testes/generos_e35.csv -m entradas_autorais/testes/midias_e35.csv
+	# (Supostamente feito)
 
 
 warns: $(SRC)/*.cpp

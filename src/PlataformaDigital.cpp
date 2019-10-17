@@ -133,12 +133,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             infile >> codProd;
             produtores.push_back(codProd);
+            if(infile.peek() == -1){
+                break;
+            }
             if (infile.peek() == ',')
             {
                 infile.ignore(1, ',');
             }
         }
-
+        if(infile.peek() == -1){
+            break;
+        }
+        cout << cod << "\n";
         infile.ignore(1, ';');
         infile >> intDur;
         infile.ignore(1, ',');
@@ -318,6 +324,11 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             }
         }
 
+        if(itAssinante == this->assinantes.end()){ // dps vamo tentar fazer com try catch
+            cerr << "Inconsistências na entrada (código não pertence a algum assinante)\n";
+            exit(3);
+        }
+
         for (list<int>::iterator itFavs = favoritos.begin(); itFavs != favoritos.end(); itFavs++)
         {
             for (list<Midia *>::iterator itFavsM = this->produtosCadastrados.begin(); itFavsM != this->produtosCadastrados.end(); itFavsM++)
@@ -325,11 +336,9 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 if (*itFavs == (*itFavsM)->getCodigo())
                 {
                     (*itAssinante)->insereFavoritos((*itFavsM));
-                    break;
                 }
             }
         }
-        //cout << cod << "\n";
     }
 }
 
