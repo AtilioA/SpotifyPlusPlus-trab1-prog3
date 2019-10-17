@@ -2,13 +2,14 @@
 #define _PLATAFORMA_DIGITAL_
 #include <iostream>
 #include <list>
-#include <typeinfo>
+#include <sstream>
 #include <cstdlib>
 #include "Produtor.hpp"
 #include "Artista.hpp"
 #include "Podcaster.hpp"
 #include "Assinante.hpp"
 #include "Midia.hpp"
+#include "Album.hpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class PlataformaDigital
         list<Midia*> produtosCadastrados;
         list<Produtor*> produtoresCadastrados;
         list<Midia::Genero*> generosCadastrados;
+        list<Album*> albunsCadastrados;
 
     public:
         PlataformaDigital();
@@ -56,6 +58,8 @@ class PlataformaDigital
 
         void geraRelatorioFavoritos();
         void geraRelatorioBackup();
+
+        float tempoConsumido();
 };
 
 #endif

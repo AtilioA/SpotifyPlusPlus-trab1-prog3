@@ -11,7 +11,7 @@ class Podcast: public Midia
 
     public:
         Podcast();
-        Podcast(string nome, int codigo, Midia::Genero* gen, int qtdTemp);
+        Podcast(string nome, int codigo, Midia::Genero* gen, int qtdTemp, float duracao);
         int getQtdTemporadas();
         void setQtdTemporadas(int qtdTemporadas);
         void imprimeInfoProduto();

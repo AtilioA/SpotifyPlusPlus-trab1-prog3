@@ -14,16 +14,19 @@ class Album
         float duracao;
         string nome;
         int qtdMusicas;
+        int codigo;
         list<Musica*> musicas;
 
     public:
         Album();
-        Album(string nome, int duracao, int ano, int qtd);
+        Album(string nome, int codigo, float duracao, int ano, int qtd);
         void imprimeNoArquivo(ofstream &outfiles);
         void setQtdMusicas(int qtdMusicas);
         int getQtdMusicas();
         void setNome(string nome);
         string getNome();
+        int getCodigo();
+        void setCodigo(int codigo);
         void setDuracao(int duracao);
         int getDuracao();
         void setAnoLancamento(int anoLancamento);

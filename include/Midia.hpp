@@ -35,7 +35,7 @@ class Midia
 
         static int qtdProdutos;
         Midia();
-        Midia(string nome, int codigo, Genero *genero);
+        Midia(string nome, int codigo, Genero *genero, float duracao);
         int getCodigo();
         string getNome();
         void setNome(string nome);

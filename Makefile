@@ -1,5 +1,5 @@
 CXX		  	:= g++
-CXX_FLAGS 	:= -ggdb -g -Wall # -Wextra -std=c++17
+CXX_FLAGS 	:= -ggdb -g -Wall -std=c++17
 SRC			:= src
 INCLUDE		:= include
 OBJ 		:= obj

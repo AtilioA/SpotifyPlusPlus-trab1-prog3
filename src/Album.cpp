@@ -5,12 +5,13 @@ Album::Album()
     //
 }
 
-Album::Album(string nome, int duracao, int ano, int qtd)
+Album::Album(string nome, int codigo, float duracao, int ano, int qtd)
 {
     this->nome = nome;
     this->duracao = duracao;
     this->anoLancamento = ano;
     this->qtdMusicas = qtd;
+    this->codigo = codigo;
 }
 
 void Album::imprimeNoArquivo(ofstream &outfile)
@@ -72,4 +73,12 @@ void Album::adicionaMusica(Musica *musica)
     this->musicas.push_back(musica);
     this->qtdMusicas++;
     this->duracao += musica->getDuracao();
+}
+
+void Album::setCodigo(int codigo){
+    this->codigo = codigo;
+}
+
+int Album::getCodigo(){
+    return this->codigo;
 }

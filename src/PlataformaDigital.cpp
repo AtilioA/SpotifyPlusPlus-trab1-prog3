@@ -94,6 +94,7 @@ void PlataformaDigital::imprimeNoArquivo(ofstream &outfile)
 
 void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 {
+    string linhaAtual;
     int cod;
     string nome;
     char tipo;
@@ -103,6 +104,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     string primeiroGenero;
     int temporada;
     string album;
+    int codAlbum;
     int ano;
     string primeiraLinha;
     Midia *produto;
@@ -115,43 +117,44 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     getline(infile, primeiraLinha); // Ignorando primeira linha
     while (!infile.eof())
     {
-        infile >> cod; // Verificar se é número (Erro 2)
-        infile.ignore(1, ';');
-        getline(infile, nome, ';');
+
+        getline(infile, linhaAtual);
+        stringstream linhaAtualStream(linhaAtual);
+        
+        linhaAtualStream >> cod; // Verificar se é número (Erro 2)
+        linhaAtualStream.ignore(1, ';');
+        getline(linhaAtualStream, nome, ';');
         retiraCR(nome);
-        infile >> tipo;
-        infile.ignore(1, ';');
-        infile >> codProd;
+        linhaAtualStream >> tipo;
+        linhaAtualStream.ignore(1, ';');
+        linhaAtualStream >> codProd;
         produtores.push_back(codProd);
 
-        if (infile.peek() == ',')
+        if (linhaAtualStream.peek() == ',')
         {
-            infile.ignore(1, ',');
+            linhaAtualStream.ignore(1, ',');
         }
 
-        while (infile.peek() != ';')
+        while (linhaAtualStream.peek() != ';')
         {
-            infile >> codProd;
+            linhaAtualStream >> codProd;
             produtores.push_back(codProd);
-            if(infile.peek() == -1){
+            if(linhaAtualStream.peek() == -1){
                 break;
             }
-            if (infile.peek() == ',')
+            if (linhaAtualStream.peek() == ',')
             {
-                infile.ignore(1, ',');
+                linhaAtualStream.ignore(1, ',');
             }
         }
-        if(infile.peek() == -1){
-            break;
-        }
-        cout << cod << "\n";
-        infile.ignore(1, ';');
-        infile >> intDur;
-        infile.ignore(1, ',');
-        infile >> floatDur;
+        //cout << cod << "\n";
+        linhaAtualStream.ignore(1, ';');
+        linhaAtualStream >> intDur;
+        linhaAtualStream.ignore(1, ',');
+        linhaAtualStream >> floatDur;
         floatDur = intDur + (floatDur / 100); // Juntando parte inteira e decimal da duração
-        infile.ignore(1, ';');
-        getline(infile, primeiroGenero, ';');
+        linhaAtualStream.ignore(1, ';');
+        getline(linhaAtualStream, primeiroGenero, ';');
         for (string::iterator itGenero = primeiroGenero.begin(); itGenero != primeiroGenero.end(); itGenero++)
         {
             if ((*itGenero) == ',') // Zeradsse precisa disso mesmo?
@@ -166,17 +169,19 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
-            infile >> temporada;
-            infile.ignore(1, ';');
+            linhaAtualStream >> temporada;
+            linhaAtualStream.ignore(1, ';');
         }
         else
         {
             temporada = -1;
-            infile.ignore(1, ';');
+            linhaAtualStream.ignore(1, ';');
         }
-        getline(infile, album, ';');
-        infile >> ano;
-
+        getline(linhaAtualStream, album, ';');
+        linhaAtualStream >> codAlbum;
+        linhaAtualStream.ignore(1, ';');
+        linhaAtualStream >> ano;
+        
         int achaste = 0;
         list<Midia::Genero *>::iterator itGeneros;
         for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
@@ -199,7 +204,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // Criando objeto de acordo com Tipo
         if (tipo == 'P')
         {
-            produto = new Podcast(nome, cod, (*itGeneros), temporada);
+            produto = new Podcast(nome, cod, (*itGeneros), temporada, floatDur);
         }
         else
         {
@@ -207,6 +212,20 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         (*itGeneros)->adicionaMidia(produto);
         this->produtosCadastrados.push_back(produto);
+
+        list<Album*>::iterator itAlbuns;
+
+        for(itAlbuns = this->albunsCadastrados.begin(); itAlbuns != this->albunsCadastrados.end(); itAlbuns++){
+            if((*itAlbuns)->getCodigo() == codAlbum){
+                albumNovo = (*itAlbuns);
+                break;
+            }
+        }
+
+        if(itAlbuns == this->albunsCadastrados.end() && !album.empty()){
+            albumNovo = new Album(album, codAlbum, floatDur, ano, 1);
+            this->albunsCadastrados.push_back(albumNovo);
+        }
 
         size_t achastesProd = 0;
         for (list<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
@@ -225,23 +244,14 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                     }
                     else
                     {
-                        //cout << produto->getNome() << ";" << produto->getCodigo() << '\n';
-                        //((Artista*)(*itProdutoresCad))->insereMusica((Musica*) produto);
                         if (!album.empty())
                         {
-                            if (((Artista *)(*itProdutoresCad))->procuraAlbum(album) != NULL)
+                            albumNovo->adicionaMusica((Musica *)produto);
+                            if (((Artista *)(*itProdutoresCad))->procuraAlbum(album) == NULL)
                             {
-                                albumNovo = ((Artista *)(*itProdutoresCad))->procuraAlbum(album);
-                                albumNovo->adicionaMusica((Musica *)produto);
-                            }
-                            else
-                            {
-                                albumNovo = new Album(album, floatDur, ano, 1);
-                                albumNovo->adicionaMusica((Musica *)produto);
                                 ((Artista *)(*itProdutoresCad))->insereAlbum(albumNovo);
                             }
                         }
-                        //albunsDeArtista = ((Artista*)(*itProdutoresCad))->getAlbuns();
                     }
                 }
             }
@@ -253,8 +263,9 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             exit(3);
         }
         produtores.clear();
-
-        // cout << '[' << cod << "][" << nome << "][" << tipo << "][" << codProd << "][" << floatDur << "][" << primeiroGenero << "][" << temporada << "][" << album << "][" << ano << "]\n";
+        if(infile.peek() == -1){
+            break;
+        }        
     }
 }
 
@@ -263,17 +274,19 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
     string sigla;
     string nome;
     string primeiraLinha;
+    string linhaAtual;
     getline(infile, primeiraLinha); // Ignorando primeira linha
     while (!infile.eof())
     {
-        getline(infile, sigla, ';');
-        getline(infile, nome);
+        getline(infile, linhaAtual);
+        stringstream linhaAtualStream(linhaAtual);
+        getline(linhaAtualStream, sigla, ';');
+        getline(linhaAtualStream, nome);
         //nome.resize(nome.size() - 1);
-        if (infile.eof())
-        {
+        this->generosCadastrados.push_back(new Midia::Genero(nome, sigla));
+        if(infile.peek() == -1){
             break;
         }
-        this->generosCadastrados.push_back(new Midia::Genero(nome, sigla));
     }
 }
 
@@ -283,10 +296,6 @@ void PlataformaDigital::imprimeGeneros()
     {
         cout << (*it)->getSigla() << ";" << (*it)->getNome() << endl;
     }
-    // for (size_t i = 0; i < this->generosCadastrados.size(); i++)
-    // {
-    //     cout << this->generosCadastrados.at(i)->getSigla() << ";" << this->generosCadastrados.at(i)->getNome() << endl;
-    // }
 }
 
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
@@ -298,21 +307,24 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     list<int> favoritos;
     getline(infile, primeiraLinha); // Ignorando primeira linha
     list<Assinante *>::iterator itAssinante;
+    string linhaAtual;
     while (!infile.eof())
     {
-        infile >> cod;
-        infile.ignore(1, ';');
-        if (infile.peek() == '\n')
+        getline(infile, linhaAtual);
+        stringstream linhaAtualStream(linhaAtual);
+        linhaAtualStream >> cod;
+        linhaAtualStream.ignore(1, ';');
+        if (linhaAtualStream.peek() == -1)
         {
             continue;
         }
 
-        infile >> favoritoAtual;
+        linhaAtualStream >> favoritoAtual;
         favoritos.push_back(favoritoAtual);
-        while (infile.peek() == ',')
+        while (linhaAtualStream.peek() == ',')
         {
-            infile.ignore(1, ',');
-            infile >> favoritoAtual;
+            linhaAtualStream.ignore(1, ',');
+            linhaAtualStream >> favoritoAtual;
             favoritos.push_back(favoritoAtual);
         }
 
@@ -325,7 +337,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         }
 
         if(itAssinante == this->assinantes.end()){ // dps vamo tentar fazer com try catch
-            cerr << "Inconsistências na entrada (código não pertence a algum assinante)\n";
+            cerr << "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
             exit(3);
         }
 
@@ -349,14 +361,16 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
     int cod;
     string nome;
     char tipo;
-
+    string linhaAtual;
     while (!infile.eof())
     {
-        infile >> cod; // Verificar se é número (Erro 2)
-        infile.ignore(1, ';');
-        infile >> tipo;
-        infile.ignore(1, ';');
-        getline(infile, nome);
+        getline(infile, linhaAtual);
+        stringstream linhaAtualStream(linhaAtual);
+        linhaAtualStream >> cod; // Verificar se é número (Erro 2)
+        linhaAtualStream.ignore(1, ';');
+        linhaAtualStream >> tipo;
+        linhaAtualStream.ignore(1, ';');
+        getline(linhaAtualStream, nome);
         //nome.resize(nome.size() - 1);
 
         if (infile.eof())
@@ -392,17 +406,6 @@ void PlataformaDigital::imprimeUsuarios()
     {
         cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
-
-    // for (size_t i = 0; i < this->assinantes.size(); i++)
-    // {
-    //     cout << this->assinantes[i]->getCodigo() << ";" << this->assinantes[i]->getNome() << "\n";
-    //     /*
-    //     for (size_t size_favoritos = 0; size_favoritos < this->assinantes[i]->getFavoritos().size(); size_favoritos++)
-    //     {
-    //         cout << (this->assinantes[i]->getFavoritos())[size_favoritos]->getCodigo() << '\n';
-    //     }
-    //     */
-    // }
 }
 
 void PlataformaDigital::imprimeProdutores()
@@ -411,10 +414,6 @@ void PlataformaDigital::imprimeProdutores()
     {
         cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
-    // for (size_t i = 0; i < this->assinantes.size(); i++)
-    // {
-    //     cout << this->produtoresCadastrados[i]->getCodigo() << ";" << this->produtoresCadastrados[i]->getNome() << endl;
-    // }
 }
 
 void PlataformaDigital::exportaBiblioteca()
@@ -461,4 +460,14 @@ void PlataformaDigital::geraRelatorioBackup()
 
 void PlataformaDigital::geraRelatorios()
 {
+}
+
+float PlataformaDigital::tempoConsumido(){
+    float tempoTotal = 0;
+    for(Assinante* itUsuario: this->assinantes){
+        for(Midia* itMidia: itUsuario->getFavoritos()){
+            tempoTotal += itMidia->getDuracao();
+        }
+    }
+    return tempoTotal;
 }

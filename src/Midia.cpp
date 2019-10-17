@@ -5,8 +5,9 @@ Midia::Midia()
     Midia::qtdProdutos++;
 }
 
-Midia::Midia(string nome, int codigo, Midia::Genero *genero)
+Midia::Midia(string nome, int codigo, Midia::Genero *genero, float duracao)
 {
+    this->duracao = duracao;
     this->nome = nome;
     this->codigo = codigo;
     this->genero = genero;
