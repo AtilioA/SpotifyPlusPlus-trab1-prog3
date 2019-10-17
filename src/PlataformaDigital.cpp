@@ -426,7 +426,7 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     ofstream estatistica;
 
     estatistica.open("1-estatisticas.txt");
-    estatistica << "Horas Consumidas: " << 00 << endl;
+    estatistica << "Horas Consumidas: " << this->tempoConsumido() << endl;
 }
 
 void PlataformaDigital::geraRelatorioMidiasProdutores()
