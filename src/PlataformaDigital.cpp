@@ -124,7 +124,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         linhaAtualStream >> cod; // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
-        retiraCR(nome);
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> codProd;
@@ -156,9 +155,20 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         floatDur = intDur + (floatDur / 100); // Juntando parte inteira e decimal da duração
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, primeiroGenero, ';');
-        for (string::iterator itGenero = primeiroGenero.begin(); itGenero != primeiroGenero.end(); itGenero++)
+        /*for (string::iterator itGenero = primeiroGenero.begin(); itGenero != primeiroGenero.end(); itGenero++)
         {
             if ((*itGenero) == ',') // Zeradsse precisa disso mesmo?
+            {
+                primeiroGenero.resize(qtdGeneros); // Limita ao primeiro gênero
+                break;
+            }
+            qtdGeneros++;
+        }
+        qtdGeneros = 0;
+*/
+        for(char itGenero: primeiroGenero)
+        {
+            if (itGenero == ',') // Zeradsse precisa disso mesmo?
             {
                 primeiroGenero.resize(qtdGeneros); // Limita ao primeiro gênero
                 break;
@@ -184,15 +194,25 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         linhaAtualStream >> ano;
 
         int achaste = 0;
-        list<Midia::Genero *>::iterator itGeneros;
+        /*list<Midia::Genero *>::iterator itGeneros;
+
         for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
         {
-            if ((*itGeneros)->getSigla() == primeiroGenero)
+            if ((*itGeneros)->getSigla().compare(primeiroGenero) == 0)
             {
                 achaste = 1;
                 break;
             }
+        }*/
+        Midia::Genero* generoDaMidia;
+        for(Midia::Genero* itGenero: this->generosCadastrados){
+            if(itGenero->getSigla().compare(primeiroGenero)){
+                achaste = 1;
+                generoDaMidia = itGenero;
+                break;
+            }
         }
+
         if (achaste == 0)
         {
             /* Inconsistência nos dados de entrada:
@@ -205,15 +225,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // Criando objeto de acordo com Tipo
         if (tipo == 'P')
         {
-            produto = new Podcast(nome, cod, (*itGeneros), temporada, floatDur);
+            produto = new Podcast(nome, cod, generoDaMidia, temporada, floatDur);
         }
         else
         {
-            produto = new Musica(nome, cod, (*itGeneros), floatDur, ano);
+            produto = new Musica(nome, cod, generoDaMidia, floatDur, ano);
         }
-        (*itGeneros)->adicionaMidia(produto);
+        generoDaMidia->adicionaMidia(produto);
         this->produtosCadastrados.push_back(produto);
-
+/*
         list<Album *>::iterator itAlbuns;
 
         for (itAlbuns = this->albunsCadastrados.begin(); itAlbuns != this->albunsCadastrados.end(); itAlbuns++)
@@ -224,14 +244,51 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 break;
             }
         }
-
-        if (itAlbuns == this->albunsCadastrados.end() && !album.empty())
+*/
+        Album* albumDaMusica = NULL;
+        for(Album* itAlbuns: this->albunsCadastrados){
+            if(itAlbuns->getCodigo() == codAlbum){
+                albumNovo = itAlbuns;
+                albumDaMusica = itAlbuns;
+                break;
+            }
+        }
+        if (albumDaMusica == NULL && !album.empty())
         {
             albumNovo = new Album(album, codAlbum, floatDur, ano, 1);
             this->albunsCadastrados.push_back(albumNovo);
         }
 
         size_t achastesProd = 0;
+        for(int itProdutores: produtores)
+        {
+            for(Produtor* itProdutoresCad: this->produtoresCadastrados)
+            {
+                if (itProdutores == itProdutoresCad->getCodigo())
+                {
+                    achastesProd++;
+                    produto->adicionaProdutor(itProdutoresCad);
+                    itProdutoresCad->novoProduto(produto);
+
+                    if (tipo == 'P')
+                    {
+                        ((Podcaster *)itProdutoresCad)->inserePodcast((Podcast *)produto);
+                    }
+                    else
+                    {
+                        if (!album.empty())
+                        {
+                            albumNovo->adicionaMusica((Musica *)produto);
+                            if (((Artista *)itProdutoresCad)->procuraAlbum(album) == NULL)
+                            {
+                                ((Artista *)itProdutoresCad)->insereAlbum(albumNovo);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /*
         for (list<int>::iterator itProdutores = produtores.begin(); itProdutores != produtores.end(); itProdutores++)
         {
             for (list<Produtor *>::iterator itProdutoresCad = this->produtoresCadastrados.begin(); itProdutoresCad != this->produtoresCadastrados.end(); itProdutoresCad++)
@@ -259,7 +316,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                     }
                 }
             }
-        }
+        }*/
 
         if (achastesProd != produtores.size()) // não sei se tá certo, é só uma ideia
         {
@@ -298,10 +355,13 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
 
 void PlataformaDigital::imprimeGeneros()
 {
-    for (list<Midia::Genero *>::iterator it = this->generosCadastrados.begin(); it != this->generosCadastrados.end(); it++)
+    for(Midia::Genero* it: this->generosCadastrados){
+        cout << it->getSigla() << ';' << it->getNome() << "\n";
+    }
+    /*for (list<Midia::Genero *>::iterator it = this->generosCadastrados.begin(); it != this->generosCadastrados.end(); it++)
     {
         cout << (*it)->getSigla() << ";" << (*it)->getNome() << endl;
-    }
+    }*/
 }
 
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
@@ -312,7 +372,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     int favoritoAtual = 0;
     list<int> favoritos;
     getline(infile, primeiraLinha); // Ignorando primeira linha
-    list<Assinante *>::iterator itAssinante;
+    //list<Assinante *>::iterator itAssinante;
     string linhaAtual;
     while (!infile.eof())
     {
@@ -324,8 +384,8 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             continue;
         }
-        
-        cout << cod << "\n";
+
+        //cout << cod << "\n";
 
         linhaAtualStream >> favoritoAtual;
         favoritos.push_back(favoritoAtual);
@@ -336,6 +396,15 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             favoritos.push_back(favoritoAtual);
         }
 
+        Assinante* assinanteAtual = NULL;
+        for(Assinante* itAssinante : this->assinantes){
+            if(itAssinante->getCodigo() == cod){
+                assinanteAtual = itAssinante;
+                //cout << cod << "-----\n";
+                break;
+            }
+        }
+        /*
         for (itAssinante = this->assinantes.begin(); itAssinante != this->assinantes.end(); itAssinante++)
         {
             if ((*itAssinante)->getCodigo() == cod)
@@ -343,23 +412,31 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 break;
             }
         }
-
-        if (itAssinante == this->assinantes.end())
+        */
+        if (assinanteAtual == NULL)
         { // dps vamo tentar fazer com try catch
             cerr << "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
             exit(3);
         }
 
-        for (list<int>::iterator itFavs = favoritos.begin(); itFavs != favoritos.end(); itFavs++)
+        for(int itFavs: favoritos){
+            for(Midia* itFavsM: this->produtosCadastrados){
+                if(itFavs == itFavsM->getCodigo()){
+                    assinanteAtual->insereFavoritos(itFavsM);
+                }
+            }
+        }
+
+        /*for (list<int>::iterator itFavs = favoritos.begin(); itFavs != favoritos.end(); itFavs++)
         {
             for (list<Midia *>::iterator itFavsM = this->produtosCadastrados.begin(); itFavsM != this->produtosCadastrados.end(); itFavsM++)
             {
                 if (*itFavs == (*itFavsM)->getCodigo())
                 {
-                    (*itAssinante)->insereFavoritos((*itFavsM));
+                    assinanteAtual->insereFavoritos((*itFavsM));
                 }
             }
-        }
+        }*/
         favoritos.clear();
     }
 }
@@ -411,19 +488,28 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
 
 void PlataformaDigital::imprimeUsuarios()
 {
-
+    for(Assinante* it: this->assinantes){
+        cout << it->getCodigo() << ";" << it->getNome() << "\n";
+    }
+/*
     for (list<Assinante *>::iterator it = this->assinantes.begin(); it != this->assinantes.end(); it++)
     {
         cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
+*/
 }
 
 void PlataformaDigital::imprimeProdutores()
 {
+    for(Produtor* it: this->produtoresCadastrados){
+        cout << it->getCodigo() << ";" << it->getNome() << "\n";
+    }
+/*
     for (list<Produtor *>::iterator it = this->produtoresCadastrados.begin(); it != this->produtoresCadastrados.end(); it++)
     {
         cout << (*it)->getCodigo() << ";" << (*it)->getNome() << "\n";
     }
+*/
 }
 
 void PlataformaDigital::exportaBiblioteca()
@@ -446,11 +532,15 @@ void PlataformaDigital::geraRelatorioMidiasProdutores()
     midias_prods.open("2-produtores.csv");
     if (midias_prods.is_open())
     {
+        for(Produtor* it : this->produtoresCadastrados){
+            it->imprimeNoArquivo(midias_prods);
+        }
+        /*
         for (list<Produtor *>::iterator it = this->produtoresCadastrados.begin(); it != this->produtoresCadastrados.end(); it++)
         {
             (*it)->imprimeNoArquivo(midias_prods);
             //cout << "quero saber pq n chama\n";
-        }
+        }*/
     }
 
     midias_prods.close();
