@@ -1,9 +1,10 @@
 import random
-import names
+import string
 import pandas
 from faker import Faker
 
 fake = Faker('pt_BR')
+fakezada = Faker('en_US')
 path = "entradas_autorais/python"
 
 
@@ -12,7 +13,7 @@ def gera_usuarios(nUsuarios):
     with open(f"{path}/usuarios_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Tipo;Nome\n")
         for i in range(1, nUsuarios + 1):
-            file.write(f"{i};{random.choice(tipos)};{names.get_full_name()}\n")
+            file.write(f"{i};{random.choice(tipos)};{fake.name()}\n")
     pass
 
 
@@ -39,19 +40,19 @@ def gera_generos(nGeneros):
 
 def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
     with open(f"{path}/midias_python.csv", "w+", encoding="utf8") as file:
-        file.write("Código;Nome;Tipo;Produtores;Duração;Gênero;Temporada;Álbum;Publicação\n")
+        file.write("Código;Nome;Tipo;Produtores;Duração;Gênero;Temporada;Álbum;Código do Álbum;Publicação\n")
 
         generoCSV = pandas.read_csv(f"{arquivoGeneros}", sep=';')
         generoCSV = generoCSV["Sigla"].tolist()
 
         usuariosCSV = pandas.read_csv(f"{arquivoUsuarios}", sep=";")
         tipoUsuario = usuariosCSV["Tipo"].tolist()
-        nomeUsuario = usuariosCSV["Nome"].tolist()
 
+        albuns = list()
         rangeMidias = range(1, nMidias + 1)
         for i in rangeMidias:
             file.write(f"{i};")
-            nomeMidia = fake.catch_phrase()
+            nomeMidia = fake.sentence(nb_words=random.randint(1, 7), variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
             publicacaoMidia = random.randint(1990, 2077)
             tipoMidia = random.choice(['M', 'P'])
 
@@ -60,7 +61,11 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
             if tipoMidia is 'M':
                 duracaoMidia = f"{random.randint(1, 10)},{random.randint(0,99)}"
                 temporadaMidia = ''
-                albumMidia = fake.catch_phrase()
+
+                albumMidia = fakezada.sentence(nb_words=random.randint(1, 7), variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
+                albuns.append(albumMidia)
+                nAlbuns = len(set(albuns))
+
                 while len(produtores) < random.randint(1, 3):
                     randProd = random.randint(1, nUsuarios - 1)
                     if tipoUsuario[randProd] is "A" and randProd + 1 not in produtores:
@@ -75,7 +80,7 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
                         produtores.append(randProd + 1)
 
             genero = random.choice(generoCSV)
-            while genero is 'nan':
+            while str(genero) in 'nan':
                 genero = random.choice(generoCSV)
 
             file.write(f"{nomeMidia};{tipoMidia};")
@@ -84,7 +89,10 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
                     file.write(f"{produtor}, ")
                 elif produtor is produtores[-1]:
                     file.write(f"{produtor};")
-            file.write(f"{duracaoMidia};{genero};{temporadaMidia};{albumMidia};{publicacaoMidia}")
+            if tipoMidia is 'M':
+                file.write(f"{duracaoMidia};{genero};{temporadaMidia};{albumMidia};{nAlbuns};{publicacaoMidia}")
+            else:
+                file.write(f"{duracaoMidia};{genero};{temporadaMidia};{albumMidia};;{publicacaoMidia}")
             if i != rangeMidias[-1]:
                 file.write("\n")
     pass
@@ -111,12 +119,12 @@ def gera_favoritos(arquivoUsuarios, nMidias):
 
 
 # Editar valores aqui
-nUsuarios = 1000
+nUsuarios = 500
 nFavoritos = nUsuarios
-nMidias = 500
-nGeneros = 100
+nMidias = 3000
+nGeneros = 200
 
-# gera_usuarios(nUsuarios)
-gera_favoritos(f"{path}/usuarios_python.csv", nFavoritos, nMidias)
-# gera_generos(nGeneros)
-# gera_midias(nMidias, f"{path}/generos_python.csv", f"{path}/usuarios_python.csv")
+gera_usuarios(nUsuarios)
+gera_favoritos(f"{path}/usuarios_python.csv", nMidias)
+gera_generos(nGeneros)
+gera_midias(nMidias, f"{path}/generos_python.csv", f"{path}/usuarios_python.csv")

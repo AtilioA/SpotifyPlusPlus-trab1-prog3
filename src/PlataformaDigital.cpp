@@ -120,7 +120,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        
+
         linhaAtualStream >> cod; // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
@@ -139,7 +139,8 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             linhaAtualStream >> codProd;
             produtores.push_back(codProd);
-            if(linhaAtualStream.peek() == -1){
+            if (linhaAtualStream.peek() == -1)
+            {
                 break;
             }
             if (linhaAtualStream.peek() == ',')
@@ -181,7 +182,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         linhaAtualStream >> codAlbum;
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> ano;
-        
+
         int achaste = 0;
         list<Midia::Genero *>::iterator itGeneros;
         for (itGeneros = this->generosCadastrados.begin(); itGeneros != this->generosCadastrados.end(); itGeneros++)
@@ -213,16 +214,19 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         (*itGeneros)->adicionaMidia(produto);
         this->produtosCadastrados.push_back(produto);
 
-        list<Album*>::iterator itAlbuns;
+        list<Album *>::iterator itAlbuns;
 
-        for(itAlbuns = this->albunsCadastrados.begin(); itAlbuns != this->albunsCadastrados.end(); itAlbuns++){
-            if((*itAlbuns)->getCodigo() == codAlbum){
+        for (itAlbuns = this->albunsCadastrados.begin(); itAlbuns != this->albunsCadastrados.end(); itAlbuns++)
+        {
+            if ((*itAlbuns)->getCodigo() == codAlbum)
+            {
                 albumNovo = (*itAlbuns);
                 break;
             }
         }
 
-        if(itAlbuns == this->albunsCadastrados.end() && !album.empty()){
+        if (itAlbuns == this->albunsCadastrados.end() && !album.empty())
+        {
             albumNovo = new Album(album, codAlbum, floatDur, ano, 1);
             this->albunsCadastrados.push_back(albumNovo);
         }
@@ -263,9 +267,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             exit(3);
         }
         produtores.clear();
-        if(infile.peek() == -1){
+        if (infile.peek() == -1)
+        {
             break;
-        }        
+        }
     }
 }
 
@@ -284,7 +289,8 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
         getline(linhaAtualStream, nome);
         //nome.resize(nome.size() - 1);
         this->generosCadastrados.push_back(new Midia::Genero(nome, sigla));
-        if(infile.peek() == -1){
+        if (infile.peek() == -1)
+        {
             break;
         }
     }
@@ -336,7 +342,8 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             }
         }
 
-        if(itAssinante == this->assinantes.end()){ // dps vamo tentar fazer com try catch
+        if (itAssinante == this->assinantes.end())
+        { // dps vamo tentar fazer com try catch
             cerr << "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
             exit(3);
         }
@@ -449,25 +456,28 @@ void PlataformaDigital::geraRelatorioMidiasProdutores()
 void PlataformaDigital::geraRelatorioFavoritos()
 {
     ofstream favoritos;
-
 }
 
 void PlataformaDigital::geraRelatorioBackup()
 {
     ofstream backup;
-
 }
 
 void PlataformaDigital::geraRelatorios()
 {
 }
 
-float PlataformaDigital::tempoConsumido(){
+float PlataformaDigital::tempoConsumido()
+{
     float tempoTotal = 0;
-    for(Assinante* itUsuario: this->assinantes){
-        for(Midia* itMidia: itUsuario->getFavoritos()){
+
+    for (Assinante *itUsuario : this->assinantes)
+    {
+        for (Midia *itMidia : itUsuario->getFavoritos())
+        {
             tempoTotal += itMidia->getDuracao();
         }
     }
+
     return tempoTotal;
 }
