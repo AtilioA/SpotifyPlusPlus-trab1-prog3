@@ -1,5 +1,5 @@
 CXX		  	:= g++
-CXX_FLAGS 	:= -ggdb -g -Wall -std=c++17
+CXX_FLAGS 	:= -ggdb -g -Wall -std=c++17 #-O3 ZUMMMMMMM
 SRC			:= src
 INCLUDE		:= include
 OBJ 		:= obj

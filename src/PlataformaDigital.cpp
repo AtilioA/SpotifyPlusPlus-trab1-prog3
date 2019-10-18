@@ -324,6 +324,8 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             continue;
         }
+        
+        cout << cod << "\n";
 
         linhaAtualStream >> favoritoAtual;
         favoritos.push_back(favoritoAtual);
@@ -358,6 +360,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 }
             }
         }
+        favoritos.clear();
     }
 }
 
