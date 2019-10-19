@@ -18,23 +18,38 @@ def gera_usuarios(nUsuarios):
 
 
 def gera_generos(nGeneros):
-    with open(f"{path}/genres.txt", "r", encoding="utf8") as fG:
-        genres = [line.strip().capitalize() for line in fG]
+    with open(f"{path}/genres.txt", "r", encoding="utf8") as fGM:
+        genresM = [line.strip().capitalize() for line in fGM]
+    with open(f"{path}/podcast_genres.txt", "r", encoding="utf8") as fGP:
+        genresP = fGP.readlines()
 
-    texto = list()
+    siglasUtilizadas = list()
     with open(f"{path}/generos_python.csv", "w+", encoding="utf8") as file:
         file.write("Sigla;Nome\n")
-        while len(texto) != nGeneros:
-            genero = random.choice(genres)
-            genres.remove(genero)
-            if len(genero.split()) > 1:
-                sigla = f"{genero.split()[0][0]}{genero.split()[1][0]}".upper()
+
+        for generoP in genresP:
+            if len(generoP.split()) > 1:
+                siglaP = f"{generoP.split()[0][0]}{generoP.split()[1][0]}".upper()
             else:
-                sigla = f"{genero[0]}{genero[1]}".upper()
-            if sigla not in list(map(lambda x: x[0], texto)):
-                texto.append((sigla, genero))
-        for i in range(nGeneros):
-            file.write(f"{texto[i][0]};{texto[i][1]}\n")
+                siglaP = f"{generoP[0]}{generoP[1]}".upper()
+            siglasUtilizadas.append((siglaP, generoP))
+
+            file.write(f"{siglaP};{generoP}")
+
+        nGenerosP = len(siglasUtilizadas)
+
+        while len(siglasUtilizadas) != nGeneros:
+            genero = random.choice(genresM)
+            genresM.remove(genero)
+            if len(genero.split()) > 1:
+                siglaM = f"{genero.split()[0][0]}{genero.split()[1][0]}".upper()
+            else:
+                siglaM = f"{genero[0]}{genero[1]}".upper()
+            if siglaM not in list(map(lambda x: x[0], siglasUtilizadas)):
+                siglasUtilizadas.append((siglaM, genero))
+
+        for i in range(nGenerosP, nGeneros):
+            file.write(f"{siglasUtilizadas[i][0]};{siglasUtilizadas[i][1]}\n")
     pass
 
 
@@ -52,23 +67,26 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
         rangeMidias = range(1, nMidias + 1)
         for i in rangeMidias:
             file.write(f"{i};")
-            nomeMidia = fake.sentence(nb_words=random.randint(1, 7), variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
+            nomeMidia = fake.sentence(nb_words=random.randint(1, 7),
+                                      variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
             publicacaoMidia = random.randint(1990, 2077)
             tipoMidia = random.choice(['M', 'P'])
 
             produtores = list()
 
-            if tipoMidia is 'M':
+            if tipoMidia == 'M':
                 duracaoMidia = f"{random.randint(1, 10)},{random.randint(0,99)}"
                 temporadaMidia = ''
 
-                albumMidia = fakezada.sentence(nb_words=random.randint(1, 7), variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
+                albumMidia = fakezada.sentence(
+                    nb_words=random.randint(1, 7),
+                    variable_nb_words=True, ext_word_list=None).translate(str.maketrans('', '', string.punctuation))
                 albuns.append(albumMidia)
                 nAlbuns = len(set(albuns))
 
                 while len(produtores) < random.randint(1, 3):
                     randProd = random.randint(1, nUsuarios - 1)
-                    if tipoUsuario[randProd] is "A" and randProd + 1 not in produtores:
+                    if tipoUsuario[randProd] == "A" and randProd + 1 not in produtores:
                         produtores.append(randProd + 1)
             else:
                 duracaoMidia = duracaoMidia = f"{random.randint(1, 120)},{random.randint(0,99)}"
@@ -76,12 +94,22 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
                 albumMidia = ''
                 while len(produtores) < random.randint(1, 3):
                     randProd = random.randint(1, nUsuarios - 1)
-                    if tipoUsuario[randProd] is "P" and randProd + 1 not in produtores:
+                    if tipoUsuario[randProd] == "P" and randProd + 1 not in produtores:
                         produtores.append(randProd + 1)
 
-            genero = random.choice(generoCSV)
-            while str(genero) in 'nan':
-                genero = random.choice(generoCSV)
+            generosM = list()
+            nGenerosM = round(abs(random.gauss(1, 1.5)))
+            for i in range(nGenerosM if nGenerosM > 0 else 1):
+                while str(genero := random.choice(generoCSV[25:])) in 'nan' or genero in generosM:
+                    genero = random.choice(generoCSV[25:])
+                generosM.append(genero)
+
+            generosP = list()
+            nGenerosP = round(abs(random.gauss(1, 0.5)))
+            for i in range(nGenerosP if nGenerosP > 0 else 1):
+                while str(genero := random.choice(generoCSV[:25])) in 'nan' or genero in generosP:
+                    genero = random.choice(generoCSV[:25])
+                generosP.append(genero)
 
             file.write(f"{nomeMidia};{tipoMidia};")
             for produtor in produtores:
@@ -89,10 +117,25 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
                     file.write(f"{produtor}, ")
                 elif produtor is produtores[-1]:
                     file.write(f"{produtor};")
-            if tipoMidia is 'M':
-                file.write(f"{duracaoMidia};{genero};{temporadaMidia};{albumMidia};{nAlbuns};{publicacaoMidia}")
+
+            if tipoMidia == 'M':
+                file.write(f"{duracaoMidia};")
+                for genero in generosM:
+                    if genero is not generosM[-1]:
+                        file.write(f"{genero}, ")
+                    else:
+                        file.write(f"{genero};")
+                file.write(f"{temporadaMidia};{albumMidia};{nAlbuns};{publicacaoMidia}")
             else:
-                file.write(f"{duracaoMidia};{genero};{temporadaMidia};{albumMidia};;{publicacaoMidia}")
+                file.write(f"{duracaoMidia};")
+                for genero in generosP:
+                    if genero is not generosP[-1]:
+                        file.write(f"{genero}, ")
+                    else:
+                        file.write(f"{genero};")
+
+                file.write(f"{temporadaMidia};{albumMidia};;{publicacaoMidia}")
+
             if i != rangeMidias[-1]:
                 file.write("\n")
     pass
@@ -104,25 +147,25 @@ def gera_favoritos(arquivoUsuarios, nMidias):
 
     with open(f"{path}/favoritos_python.csv", "w+", encoding="utf8") as file:
         file.write("Código;Mídias Favoritas\n")
-        for i in range(1, usuariosCSV["Código"].size + 1):
-            file.write(f"{i};")
+        for i in [x for x in usuariosCSV["Código"].tolist()]:
+            if usuariosCSV["Tipo"].tolist()[i - 1] == 'U':
+                file.write(f"{i};")
 
-            if i in usuarios["Código"].tolist():
                 rangeMidias = range(round(abs(random.gauss(15, 8))))
                 for f in rangeMidias:
                     if f != rangeMidias[-1]:
                         file.write(f"{random.randrange(1, nMidias + 1)},")
                     else:
                         file.write(f"{random.randrange(1, nMidias + 1)}")
-            file.write("\n")
+                file.write("\n")
     pass
 
 
 # Editar valores aqui
-nUsuarios = 500
+nUsuarios = 1000
 nFavoritos = nUsuarios
-nMidias = 3000
-nGeneros = 200
+nMidias = 5000
+nGeneros = 300
 
 gera_usuarios(nUsuarios)
 gera_favoritos(f"{path}/usuarios_python.csv", nMidias)

@@ -1,201 +1,301 @@
 Sigla;Nome
+AD;Advice
+AR;Arts
+AU;Automobile
+BA;Business and finance
+CA;Comedy and humor
+CB;Comic book
+CR;Crime
+ED;Educational
+FE;Feminist
+FA;Film and television
+HI;History
+HO;Horror
+IN;Interview
+LA;Law
+LG;LGBT-related
+MU;Music
+PH;Philosophy
+PO;Political
+RA;Religion and spirituality
+SF;Science fiction
+SC;Science
+SP;Sports
+TA;Talk
+TE;Technology
+VG;Video game
+BM;Baroque music
+RÍ;Rímur
+EU;Eurodance
+JU;Jungle
+IM;Industrial music
+TR;Trikitixa
 FU;Fulia
-KU;Kulintang
-RA;Ranchera
-YO;Yodeling
-NW;No wave
-BH;Bhangragga
-SP;Sprechgesang
-IL;Illbient
-MB;Melodic black metal
-IR;Industrial rock
-LO;Long-song
-WH;Witch house
-KV;Kvæði
-LA;Laïko
-RR;Roots reggae
-DM;Drone music
-SI;Silat
-KÄ;Käng
-PA;Pasillo
-ZE;Zeibekiko
-CA;Calenda
-EL;Electro-industrial
-EB;Electro backbeat
+MT;Minimal techno
+AM;Americana
+CP;Ca pe lunca
+WM;Women's music
+MB;Mbalax
+FD;Funeral doom
+QA;Qasidah
+GC;Gregorian chant
+SE;Semba
+IP;Indian pop
 NP;New prog
-EZ;Ezengileer
-CS;Canterbury scene
-HY;Hyangak
-CV;Chau van
-RE;Religious
-TH;Tech house
-EN;Enka
-EU;Eurotrance
-NT;New taiwanese song
-LL;Le leagan
-BI;Bitpop
-OR;Orchestra
-GL;Glitch
-KA;Kantádhes
-FM;Folk music
-CP;Celtic punk
-BA;Barndance
-CR;Contemporary r&b
-BB;Big band music
-HI;Highlife
-NE;Neo-psychedelia
-EC;East coast hip hop
-QU;Quadrille
-SM;Soul music
-CC;Classic country
-ST;Stride
-FO;Full on
-BE;Beat
-MA;Makossa
-RO;Rococo
-BL;Blues-rock
-NM;Neoclassical music
-EE;Eremwu eu
-PF;Progressive folk
-HR;Heartland rock
-AC;Adult contemporary music
-PO;Pols
-JB;Jam band
-TB;Texas blues
-GF;German folk music
-KS;Kecapi suling
-EP;Electro punk
-FA;Fado
-DH;Disco house
-JU;Jujitsu
-CE;Celtic
-SR;Space rock
-LE;Levenslied
-ID;Idm
-DI;Dixieland
-BR;Breakbeat
-PT;Pleng thai sakorn
-TM;Technical metal
-TU;Tumba
-NO;Nortec
-TE;Tech
-HH;Hip hop soul
-BP;Balkan pop
-MT;Minimalist trance
-SH;Southern harmony
-FR;Frevo
-ME;Melhoun
-HA;Haqibah
-TO;Togaku
-IJ;Ijexá
-AD;Alternative dance
-WR;Wizard rock
-CM;Chinese music
-DT;Detroit techno
-CO;Corrido
-PC;Punk cabaret
-TA;Tango
-JO;Jonnycore
-GB;Gamelan bang
-MP;Mandarin pop
-MS;Mexican son
-PP;Psychedelic pop
-AR;Argentine rock
-DR;Death rock
-CH;Chèo
-VE;Venezuela
-DE;Dementia
-GP;Glam punk
-SE;Super eurobeat
-JA;Jazz
-IP;Indonesian pop
-FI;Filmi-ghazal
-PS;Psychobilly
-FP;Folk punk
-KL;Kliningan
-SD;Set dance
-AH;Australian hip hop
-VA;Vallenato
-IM;Incidental music
-OL;Old-time
-FS;Film score
-KO;Komagaku
-GM;Gospel music
-ML;Mor lam
-PL;Pong lang
-NI;Niche
-OP;Opera
-RD;Red dirt
-SO;Son
-EM;Early music
-SC;Schlager
-ZI;Ziglibithy
-KI;Kizomba
-LI;Likanos
-DA;Dance-punk
-FH;Folk hop
-SA;Samba-rock
-AP;Arab pop
-FJ;Fjatpangarri
-MC;Mini compas
-SB;Symphonic black metal
-BF;Baile funk
-LH;Lhamo
-SK;Ska
-OT;Organ trio
-TR;Trallalero
+FV;Foaie verde
+CS;Chicken scratch
+BI;Bihu
+JM;Jazz metal
+OR;Oratorio
+LT;Lucknavi thumri
+PR;Pop rap
 MH;Metallic hardcore
-IF;Indie folk
-KE;Kertok
-NA;Nasheed
-WE;Western
-K-;K-pop
-LU;Lundum
-NK;Néo kýma
-CT;Ca trù
-LM;Lo-fi music
-OM;Outsider music
-PB;Piedmont blues
-AV;Avant-garde
+OL;Oldies
+J-;J-fusion
+RO;Rocksteady
+KE;Ke-kwe
+RE;Requiem
+KR;Kiwi rock
+ND;Neue deutsche härte
+CN;Canto nuevo
+IR;Irish rebel music
+SD;Square dance
+PI;Piphat
+KU;Kun-borrk
+EL;Electro
+SM;Soul music
+BG;Baithak gana
+MI;Microhouse
+GH;Ghazal-song
+PA;Panambih
+GO;Goombay
+FR;Funk rock
+TM;Tejano music
+TP;Turkish pop
+DM;Danger music
+MA;Makossa
+4-;4-beat
+GA;Gabber
+PD;Progressive death metal
+DH;Dhun
+CH;Chzalni
+HA;Hakka
+BH;Bhajan
+DI;Disco
+BL;Blues-rock
+DJ;De jale
+RR;Raga rock
+CT;Crossover thrash metal
+SL;Slowcore
+BE;Benga
+WO;Wood
+SU;Suomirock
+PB;Progressive bluegrass
+MO;Mohabelo
 HU;Humppa
-YÉ;Yé-yé
-GA;Gamewave
-KP;Kamba pop
-WS;Western swing
-TP;Twee pop
-HF;Highlife fusion
-IH;Italo house
-WM;World music
-LR;Light rock
-GS;Gamelan semar pegulingan
-LJ;Latin jazz
-RI;Ricercar
-WU;Warabe uta
-MU;Multicultural
-DF;Donegal fiddle tradition
-NS;Nu soul
-GU;Guasca
-SS;Sea shanty
-CG;Country gospel
-J-;J-rock
-BM;Background music
-RS;Rhyming spiritual
-CY;Cybergrind
-CL;Canto livre
+MD;Music drama
+DD;Drone doom
+R&;Rhythm & blues
+NA;Nanguan
+JO;Joik
+ZE;Zeuhl
+DC;Dark cabaret
+FM;Fuji music
+JA;Jaliscienses
+BU;Bunraku
+RP;Russian pop
 VM;Visual music
-HC;Hát chau van
-MO;Motorpop
-MR;Mexican rock
-SJ;Soul jazz
-NG;Nganja
-SN;Shape note
-UC;Urban cowboy
-PM;Pagan metal
-ED;Electronic dance
-PN;Power noise
-SW;Swingbeat
-MJ;Mushroom jazz
-CJ;Crossover jazz
-AJ;Acid jazz
+SI;Singer-songwriter
+EM;Extreme metal
+OB;Obscuro
+DB;Delta blues
+PF;Psych folk
+JE;Jenkka
+NE;Neofolk
+ZI;Ziglibithy
+NK;Néo kýma
+GS;Group sounds
+KO;Kochare
+CO;Cocobale
+G-;G-funk
+SA;Sakara
+BB;Big band music
+BR;Breakcore
+DR;Death rock
+QU;Quadrille
+KÉ;Kélé
+HH;Hapa haole
+CG;Concerto grosso
+DU;Dubanguthu
+ML;Mor lam
+CM;Chamber music
+KA;Kabuki
+KI;Kizomba
+RJ;Ragga jungle
+DA;Dance
+VJ;Vocal jazz
+SO;Son-batá
+MR;Memphis rap
+NI;Nisiótika
+FS;Film score
+ST;Show tune
+ZA;Zajal
+DS;Dirty south
+EC;East coast hip hop
+4G;4x4 garage
+PS;Peyote song
+KW;Kwaito
+HM;Hardcore metal
+CC;Cassette culture
+TI;Tiento
+WS;Wong shadow
+BX;Baisha xiyue
+OM;Oriental metal
+WA;Wassoulou
+LI;Likanos
+LU;Lundum
+FH;Freestyle house
+GT;Goa trance
+SW;Swing
+ME;Merengue-bomba
+RU;Rumba
+DT;Detroit techno
+KH;Kan ha diskan
+WC;West coast jazz
+FP;Folk punk
+PC;Punk cabaret
+CD;Ca din tulnic
+CU;Cuarteto
+LS;Lubbock sound
+IC;Icaro
+JB;Jug band
+GR;Grime
+NY;New york blues
+GE;Gending
+LM;Lo-fi music
+AC;Acapella
+AA;Asian american jazz
+UP;Uk pub rock
+TB;Texas blues
+KD;Khelimaski djili
+PE;Progressive electronic
 EW;Ethereal wave
-GO;Goregrind
+EE;Eremwu eu
+PM;Psychedelic music
+EP;Experimental pop
+PJ;Punk jazz
+SK;Skiffle
+TO;Toeshey
+NW;New wave of new wave
+EN;Experimental noise
+SH;Shidaiqu
+NR;New romantic
+NU;Norae undong
+OS;Old school hip hop
+SQ;Squee
+ON;Ondo
+LD;Liquid drum&bass
+CF;Coimbra fado
+AP;Apala
+JK;Jamana kura
+HB;Heavy beat
+EZ;Ezengileer
+NC;Neotraditional country
+UT;Uplifting trance
+FI;Finger-style
+MS;Mexican son
+SY;Synthpunk
+KÄ;Käng
+KL;Klape
+LE;Letkajenkka
+NS;Neo soul
+PL;Plena
+IF;Irish folk
+EH;Electro hop
+NO;Nota
+GK;Gamelan kebyar
+VI;Virelai
+HL;Hora lunga
+PT;Psychedelic trance
+HC;Hát chau van
+HK;Hong kong english pop
+VK;Visual kei
+PW;Palm wine
+PP;Pleng phua cheewit
+JJ;Juke joint blues
+VO;Vocal
+MC;Musique concrète
+MP;Mpb
+JS;Jamrieng samai
+FO;Fofa
+HP;Horror punk
+RM;Rap metal
+SG;Speed garage
+TD;Technical death metal
+LO;Lowercase
+2T;2 tone
+BO;Boogie
+FJ;Free jazz
+BP;Balkan pop
+OP;Operatic pop
+TS;Tembang sunda
+AB;Acid breaks
+GD;Gamelan degung
+AH;Australian hip hop
+GP;Glam punk
+DO;Dombola
+YÉ;Yé-yé
+CJ;Cante jondo
+JF;Jazz fusion
+GU;Guaguanbo
+JI;Jingle
+MJ;Mushroom jazz
+CE;Celtic
+SJ;Smooth jazz
+QS;Quiet storm
+IH;Italo house
+GB;Gamelan buh
+KV;Kvæði
+GF;German folk music
+RD;Red dirt
+OA;Organic ambient
+LR;Light rock
+GW;Gender wayang
+PU;Paisley underground
+IB;Izvorna bosanska muzika
+KP;Kĩkũyũ pop
+KS;Kecapi suling
+WP;Wonky pop
+NM;Neoclassical music
+BF;Baile funk
+IT;Itsmeños
+BD;Blackened death metal
+WE;Western
+LP;Latin pop
+DP;Dark pop
+DE;Degung
+SR;Soft rock
+PN;Power noise
+GM;Groove metal
+TÁ;Táncház
+RH;Reggae highlife
+JP;Jing ping
+RG;Riot grrrl
+UC;Urban cowboy
+HR;Hard rock
+TH;Tech house
+TG;T'ong guitar
+JR;Jazz rap
+HT;Hardcore techno
+MÉ;Méringue
+UM;Unblack metal
+KC;Kansas city blues
+BW;Boogie woogie
+NG;Nganja
+BC;Byzantine chant
+VE;Verbunkos
+ID;Intelligent dance music
+CV;Cumbia villera
+HF;Highlife fusion
+ER;Experimental rock
+TT;Two tone
