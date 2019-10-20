@@ -1,18 +1,20 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include "./include/Artista.hpp"
-#include "./include/Assinante.hpp"
-#include "./include/Album.hpp"
-#include "./include/Midia.hpp"
-#include "./include/Musica.hpp"
-#include "./include/PlataformaDigital.hpp"
-#include "./include/Podcast.hpp"
-#include "./include/Podcaster.hpp"
-#include "./include/Produtor.hpp"
-#include "./include/Usuario.hpp"
+#include "include/Artista.hpp"
+#include "include/Assinante.hpp"
+#include "include/Album.hpp"
+#include "include/Midia.hpp"
+#include "include/Musica.hpp"
+#include "include/PlataformaDigital.hpp"
+#include "include/Podcast.hpp"
+#include "include/Podcaster.hpp"
+#include "include/Produtor.hpp"
+#include "include/Usuario.hpp"
 
 using namespace std;
+
+int Midia::qtdProdutos = 0;
 
 int main(int argc, char *argv[])
 {
@@ -25,7 +27,7 @@ int main(int argc, char *argv[])
     {
         if (argv[i][0] == '-')
         {
-            switch (argv[i][1])
+            switch (argv[i][1]) // Switch para identificar argumentos passados pelo terminal
             {
             case 'g':
                 cout << "--GENERO--    " << argv[i + 1] << endl;
@@ -48,67 +50,63 @@ int main(int argc, char *argv[])
                 i++;
                 break;
             default:
-                cerr << "OPÇÃO NÃO RECONHECIDA" << endl;
+                cerr << "OPÇÃO NÃO RECONHECIDA\n";
                 break;
             }
         }
     }
-    // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|" << endl;
+    // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|\n";
 
-    ifstream file_user;
-    ifstream file_gen;
-    ifstream file_midia;
-    ifstream file_favs;
-    file_user.open(user.c_str(), ios::in);
-    file_gen.open(gen.c_str(), ios::in);
-    file_midia.open(midia.c_str(), ios::in);
-    file_favs.open(favs.c_str(), ios::in);
-    if (/*argv[1] == NULL ||*/!file_gen.is_open() || !file_midia.is_open() || !file_gen.is_open() || !file_favs.is_open())
+    // Abrindo arquivos de entrada
+    ifstream fileUser;
+    ifstream fileGen;
+    ifstream fileMidia;
+    ifstream fileFavs;
+    fileUser.open(user.c_str());
+    fileGen.open(gen.c_str());
+    fileMidia.open(midia.c_str());
+    fileFavs.open(favs.c_str());
+    if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open()) // Verificação de arquivos (precisa do argv[1] == NULL?)
     {
-        cerr << "Erro de I/O" << endl;
+        /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
+        * ou o programa não ter permissão para ler ou escrever em um arquivo
+        */
+       cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
+
+        cerr << "Erro de I/O\n";
         exit(1);
     }
 
-    Produtor *prod = new Produtor("Renan Boladao", 13);
-    //Midia * musi = new Musica("Opa", 12, "pancadão brabo", "00:00:01", 2077);
-    cout << prod->getNome() << endl;
-    list<Midia *> midiaTeste;
-    //midiaTeste.push_back(musi);
-    prod->setProdutosDesenvolvidos(midiaTeste);
-    // cout << prod->getProdutosDesenvolvidos().at(0)->getGenero().getNome() << endl;
+    PlataformaDigital *spotifyzada = new PlataformaDigital("Spotify==");
+    cout << "Plataforma digital criada.\n";
 
-    string nome;
-    string tipo;
-    int cod;
-    list<Usuario *> vetorzin;
-    while (!file_user.eof())
-    {
-        file_user >> cod;
-        cout << cod << endl;
-        file_user.ignore(1, ';');
-        getline(file_user, tipo, ';');
-        cout << tipo << endl;
-        getline(file_user, nome);
-        cout << nome << endl;
+    spotifyzada->carregaArquivoGeneros(fileGen);
+    cout << "Generos:\n";
+    spotifyzada->imprimeGeneros();
 
-        if (tipo == "AS")
-        {
-            vetorzin.push_back(new Assinante(nome, cod));
-        }
+    spotifyzada->carregaArquivoUsuarios(fileUser);
+    cout << "\nUsuarios:\n";
+    spotifyzada->imprimeUsuarios();
 
-        else if (tipo == "PC")
-        {
-            vetorzin.push_back(new Podcaster(nome, cod));
-        }
-    }
+    cout << "\nProdutores:\n";
+    spotifyzada->imprimeProdutores();
+    cout << "\nMidias:\n";
+    spotifyzada->carregaArquivoMidias(fileMidia);
 
-    file_user.close();
-    file_gen.close();
-    file_midia.close();
-    file_favs.close();
+    cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
-    delete prod;
-    //delete musi;
+    spotifyzada->carregaArquivoFavoritos(fileFavs);
+    // spotifyzada->imprimeUsuarios();
+
+    cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos ou \n";
+    cout << "Tempo total: " << spotifyzada->tempoConsumido() / 60 << " horas\n";
+
+    spotifyzada->geraRelatorioMidiasProdutores();
+
+    fileUser.close();
+    fileGen.close();
+    fileMidia.close();
+    fileFavs.close();
 
     return 0;
 }
