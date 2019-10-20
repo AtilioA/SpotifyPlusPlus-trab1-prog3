@@ -120,12 +120,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
 
-        linhaAtualStream >> cod; // Verificar se é número (Erro 2)
+        if(!(linhaAtualStream >> cod)){
+            cerr << "Incosistência na entrada (não é numero)\n";
+            exit(3);
+        } // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
-        linhaAtualStream >> codProd;
+        if(!(linhaAtualStream >> codProd)){
+            cerr << "Incosistência na entrada (não é numero)\n";
+            exit(3);
+        }
         produtores.push_back(codProd);
 
         if (linhaAtualStream.peek() == ',')
@@ -135,7 +141,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         while (linhaAtualStream.peek() != ';')
         {
-            linhaAtualStream >> codProd;
+            if(!(linhaAtualStream >> codProd)){
+                cerr << "Incosistência na entrada (não é numero)\n";
+                exit(3);
+            }
             produtores.push_back(codProd);
             if (linhaAtualStream.peek() == -1)
             {
