@@ -42,33 +42,30 @@ run_e14:
 	./$(EXECUTABLE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/naoexiste.csv
 
 # Erro 2
-run_e2:
-	echo ainda faremos?!
+run_e21:
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro2/usuarios_e21.csv -f entradas_autorais/testes_erro2/favoritos_e21.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e21.csv
+
 
 # Erro 3
 # Tipo de usuário sem correspondente (Não é A ou P ou U)
 run_e31: # (na verdade é erro de formatação?)
-	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e31.csv -f entradas_autorais/testes/favoritos_e31.csv -g entradas_autorais/testes/generos_e31.csv -m entradas_autorais/testes/midias_e31.csv
-	# (Supostamente feito)
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro3/usuarios_e31.csv -f entradas_autorais/testes_erro3/favoritos_e31.csv -g entradas_autorais/testes_erro3/generos_e31.csv -m entradas_autorais/testes_erro3/midias_e31.csv
 
 # Mídia sem sigla de gênero correspondente
 run_e32:
-	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e32.csv -f entradas_autorais/testes/favoritos_e32.csv -g entradas_autorais/testes/generos_e32.csv -m entradas_autorais/testes/midias_e32.csv
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro3/usuarios_e32.csv -f entradas_autorais/testes_erro3/favoritos_e32.csv -g entradas_autorais/testes_erro3/generos_e32.csv -m entradas_autorais/testes_erro3/midias_e32.csv
 
 # Mídia sem tipo correspondente
 run_e33:
-	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e33.csv -f entradas_autorais/testes/favoritos_e33.csv -g entradas_autorais/testes/generos_e33.csv -m entradas_autorais/testes/midias_e33.csv
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro3/usuarios_e33.csv -f entradas_autorais/testes_erro3/favoritos_e33.csv -g entradas_autorais/testes_erro3/generos_e33.csv -m entradas_autorais/testes_erro3/midias_e33.csv
 
 # Mídia sem código de produtor correspondente
 run_e34:
-	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e34.csv -f entradas_autorais/testes/favoritos_e34.csv -g entradas_autorais/testes/generos_e34.csv -m entradas_autorais/testes/midias_e34.csv
-
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro3/usuarios_e34.csv -f entradas_autorais/testes_erro3/favoritos_e34.csv -g entradas_autorais/testes_erro3/generos_e34.csv -m entradas_autorais/testes_erro3/midias_e34.csv
 
 # Favorito sem mídia correspondente
 run_e35:
-	./$(EXECUTABLE) -u entradas_autorais/testes/usuarios_e35.csv -f entradas_autorais/testes/favoritos_e35.csv -g entradas_autorais/testes/generos_e35.csv -m entradas_autorais/testes/midias_e35.csv
-	# (Supostamente feito)
-
+	./$(EXECUTABLE) -u entradas_autorais/testes_erro3/usuarios_e35.csv -f entradas_autorais/testes_erro3/favoritos_e35.csv -g entradas_autorais/testes_erro3/generos_e35.csv -m entradas_autorais/testes_erro3/midias_e35.csv
 
 warns: $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -Wextra -I$(INCLUDE) $^ -o $@
