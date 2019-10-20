@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _USUARIO_
 #define _USUARIO_
 #include <iostream>
@@ -9,7 +10,7 @@ class Usuario
     protected:
         string nome;
         int codigo;
-        
+
     public:
         Usuario();
         Usuario(string _nome, int codigo);

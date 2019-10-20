@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _MUSICA_
 #define _MUSICA_
 #include "Midia.hpp"

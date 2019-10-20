@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _ASSINANTE_
 #define _ASSINANTE_
 #include "Usuario.hpp"

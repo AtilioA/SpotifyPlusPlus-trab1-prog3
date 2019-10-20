@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _MIDIA_
 #define _MIDIA_
 #include <iostream>

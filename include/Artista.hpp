@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _ARTISTA_
 #define _ARTISTA_
 #include <list>

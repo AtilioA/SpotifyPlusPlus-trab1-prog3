@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _ALBUM_
 #define _ALBUM_
 #include "Musica.hpp"

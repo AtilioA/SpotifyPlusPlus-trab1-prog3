@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _PLATAFORMA_DIGITAL_
 #define _PLATAFORMA_DIGITAL_
 #include <iostream>

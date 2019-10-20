@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _PODCAST_
 #define _PODCAST_
 #include "Midia.hpp"

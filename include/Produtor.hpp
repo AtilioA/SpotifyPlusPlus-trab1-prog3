@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _PRODUTOR_
 #define _PRODUTOR_
 #include "Usuario.hpp"

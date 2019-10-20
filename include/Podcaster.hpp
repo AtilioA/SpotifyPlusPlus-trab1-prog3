@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _PODCASTER_
 #define _PODCASTER_
 #include <list>
