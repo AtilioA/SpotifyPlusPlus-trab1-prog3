@@ -5,10 +5,8 @@ Produtor::Produtor()
     //
 }
 
-Produtor::Produtor(string _nome, int codigo)
+Produtor::Produtor(string _nome, int codigo): Usuario(_nome, codigo)
 {
-    this->nome = _nome;
-    this->codigo = codigo;
 }
 
 void Produtor::imprimeProdutosDesenvolvidos()

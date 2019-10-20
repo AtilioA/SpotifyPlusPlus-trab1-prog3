@@ -11,6 +11,8 @@ class Usuario
         int codigo;
         
     public:
+        Usuario();
+        Usuario(string _nome, int codigo);
         string getNome();
         void setNome(string nome);
         int getCodigo();
