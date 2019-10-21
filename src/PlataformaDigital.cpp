@@ -119,11 +119,14 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-
+        if(linhaAtual.empty()){
+            break;
+        }
         if(!(linhaAtualStream >> cod)){
             cerr << "Incosistência na entrada (não é numero)\n";
             exit(3);
         } // Verificar se é número (Erro 2)
+        //cout << cod << "\n";
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
@@ -334,19 +337,31 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        linhaAtualStream >> cod;
+        if(linhaAtual.empty()){
+            break;
+        }
+        if(!(linhaAtualStream >> cod)){
+            cerr << "Incosistência na entrada (não é numero)\n";
+            exit(3);
+        }
         linhaAtualStream.ignore(1, ';');
         if (linhaAtualStream.peek() == -1)
         {
             continue;
         }
 
-        linhaAtualStream >> favoritoAtual;
+        if(!(linhaAtualStream >> favoritoAtual)){
+            cerr << "Incosistência na entrada (não é numero)\n";
+            exit(3);
+        }
         favoritos.push_back(favoritoAtual);
         while (linhaAtualStream.peek() == ',')
         {
             linhaAtualStream.ignore(1, ',');
-            linhaAtualStream >> favoritoAtual;
+            if(!(linhaAtualStream >> favoritoAtual)){
+                cerr << "Incosistência na entrada (não é numero)\n";
+                exit(3);
+            }
             favoritos.push_back(favoritoAtual);
         }
 
@@ -401,7 +416,14 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        linhaAtualStream >> cod; // Verificar se é número (Erro 2)
+        if(linhaAtual.empty()){
+            break;
+        }
+        if(!(linhaAtualStream >> cod)){
+            cerr << "Incosistência na entrada (não é numero)\n";
+            exit(3);
+        }
+         // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
