@@ -100,7 +100,8 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     char tipo;
     int codProd;
     float floatDur;
-    int intDur;
+    //int intDur;
+    string strDur;
     string primeiroGenero;
     int temporada;
     string album;
@@ -164,11 +165,14 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
 
         linhaAtualStream.ignore(1, ';');
-        linhaAtualStream >> intDur;
-        linhaAtualStream.ignore(1, ',');
-        linhaAtualStream >> floatDur;
-        floatDur = intDur + (floatDur / 100); // Juntando parte inteira e decimal da duração
-        linhaAtualStream.ignore(1, ';');
+        getline(linhaAtualStream, strDur, ';');
+        for(char &itChar: strDur){
+            if(itChar == ','){
+                itChar = '.';
+            }
+        }
+        stringstream streamDur(strDur);
+        streamDur >> floatDur;
         getline(linhaAtualStream, primeiroGenero, ';');
 
         for (char itGenero : primeiroGenero)
