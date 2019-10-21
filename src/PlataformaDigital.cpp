@@ -119,21 +119,24 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        if(linhaAtual.empty()){
+        if (linhaAtual.empty())
+        {
             break;
         }
-        if(!(linhaAtualStream >> cod)){
-            cerr << "Incosistência na entrada (não é numero)\n";
-            exit(3);
+        if (!(linhaAtualStream >> cod))
+        {
+            cerr << "Erro de formatação (código de mídia não é número)\n";
+            exit(2);
         } // Verificar se é número (Erro 2)
         //cout << cod << "\n";
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
-        if(!(linhaAtualStream >> codProd)){
-            cerr << "Incosistência na entrada (não é numero)\n";
-            exit(3);
+        if (!(linhaAtualStream >> codProd))
+        {
+            cerr << "Erro de formatação (código de produtor não é número)\n";
+            exit(2);
         }
         produtores.push_back(codProd);
 
@@ -144,9 +147,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         while (linhaAtualStream.peek() != ';')
         {
-            if(!(linhaAtualStream >> codProd)){
-                cerr << "Incosistência na entrada (não é numero)\n";
-                exit(3);
+            if (!(linhaAtualStream >> codProd))
+            {
+                cerr << "Erro de formatação (código de produtor não é número)\n";
+                exit(2);
             }
             produtores.push_back(codProd);
             if (linhaAtualStream.peek() == -1)
@@ -337,12 +341,14 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        if(linhaAtual.empty()){
+        if (linhaAtual.empty())
+        {
             break;
         }
-        if(!(linhaAtualStream >> cod)){
-            cerr << "Incosistência na entrada (não é numero)\n";
-            exit(3);
+        if (!(linhaAtualStream >> cod))
+        {
+            cerr << "Erro de formatação (código de favorito não é número)\n";
+            exit(2);
         }
         linhaAtualStream.ignore(1, ';');
         if (linhaAtualStream.peek() == -1)
@@ -350,17 +356,19 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             continue;
         }
 
-        if(!(linhaAtualStream >> favoritoAtual)){
-            cerr << "Incosistência na entrada (não é numero)\n";
-            exit(3);
+        if (!(linhaAtualStream >> favoritoAtual))
+        {
+            cerr << "Erro de formatação (código de mídia não é número)\n";
+            exit(2);
         }
         favoritos.push_back(favoritoAtual);
         while (linhaAtualStream.peek() == ',')
         {
             linhaAtualStream.ignore(1, ',');
-            if(!(linhaAtualStream >> favoritoAtual)){
-                cerr << "Incosistência na entrada (não é numero)\n";
-                exit(3);
+            if (!(linhaAtualStream >> favoritoAtual))
+            {
+                cerr << "Erro de formatação (código de mídia não é número)\n";
+                exit(2);
             }
             favoritos.push_back(favoritoAtual);
         }
@@ -416,14 +424,16 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        if(linhaAtual.empty()){
+        if (linhaAtual.empty())
+        {
             break;
         }
-        if(!(linhaAtualStream >> cod)){
-            cerr << "Incosistência na entrada (não é numero)\n";
-            exit(3);
+        if (!(linhaAtualStream >> cod))
+        {
+            cerr << "Erro de formatação (código de usuário não é número)\n";
+            exit(2);
         }
-         // Verificar se é número (Erro 2)
+        // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
