@@ -23,6 +23,7 @@ class Assinante: public Usuario
         void setFavoritos(list<Midia*> favoritos);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
+        float calculaTempoFavs();
 };
 
 #endif

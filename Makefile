@@ -59,6 +59,10 @@ run_a2:
 run_p:
 	./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
 
+run_pV:
+	valgrind ./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
+
+
 # Entradas com erros
 # Erro 1
 run_e11:

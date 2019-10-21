@@ -536,10 +536,7 @@ float PlataformaDigital::tempoConsumido()
 
     for (Assinante *itUsuario : this->assinantes)
     {
-        for (Midia *itMidia : itUsuario->getFavoritos())
-        {
-            tempoTotal += itMidia->getDuracao();
-        }
+        tempoTotal += itUsuario->calculaTempoFavs();
     }
 
     return tempoTotal;
