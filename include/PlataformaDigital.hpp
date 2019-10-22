@@ -27,6 +27,7 @@ class PlataformaDigital
     public:
         PlataformaDigital();
         PlataformaDigital(string _nome);
+        ~PlataformaDigital();
         string getNome();
         void setNome(string nome);
         void setAssinantes(list<Assinante*> assinantes);

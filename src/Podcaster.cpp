@@ -33,3 +33,7 @@ void Podcaster::inserePodcast(Podcast *podcast)
     this->podcasts.push_back(podcast);
     //this->produtosDesenvolvidos.push_back(podcast);
 }
+
+Podcaster::~Podcaster(){
+    this->podcasts.clear();
+}

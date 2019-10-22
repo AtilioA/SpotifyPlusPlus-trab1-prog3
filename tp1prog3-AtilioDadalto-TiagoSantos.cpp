@@ -107,6 +107,6 @@ int main(int argc, char *argv[])
     fileGen.close();
     fileMidia.close();
     fileFavs.close();
-
+    delete spotifyzada;
     return 0;
 }

@@ -13,6 +13,7 @@ class Artista: public Produtor
         list<Album*> albuns;
 
     public:
+        ~Artista();
         Artista(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);

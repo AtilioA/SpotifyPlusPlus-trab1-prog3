@@ -13,6 +13,7 @@ class Podcaster: public Produtor
         list<Podcast*> podcasts;
 
     public:
+        ~Podcaster();
         Podcaster(string _nome, int codigo);
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);

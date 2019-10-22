@@ -46,7 +46,7 @@ run:
 	./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
 runV:
-	valgrind ./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
 # RECEITINHAS PARA TESTES
 # Entradas autorais
@@ -60,7 +60,7 @@ run_p:
 	./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
 
 run_pV:
-	valgrind ./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
 
 
 # Entradas com erros

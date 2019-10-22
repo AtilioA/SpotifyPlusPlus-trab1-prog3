@@ -60,3 +60,7 @@ void Artista::insereMusica(Musica *musica)
 {
     this->produtosDesenvolvidos.push_back(musica);
 }
+
+Artista::~Artista(){
+    this->albuns.clear();
+}

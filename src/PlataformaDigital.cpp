@@ -180,10 +180,11 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             exit(2);
         }
         getline(linhaAtualStream, primeiroGenero, ';');
+        //cout << primeiroGenero << endl;
 
         for (char itGenero : primeiroGenero)
         {
-            if (itGenero == ',') // Zeradsse precisa disso mesmo?
+            if (itGenero == ',')
             {
                 primeiroGenero.resize(qtdGeneros); // Limita ao primeiro gênero
                 break;
@@ -191,7 +192,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             qtdGeneros++;
         }
         qtdGeneros = 0;
-        cout << nome << endl;
+        //cout << nome << endl;
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
@@ -558,4 +559,22 @@ float PlataformaDigital::tempoConsumido()
     }
 
     return tempoTotal;
+}
+
+PlataformaDigital::~PlataformaDigital(){
+    for(Assinante* itAss: this->assinantes){
+        delete itAss;
+    }
+    for(Midia* itMidia : this->produtosCadastrados){
+        delete itMidia;
+    }
+    for(Midia::Genero* itGen: this->generosCadastrados){
+        delete itGen;
+    }
+    for(Produtor* itProd: this->produtoresCadastrados){
+        delete (Podcaster*) itProd;
+    }
+    for(Album* itAlbum: this->albunsCadastrados){
+        delete itAlbum;
+    }
 }

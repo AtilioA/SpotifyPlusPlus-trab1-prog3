@@ -84,3 +84,7 @@ int Album::getCodigo()
 {
     return this->codigo;
 }
+
+Album::~Album(){
+    
+}

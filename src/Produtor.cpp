@@ -49,3 +49,7 @@ void Produtor::novoProduto(Midia *produto)
 {
     this->produtosDesenvolvidos.push_back(produto);
 }
+
+Produtor::~Produtor(){
+    this->produtosDesenvolvidos.clear();
+}

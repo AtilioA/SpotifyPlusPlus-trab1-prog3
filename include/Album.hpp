@@ -21,6 +21,7 @@ class Album
     public:
         Album();
         Album(string nome, int codigo, float duracao, int ano, int qtd);
+        ~Album();
         void imprimeNoArquivo(ofstream &outfiles);
         void setQtdMusicas(int qtdMusicas);
         int getQtdMusicas();
