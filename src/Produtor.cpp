@@ -5,7 +5,7 @@ Produtor::Produtor()
     //
 }
 
-Produtor::Produtor(string _nome, int codigo): Usuario(_nome, codigo)
+Produtor::Produtor(string _nome, int codigo) : Usuario(_nome, codigo)
 {
 }
 
@@ -19,10 +19,12 @@ void Produtor::imprimeNoArquivo(ofstream &outfile)
     outfile << this->getNome() << ";";
     this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
     list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
-    if(this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end()){
+    if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
+    {
         outfile << (*it)->getNome();
     }
-    for(advance(it, 1); it != this->produtosDesenvolvidos.end(); it++){
+    for (advance(it, 1); it != this->produtosDesenvolvidos.end(); it++)
+    {
         outfile << ", " << (*it)->getNome();
     }
     outfile << "\n";

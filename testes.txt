@@ -13,20 +13,34 @@ Detectar erro na leitura de usuários, gêneros, mídias e favoritos
 Ver carregaArquivoUsuarios
 
     Mídias:
-        Código: não ser número
-        Tipo (Potencialmente feito)
-        Produtores: não ser número
-        Duração: não ser "número, número"
-        Temporada: não ser número
-        Código do álbum: não ser número
-        Publicação: não ser número
+        Código: não ser número 4
+        (Potencialmente feito)
+        Tipo: não ser A/P/U
+        (Potencialmente feito) (Erro 3)
+        Produtores: não ser número 5
+        (Potencialmente feito)
+
+        Duração: não ser "número, número" 6
+        (Potencialmente feito)
+        Temporada: não ser número 7
+        (Potencialmente feito, mas faz entrada do Gabriel não funcionar)
+
+        Código do álbum: não ser número 8
+        (Potencialmente feito, mas faz entrada do Gabriel não funcionar)
+
+        Publicação: não ser número 9
+        (Potencialmente feito)
 
     Favoritos:
-        Código: não ser número
-        Mídias: não ser número
+        Código: não ser número 2
+        (Potencialmente feito)
+
+        Mídias: não ser número 3
+        (Potencialmente feito)
 
     Usuários:
-        Código: não ser número
+        Código: não ser número 1
+        (Potencialmente feito)
 
     Vale tudo AKA verdadeiro por vacuidade:
         Mídias:

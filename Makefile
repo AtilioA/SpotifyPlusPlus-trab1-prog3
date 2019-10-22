@@ -79,7 +79,31 @@ run_e14:
 
 # Erro 2
 run_e21:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e21.csv -f entradas_autorais/testes_erro2/favoritos_e21.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e21.csv
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e21.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e21.csv
+
+run_e22:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e22.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e22.csv
+
+run_e23:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e23.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e23.csv
+
+run_e24:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e24.csv
+
+run_e25:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e25.csv
+
+run_e26:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e26.csv
+
+run_e27:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e27.csv
+
+run_e28:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e28.csv
+
+run_e29:
+	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e29.csv
 
 
 # Erro 3

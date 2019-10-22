@@ -80,11 +80,13 @@ void Midia::setProdutor(list<Produtor *> produtor)
     this->produtor = produtor;
 }
 
-void Midia::adicionaProdutor(Produtor* produtor){
+void Midia::adicionaProdutor(Produtor *produtor)
+{
     this->produtor.push_back(produtor);
 }
 
-void Midia::Genero::adicionaMidia(Midia* midia){
+void Midia::Genero::adicionaMidia(Midia *midia)
+{
     this->midias.push_back(midia);
 }
 

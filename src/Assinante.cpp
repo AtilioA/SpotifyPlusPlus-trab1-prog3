@@ -5,10 +5,9 @@ Assinante::Assinante()
     //
 }
 
-Assinante::Assinante(string _nome, int codigo): Usuario(_nome, codigo)
+Assinante::Assinante(string _nome, int codigo) : Usuario(_nome, codigo)
 {
 }
-
 
 Assinante::~Assinante()
 {
@@ -50,9 +49,12 @@ void Assinante::carregaArquivo(ifstream &infile)
     //
 }
 
-float Assinante::calculaTempoFavs(){
-    float tempoTotal = 0;;
-    for(Midia* itMidia: this->favoritos){
+float Assinante::calculaTempoFavs()
+{
+    float tempoTotal = 0;
+    ;
+    for (Midia *itMidia : this->favoritos)
+    {
         tempoTotal += itMidia->getDuracao();
     }
     return tempoTotal;

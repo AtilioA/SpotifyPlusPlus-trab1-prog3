@@ -106,7 +106,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     int temporada;
     string album;
     int codAlbum;
-    int ano;
+    int anoPublicacao;
     string primeiraLinha;
     Midia *produto;
     list<int> produtores;
@@ -117,7 +117,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
     while (!infile.eof())
     {
-
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
         if (linhaAtual.empty())
@@ -128,7 +127,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             cerr << "Erro de formatação (código de mídia não é número)\n";
             exit(2);
-        } // Verificar se é número (Erro 2)
+        }
         //cout << cod << "\n";
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
@@ -166,13 +165,20 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, strDur, ';');
-        for(char &itChar: strDur){
-            if(itChar == ','){
+        for (char &itChar : strDur)
+        {
+            if (itChar == ',')
+            {
                 itChar = '.';
             }
         }
         stringstream streamDur(strDur);
-        streamDur >> floatDur;
+        // streamDur >> floatDur;
+        if (!(streamDur >> floatDur))
+        {
+            cerr << "Erro de formatação (duração não é número)\n";
+            exit(2);
+        }
         getline(linhaAtualStream, primeiroGenero, ';');
 
         for (char itGenero : primeiroGenero)
@@ -185,11 +191,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             qtdGeneros++;
         }
         qtdGeneros = 0;
-
+        cout << nome << endl;
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
-            linhaAtualStream >> temporada; // Tratar exceção
+            if (!(linhaAtualStream >> temporada))
+            {
+                cerr << "Erro de formatação (código de temporada não é número)\n";
+                exit(2);
+            }
             linhaAtualStream.ignore(1, ';');
         }
         else
@@ -199,9 +209,17 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
 
         getline(linhaAtualStream, album, ';');
-        linhaAtualStream >> codAlbum;
+        if (!(linhaAtualStream >> codAlbum) && tipo == 'M')
+        {
+            cerr << "Erro de formatação (código de álbum não é número)\n";
+            exit(2);
+        }
         linhaAtualStream.ignore(1, ';');
-        linhaAtualStream >> ano;
+        if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
+        {
+            cerr << "Erro de formatação (ano de publicação não é número)\n";
+            exit(2);
+        }
 
         int achouGenero = 0;
         Midia::Genero *generoDaMidia;
@@ -231,7 +249,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         else if (tipo == 'M')
         {
-            produto = new Musica(nome, cod, generoDaMidia, floatDur, ano);
+            produto = new Musica(nome, cod, generoDaMidia, floatDur, anoPublicacao);
         }
         else
         {
@@ -254,7 +272,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         if (albumDaMusica == NULL && !album.empty())
         {
-            albumNovo = new Album(album, codAlbum, floatDur, ano, 1);
+            albumNovo = new Album(album, codAlbum, floatDur, anoPublicacao, 1);
             this->albunsCadastrados.push_back(albumNovo);
         }
 

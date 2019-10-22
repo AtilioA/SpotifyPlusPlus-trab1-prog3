@@ -7,10 +7,12 @@ void Podcaster::imprimeNoArquivo(ofstream &outfile)
     outfile << this->getNome() << ";";
     this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
     list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
-    if(this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end()){
+    if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
+    {
         outfile << (*it)->getNome();
     }
-    for(advance(it, 1); it != this->produtosDesenvolvidos.end(); it++){
+    for (advance(it, 1); it != this->produtosDesenvolvidos.end(); it++)
+    {
         outfile << ", " << (*it)->getNome();
     }
     outfile << "\n";
@@ -26,7 +28,8 @@ list<Podcast *> *Podcaster::getPodcasts()
     return &(this->podcasts);
 }
 
-void Podcaster::inserePodcast(Podcast* podcast){
+void Podcaster::inserePodcast(Podcast *podcast)
+{
     this->podcasts.push_back(podcast);
     //this->produtosDesenvolvidos.push_back(podcast);
 }

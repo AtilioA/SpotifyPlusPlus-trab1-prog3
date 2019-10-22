@@ -75,10 +75,12 @@ void Album::adicionaMusica(Musica *musica)
     this->duracao += musica->getDuracao();
 }
 
-void Album::setCodigo(int codigo){
+void Album::setCodigo(int codigo)
+{
     this->codigo = codigo;
 }
 
-int Album::getCodigo(){
+int Album::getCodigo()
+{
     return this->codigo;
 }

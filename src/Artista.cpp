@@ -7,10 +7,12 @@ void Artista::imprimeNoArquivo(ofstream &outfile)
     outfile << this->getNome() << ";";
     this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
     list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
-    if(this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end()){
+    if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
+    {
         outfile << (*it)->getNome();
     }
-    for(advance(it, 1); it != this->produtosDesenvolvidos.end(); it++){
+    for (advance(it, 1); it != this->produtosDesenvolvidos.end(); it++)
+    {
         outfile << ", " << (*it)->getNome();
     }
     outfile << "\n";
@@ -31,25 +33,30 @@ list<Album *> *Artista::getAlbuns()
     return &(this->albuns);
 }
 
-Album* Artista::procuraAlbum(string album){
+Album *Artista::procuraAlbum(string album)
+{
     /*
     for(list<Album*>::iterator it = this->albuns.begin(); it != this->albuns.end(); it++){
         if((*it)->getNome() == album){
             return (*it);
         }
     }*/
-    for(Album* it: this->albuns){
-        if(it->getNome().compare(album)){
+    for (Album *it : this->albuns)
+    {
+        if (it->getNome().compare(album))
+        {
             return it;
         }
     }
     return NULL;
 }
 
-void Artista::insereAlbum(Album* album){
+void Artista::insereAlbum(Album *album)
+{
     this->albuns.push_back(album);
 }
 
-void Artista::insereMusica(Musica* musica){
+void Artista::insereMusica(Musica *musica)
+{
     this->produtosDesenvolvidos.push_back(musica);
 }
