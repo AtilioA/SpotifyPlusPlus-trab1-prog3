@@ -102,6 +102,8 @@ int main(int argc, char *argv[])
     cout << "Tempo total: " << spotifyzada->tempoConsumido() / 60 << " horas\n";
 
     spotifyzada->geraRelatorioMidiasProdutores();
+    spotifyzada->geraRelatorioEstatisticas();
+    spotifyzada->geraRelatorioBackup();
 
     fileUser.close();
     fileGen.close();

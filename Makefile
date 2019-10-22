@@ -1,7 +1,7 @@
 OBJ      := obj
 SRC      := src
 INC      := include
-CXXFLAGS   := -ggdb -g -Wall -std=c++17
+CXXFLAGS := -ggdb -g -Wall -std=c++17
 EXE 	 := main
 PROJETO  := tp1prog3-AtilioDadalto-TiagoSantos
 

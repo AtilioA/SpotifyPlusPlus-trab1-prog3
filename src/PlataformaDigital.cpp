@@ -543,6 +543,17 @@ void PlataformaDigital::geraRelatorioFavoritos()
 void PlataformaDigital::geraRelatorioBackup()
 {
     ofstream backup;
+
+    backup.open("4-backup.txt");
+    if (backup.is_open())
+    {
+        for (Produtor *it : this->produtoresCadastrados)
+        {
+            it->imprimeNoArquivo(backup);
+        }
+    }
+
+    backup.close();
 }
 
 void PlataformaDigital::geraRelatorios()
