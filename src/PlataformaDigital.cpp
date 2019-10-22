@@ -209,7 +209,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
 
         getline(linhaAtualStream, album, ';');
-        if (!(linhaAtualStream >> codAlbum) && tipo == 'M')
+        if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
         {
             cerr << "Erro de formatação (código de álbum não é número)\n";
             exit(2);
