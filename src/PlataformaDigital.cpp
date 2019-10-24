@@ -580,9 +580,11 @@ void PlataformaDigital::geraRelatorioBackup()
     ofstream backup;
 
     backup.open("4-backup.txt");
+    this->assinantes.sort(ordenaPorCodigo<Assinante>);
+    backup << "Usuários:\n\n";
     if (backup.is_open())
     {
-        for (Produtor *it : this->produtoresCadastrados)
+        for (Assinante *it : this->assinantes)
         {
             it->imprimeNoArquivo(backup);
         }

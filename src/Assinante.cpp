@@ -41,7 +41,7 @@ void Assinante::setFavoritos(list<Midia *> favoritos)
 
 void Assinante::imprimeNoArquivo(ofstream &outfile)
 {
-    //
+    outfile << this->codigo << ";" << this->nome << "\n";
 }
 
 void Assinante::carregaArquivo(ifstream &infile)
