@@ -281,7 +281,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // Criando objeto de acordo com Tipo
         if (tipo == 'P')
         {
-            produto = new Podcast(nome, cod, generoDaMidia, temporada, floatDur);
+            produto = new Podcast(nome, cod, generoDaMidia, temporada, floatDur, anoPublicacao);
         }
         else if (tipo == 'M')
         {
@@ -332,10 +332,13 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                         if (!album.empty())
                         {
                             albumNovo->adicionaMusica((Musica *)produto);
+                            ((Musica*)produto)->setAlbum(albumNovo);
                             if (((Artista *)itProdutoresCad)->procuraAlbum(album) == NULL)
                             {
                                 ((Artista *)itProdutoresCad)->insereAlbum(albumNovo);
                             }
+                        }else{
+                            ((Musica*)produto)->setAlbum(NULL);
                         }
                     }
                 }
@@ -588,8 +591,13 @@ void PlataformaDigital::geraRelatorioBackup()
         {
             it->imprimeNoArquivo(backup);
         }
-    }
+        backup << "\nMídias:\n\n";
 
+        for(Midia* itM: this->produtosCadastrados){
+            itM->imprimeNoArquivo(backup);
+        }
+
+    }
     backup.close();
 }
 

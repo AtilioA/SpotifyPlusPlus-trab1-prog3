@@ -16,6 +16,7 @@ class Midia
         int codigo;
         float duracao;
         int anoLancamento;
+        list<Produtor *> produtor;
 
     public:
         class Genero
@@ -36,7 +37,7 @@ class Midia
 
         static int qtdProdutos;
         Midia();
-        Midia(string nome, int codigo, Genero *genero, float duracao);
+        Midia(string nome, int codigo, Genero *genero, float duracao, int ano);
         int getCodigo();
         string getNome();
         void setNome(string nome);
@@ -47,14 +48,15 @@ class Midia
         void setDuracao(float duracao);
         void setProdutor(list<Produtor *> produtor);
         void adicionaProdutor(Produtor* produtor);
+        int getAnoLancamento();
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;
-        virtual void imprimeNoArquivo() = 0;
+        virtual void imprimeNoArquivo(ofstream &outfile) = 0;
+        virtual char getTipo() = 0;
 
     private:
         bool explicito;
         Genero *genero;
-        list<Produtor *> produtor;
 };
 
 #endif
