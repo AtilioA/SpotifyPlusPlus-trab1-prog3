@@ -160,9 +160,13 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         while (linhaAtualStream.peek() != ';')
         {
-            if (!(linhaAtualStream >> codProd))
-            {
-                cerr << "Erro de formatação (código de produtor não é número)\n";
+            try{
+                if (!(linhaAtualStream >> codProd))
+                {
+                    throw "Erro de formatação (código de produtor não é número)\n";
+                }
+            }catch (const char* msg){
+                cerr << msg << "\n";
                 exit(2);
             }
             produtores.push_back(codProd);
@@ -187,9 +191,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
         stringstream streamDur(strDur);
         // streamDur >> floatDur;
-        if (!(streamDur >> floatDur))
-        {
-            cerr << "Erro de formatação (duração não é número)\n";
+        // if (!(streamDur >> floatDur))
+        // {
+        //     cerr << "Erro de formatação (duração não é número)\n";
+        //     exit(2);
+        // }
+        try{
+            if (!(streamDur >> floatDur))
+            {
+                throw "Erro de formatação (duração não é número)\n";
+            }
+        }catch (const char* msg){
+            cerr << msg << "\n";
             exit(2);
         }
         getline(linhaAtualStream, primeiroGenero, ';');
@@ -209,9 +222,18 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
-            if (!(linhaAtualStream >> temporada))
-            {
-                cerr << "Erro de formatação (código de temporada não é número)\n";
+            // if (!(linhaAtualStream >> temporada))
+            // {
+            //     cerr << "Erro de formatação (código de temporada não é número)\n";
+            //     exit(2);
+            // }
+            try{
+                if (!(linhaAtualStream >> temporada))
+                {
+                    throw "Erro de formatação (código de temporada não é número)\n";
+                }
+            }catch (const char* msg){
+                cerr << msg << "\n";
                 exit(2);
             }
             linhaAtualStream.ignore(1, ';');
