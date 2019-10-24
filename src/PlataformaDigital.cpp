@@ -119,13 +119,22 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        if (linhaAtual.empty())
-        {
-            break;
-        }
-        if (!(linhaAtualStream >> cod))
-        {
-            cerr << "Erro de formatação (código de mídia não é número)\n";
+        // if (linhaAtual.empty())
+        // {
+        //     break;
+        // }
+        // if (!(linhaAtualStream >> cod))
+        // {
+        //     cerr << "Erro de formatação (código de mídia não é número)\n";
+        //     exit(2);
+        // }
+        try{
+            if (!(linhaAtualStream >> cod))
+            {
+                throw "Erro de formatação (código de mídia não é número)\n";
+            }
+        }catch (const char* msg){
+            cerr << msg << "\n";
             exit(2);
         }
         //cout << cod << "\n";
@@ -133,9 +142,13 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
-        if (!(linhaAtualStream >> codProd))
-        {
-            cerr << "Erro de formatação (código de produtor não é número)\n";
+        try{
+            if (!(linhaAtualStream >> codProd))
+            {
+                throw "Erro de formatação (código de produtor não é número)\n";
+            }
+        }catch (const char* msg){
+            cerr << msg << "\n";
             exit(2);
         }
         produtores.push_back(codProd);
