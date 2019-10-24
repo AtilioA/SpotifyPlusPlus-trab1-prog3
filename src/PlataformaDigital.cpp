@@ -1,5 +1,7 @@
 #include "../include/PlataformaDigital.hpp"
 
+const int INCONSISTENTE = 2;
+
 void retiraCR(string &ent)
 {
     if (ent.at(ent.size() - 1) == '\r')
@@ -190,21 +192,38 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             }
         }
         stringstream streamDur(strDur);
-        // streamDur >> floatDur;
-        // if (!(streamDur >> floatDur))
-        // {
-        //     cerr << "Erro de formatação (duração não é número)\n";
-        //     exit(2);
-        // }
-        try{
+
+        try
+        {
             if (!(streamDur >> floatDur))
             {
                 throw "Erro de formatação (duração não é número)\n";
             }
-        }catch (const char* msg){
+        }
+        catch (const char* msg)
+        {
             cerr << msg << "\n";
             exit(2);
         }
+
+        /*
+        try
+        {
+            if (!(streamDur >> floatDur))
+            {
+                throw INCONSISTENTE;
+            }
+        }
+        catch(const int &e)
+        {
+            if (e == INCONSISTENTE)
+            {
+                cerr << "Erro de formatação (duração não é número)\n";
+                exit(e);
+            }
+        }
+        */
+
         getline(linhaAtualStream, primeiroGenero, ';');
         //cout << primeiroGenero << endl;
 
@@ -245,17 +264,47 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         }
 
         getline(linhaAtualStream, album, ';');
+        try
+        {
+            if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
+            {
+                throw "Erro de formatação (duração não é número)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
+            exit(2);
+        }
+        /*
         if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
         {
             cerr << "Erro de formatação (código de álbum não é número)\n";
             exit(2);
         }
+        */
+
         linhaAtualStream.ignore(1, ';');
+
+        try
+        {
+            if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
+            {
+                throw "Erro de formatação (duração não é número)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
+            exit(2);
+        }
+        /*
         if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
         {
             cerr << "Erro de formatação (ano de publicação não é número)\n";
             exit(2);
         }
+        */
 
         int achouGenero = 0;
         Midia::Genero *generoDaMidia;
@@ -269,27 +318,41 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             }
         }
 
-        if (achouGenero == 0)
+        try
         {
-            /* Inconsistência nos dados de entrada:
-             * por exemplo, uso de Código de gênero ou usuário inexistente nos respectivos cadastros, etc
-             */
-            cerr << "Inconsistências na entrada (não achou gênero)\n";
+            if (achouGenero == 0)
+            {
+                /* Inconsistência nos dados de entrada:
+                * por exemplo, uso de Código de gênero ou usuário inexistente nos respectivos cadastros, etc
+                */
+                throw "Inconsistências na entrada (não achou gênero)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
             exit(3);
         }
 
         // Criando objeto de acordo com Tipo
-        if (tipo == 'P')
+        try
         {
-            produto = new Podcast(nome, cod, generoDaMidia, temporada, floatDur);
+            if (tipo == 'P')
+            {
+                produto = new Podcast(nome, cod, generoDaMidia, temporada, floatDur);
+            }
+            else if (tipo == 'M')
+            {
+                produto = new Musica(nome, cod, generoDaMidia, floatDur, anoPublicacao);
+            }
+            else
+            {
+                throw "Inconsistências na entrada (tipo inválido de mídia)\n";
+            }
         }
-        else if (tipo == 'M')
+        catch (const char* msg)
         {
-            produto = new Musica(nome, cod, generoDaMidia, floatDur, anoPublicacao);
-        }
-        else
-        {
-            cerr << "Inconsistências na entrada (tipo inválido de mídia)\n";
+            cerr << msg << "\n";
             exit(3);
         }
 
@@ -342,9 +405,16 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             }
         }
 
-        if (produtoresEncontrados != produtores.size())
+        try
         {
-            cerr << "Inconsistências na entrada (não achou todos os produtores)\n";
+            if (produtoresEncontrados != produtores.size())
+            {
+                throw "Inconsistências na entrada (não achou todos os produtores)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
             exit(3);
         }
 
@@ -403,10 +473,17 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             break;
         }
-        if (!(linhaAtualStream >> cod))
+        try
         {
-            cerr << "Erro de formatação (código de favorito não é número)\n";
-            exit(2);
+            if (!(linhaAtualStream >> cod))
+            {
+                throw "Inconsistências na entrada (não achou todos os produtores)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
+            exit(3);
         }
         linhaAtualStream.ignore(1, ';');
         if (linhaAtualStream.peek() == -1)
@@ -441,10 +518,30 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             }
         }
 
-        if (assinanteAtual == NULL)
-        { // dps vamo tentar fazer com try catch
+        try
+        {
+            if (assinanteAtual == NULL)
+            {
+                throw "Erro de formatação (duração não é número)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
+            exit(2);
+        }
+
+        try
+        {
+            if (assinanteAtual == NULL)
+            {
+
+            }
+        }
+        catch (const int &e)
+        {
             cerr << "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
-            exit(3);
+            exit(e);
         }
 
         int achouFavorito = 0;
@@ -486,11 +583,26 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
         {
             break;
         }
+        try
+        {
+            if (!(linhaAtualStream >> cod))
+            {
+
+                throw "Erro de formatação (código de usuário não é número)\n";
+            }
+        }
+        catch (const char* msg)
+        {
+            cerr << msg << "\n";
+            exit(2);
+        }
+        /*
         if (!(linhaAtualStream >> cod))
         {
             cerr << "Erro de formatação (código de usuário não é número)\n";
             exit(2);
         }
+        */
         // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> tipo;
