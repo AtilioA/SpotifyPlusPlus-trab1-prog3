@@ -18,9 +18,11 @@ class Musica: public Midia
         Musica();
         Musica(string nome, int codigo, Midia::Genero* genero, float duracao, int ano);
         void setAnoLancamento(int anoLancamento);
-        int getAnoLancamento();
+        Album* getAlbum();
+        void setAlbum(Album* album);
         void imprimeInfoProduto();
-        void imprimeNoArquivo();
+        void imprimeNoArquivo(ofstream &outfile);
+        char getTipo();
 };
 
 #endif

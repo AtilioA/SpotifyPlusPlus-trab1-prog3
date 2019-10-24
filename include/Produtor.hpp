@@ -28,14 +28,4 @@ class Produtor : public Usuario
         virtual void carregaArquivo(ifstream &infile);
 };
 
-template <typename clss>
-bool ordenaPorNome(clss *prod1, clss *prod2)
-{
-    if (prod1->getNome().compare(prod2->getNome()) < 0)
-    {
-        return 1;
-    }
-    return 0;
-};
-
 #endif
