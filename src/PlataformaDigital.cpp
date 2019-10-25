@@ -125,11 +125,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         // {
         //     break;
         // }
-        // if (!(linhaAtualStream >> cod))
-        // {
-        //     cerr << "Erro de formatação (código de mídia não é número)\n";
-        //     exit(2);
-        // }
         try
         {
             if (!(linhaAtualStream >> cod))
@@ -147,6 +142,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
+
         try
         {
             if (!(linhaAtualStream >> codProd))
@@ -181,6 +177,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 exit(2);
             }
             produtores.push_back(codProd);
+
             if (linhaAtualStream.peek() == -1)
             {
                 break;
@@ -215,26 +212,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             exit(2);
         }
 
-        /*
-        try
-        {
-            if (!(streamDur >> floatDur))
-            {
-                throw INCONSISTENTE;
-            }
-        }
-        catch(const int &e)
-        {
-            if (e == INCONSISTENTE)
-            {
-                cerr << "Erro de formatação (duração não é número)\n";
-                exit(e);
-            }
-        }
-        */
-
         getline(linhaAtualStream, primeiroGenero, ';');
-        //cout << primeiroGenero << endl;
 
         for (char itGenero : primeiroGenero)
         {
@@ -246,15 +224,10 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             qtdGeneros++;
         }
         qtdGeneros = 0;
-        //cout << nome << endl;
+
         // Tratamento de Temporada de acordo com Tipo
         if (tipo == 'P')
         {
-            // if (!(linhaAtualStream >> temporada))
-            // {
-            //     cerr << "Erro de formatação (código de temporada não é número)\n";
-            //     exit(2);
-            // }
             try
             {
                 if (!(linhaAtualStream >> temporada))
@@ -280,7 +253,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
             {
-                throw "Erro de formatação (duração não é número)\n";
+                throw "Erro de formatação (código de álbum não é número)\n";
             }
         }
         catch (const char *msg)
@@ -288,13 +261,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             cerr << msg << "\n";
             exit(2);
         }
-        /*
-        if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
-        {
-            cerr << "Erro de formatação (código de álbum não é número)\n";
-            exit(2);
-        }
-        */
 
         linhaAtualStream.ignore(1, ';');
 
@@ -302,7 +268,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
             {
-                throw "Erro de formatação (duração não é número)\n";
+                throw "Erro de formatação (ano de publicação não é número)\n";
             }
         }
         catch (const char *msg)
@@ -310,18 +276,11 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             cerr << msg << "\n";
             exit(2);
         }
-        /*
-        if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
-        {
-            cerr << "Erro de formatação (ano de publicação não é número)\n";
-            exit(2);
-        }
-        */
 
         int achouGenero = 0;
         Midia::Genero *generoDaMidia;
         for (Midia::Genero *itGenero : this->generosCadastrados)
-        { // O método compare retorna 0 quando as strings são iguais
+        {
             if (itGenero->getSigla().compare(primeiroGenero) == 0)
             {
                 achouGenero = 1;
@@ -334,9 +293,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (achouGenero == 0)
             {
-                /* Inconsistência nos dados de entrada:
-                * por exemplo, uso de Código de gênero ou usuário inexistente nos respectivos cadastros, etc
-                */
                 throw "Inconsistências na entrada (não achou gênero)\n";
             }
         }
@@ -451,13 +407,13 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
     string primeiraLinha;
     string linhaAtual;
     getline(infile, primeiraLinha); // Ignorando primeira linha
+
     while (!infile.eof())
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
         getline(linhaAtualStream, sigla, ';');
         getline(linhaAtualStream, nome);
-        //nome.resize(nome.size() - 1);
         this->generosCadastrados.push_back(new Midia::Genero(nome, sigla));
         if (infile.peek() == -1)
         {
@@ -482,6 +438,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     list<int> favoritos;
     getline(infile, primeiraLinha); // Ignorando primeira linha
     string linhaAtual;
+
     while (!infile.eof())
     {
         getline(infile, linhaAtual);
@@ -508,20 +465,37 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             continue;
         }
 
-        if (!(linhaAtualStream >> favoritoAtual))
+        try
         {
-            cerr << "Erro de formatação (código de mídia não é número)\n";
+            if (!(linhaAtualStream >> favoritoAtual))
+            {
+                throw "Erro de formatação (código de mídia não é número)\n";
+            }
+        }
+        catch (const char *msg)
+        {
+            cerr << msg << "\n";
             exit(2);
         }
+
         favoritos.push_back(favoritoAtual);
         while (linhaAtualStream.peek() == ',')
         {
             linhaAtualStream.ignore(1, ',');
-            if (!(linhaAtualStream >> favoritoAtual))
+
+            try
             {
-                cerr << "Erro de formatação (código de mídia não é número)\n";
+                if (!(linhaAtualStream >> favoritoAtual))
+                {
+                    throw "Erro de formatação (código de mídia fodase não é número)\n";
+                }
+            }
+            catch (const char *msg)
+            {
+                cerr << msg << "\n";
                 exit(2);
             }
+
             favoritos.push_back(favoritoAtual);
         }
 
@@ -539,25 +513,13 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (assinanteAtual == NULL)
             {
-                throw "Erro de formatação (duração não é número)\n";
+                throw "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
             }
         }
         catch (const char *msg)
         {
             cerr << msg << "\n";
-            exit(2);
-        }
-
-        try
-        {
-            if (assinanteAtual == NULL)
-            {
-            }
-        }
-        catch (const int &e)
-        {
-            cerr << "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
-            exit(e);
+            exit(3);
         }
 
         int achouFavorito = 0;
@@ -572,9 +534,17 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 }
             }
         }
-        if (achouFavorito == 0)
+
+        try
         {
-            cerr << "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia)\n";
+            if (achouFavorito == 0)
+            {
+                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia)\n";
+            }
+        }
+        catch (const char *msg)
+        {
+            cerr << msg << "\n";
             exit(3);
         }
 
@@ -603,7 +573,6 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
         {
             if (!(linhaAtualStream >> cod))
             {
-
                 throw "Erro de formatação (código de usuário não é número)\n";
             }
         }
@@ -612,19 +581,12 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
             cerr << msg << "\n";
             exit(2);
         }
-        /*
-        if (!(linhaAtualStream >> cod))
-        {
-            cerr << "Erro de formatação (código de usuário não é número)\n";
-            exit(2);
-        }
-        */
+
         // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome);
-        //nome.resize(nome.size() - 1);
 
         if (infile.eof())
         {
