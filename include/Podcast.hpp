@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Podcast: public Midia
+class Podcast : public Midia
 {
     private:
         int qtdTemporadas;

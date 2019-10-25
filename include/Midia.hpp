@@ -37,6 +37,7 @@ class Midia
 
         static int qtdProdutos;
         Midia();
+        virtual ~Midia() = 0;
         Midia(string nome, int codigo, Genero *genero, float duracao, int ano);
         int getCodigo();
         string getNome();

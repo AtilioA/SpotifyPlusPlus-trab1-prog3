@@ -130,12 +130,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         //     cerr << "Erro de formatação (código de mídia não é número)\n";
         //     exit(2);
         // }
-        try{
+        try
+        {
             if (!(linhaAtualStream >> cod))
             {
                 throw "Erro de formatação (código de mídia não é número)\n";
             }
-        }catch (const char* msg){
+        }
+        catch (const char *msg)
+        {
             cerr << msg << "\n";
             exit(2);
         }
@@ -144,12 +147,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
-        try{
+        try
+        {
             if (!(linhaAtualStream >> codProd))
             {
                 throw "Erro de formatação (código de produtor não é número)\n";
             }
-        }catch (const char* msg){
+        }
+        catch (const char *msg)
+        {
             cerr << msg << "\n";
             exit(2);
         }
@@ -162,12 +168,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 
         while (linhaAtualStream.peek() != ';')
         {
-            try{
+            try
+            {
                 if (!(linhaAtualStream >> codProd))
                 {
                     throw "Erro de formatação (código de produtor não é número)\n";
                 }
-            }catch (const char* msg){
+            }
+            catch (const char *msg)
+            {
                 cerr << msg << "\n";
                 exit(2);
             }
@@ -200,7 +209,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Erro de formatação (duração não é número)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(2);
@@ -246,12 +255,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             //     cerr << "Erro de formatação (código de temporada não é número)\n";
             //     exit(2);
             // }
-            try{
+            try
+            {
                 if (!(linhaAtualStream >> temporada))
                 {
                     throw "Erro de formatação (código de temporada não é número)\n";
                 }
-            }catch (const char* msg){
+            }
+            catch (const char *msg)
+            {
                 cerr << msg << "\n";
                 exit(2);
             }
@@ -271,7 +283,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Erro de formatação (duração não é número)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(2);
@@ -293,7 +305,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Erro de formatação (duração não é número)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(2);
@@ -328,7 +340,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Inconsistências na entrada (não achou gênero)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(3);
@@ -350,7 +362,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Inconsistências na entrada (tipo inválido de mídia)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(3);
@@ -395,13 +407,15 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                         if (!album.empty())
                         {
                             albumNovo->adicionaMusica((Musica *)produto);
-                            ((Musica*)produto)->setAlbum(albumNovo);
+                            ((Musica *)produto)->setAlbum(albumNovo);
                             if (((Artista *)itProdutoresCad)->procuraAlbum(album) == NULL)
                             {
                                 ((Artista *)itProdutoresCad)->insereAlbum(albumNovo);
                             }
-                        }else{
-                            ((Musica*)produto)->setAlbum(NULL);
+                        }
+                        else
+                        {
+                            ((Musica *)produto)->setAlbum(NULL);
                         }
                     }
                 }
@@ -415,7 +429,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                 throw "Inconsistências na entrada (não achou todos os produtores)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(3);
@@ -483,7 +497,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 throw "Inconsistências na entrada (não achou todos os produtores)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(3);
@@ -528,7 +542,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 throw "Erro de formatação (duração não é número)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(2);
@@ -538,7 +552,6 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (assinanteAtual == NULL)
             {
-
             }
         }
         catch (const int &e)
@@ -594,7 +607,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
                 throw "Erro de formatação (código de usuário não é número)\n";
             }
         }
-        catch (const char* msg)
+        catch (const char *msg)
         {
             cerr << msg << "\n";
             exit(2);
@@ -705,10 +718,10 @@ void PlataformaDigital::geraRelatorioBackup()
         }
         backup << "\nMídias:\n\n";
 
-        for(Midia* itM: this->produtosCadastrados){
+        for (Midia *itM : this->produtosCadastrados)
+        {
             itM->imprimeNoArquivo(backup);
         }
-
     }
     backup.close();
 }
@@ -729,20 +742,26 @@ float PlataformaDigital::tempoConsumido()
     return tempoTotal;
 }
 
-PlataformaDigital::~PlataformaDigital(){
-    for(Assinante* itAss: this->assinantes){
+PlataformaDigital::~PlataformaDigital()
+{
+    for (Assinante *itAss : this->assinantes)
+    {
         delete itAss;
     }
-    for(Midia* itMidia : this->produtosCadastrados){
+    for (Midia *itMidia : this->produtosCadastrados)
+    {
         delete itMidia;
     }
-    for(Midia::Genero* itGen: this->generosCadastrados){
+    for (Midia::Genero *itGen : this->generosCadastrados)
+    {
         delete itGen;
     }
-    for(Produtor* itProd: this->produtoresCadastrados){
-        delete (Podcaster*) itProd;
+    for (Produtor *itProd : this->produtoresCadastrados)
+    {
+        delete (Podcaster *)itProd;
     }
-    for(Album* itAlbum: this->albunsCadastrados){
+    for (Album *itAlbum : this->albunsCadastrados)
+    {
         delete itAlbum;
     }
 }

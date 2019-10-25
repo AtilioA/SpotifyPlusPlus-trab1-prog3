@@ -19,7 +19,7 @@ class Produtor : public Usuario
     public:
         Produtor();
         Produtor(string _nome, int codigo);
-        ~Produtor();
+        virtual ~Produtor() = 0;
         void imprimeProdutosDesenvolvidos();
         void setProdutosDesenvolvidos(list<Midia*> produtosDesenvolvidos);
         void novoProduto(Midia* produto);

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Assinante: public Usuario
+class Assinante : public Usuario
 {
     private:
         list<Midia*> favoritos;

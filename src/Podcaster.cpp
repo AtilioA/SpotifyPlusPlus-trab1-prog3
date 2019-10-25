@@ -34,6 +34,7 @@ void Podcaster::inserePodcast(Podcast *podcast)
     //this->produtosDesenvolvidos.push_back(podcast);
 }
 
-Podcaster::~Podcaster(){
+Podcaster::~Podcaster()
+{
     this->podcasts.clear();
 }

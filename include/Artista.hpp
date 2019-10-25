@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Artista: public Produtor
+class Artista : public Produtor
 {
     private:
         list<Album*> albuns;
