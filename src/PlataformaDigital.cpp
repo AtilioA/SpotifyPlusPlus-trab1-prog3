@@ -1,15 +1,5 @@
 #include "../include/PlataformaDigital.hpp"
 
-const int INCONSISTENTE = 2;
-
-void retiraCR(string &ent)
-{
-    if (ent.at(ent.size() - 1) == '\r')
-    {
-        ent.resize(ent.size() - 1);
-    }
-}
-
 PlataformaDigital::PlataformaDigital()
 {
     //
@@ -60,6 +50,14 @@ void PlataformaDigital::imprimeAssinantes()
     //
 }
 
+void PlataformaDigital::imprimeGeneros()
+{
+    for (Midia::Genero *it : this->generosCadastrados)
+    {
+        cout << it->getSigla() << ';' << it->getNome() << "\n";
+    }
+}
+
 void PlataformaDigital::insereAssinante()
 {
     //
@@ -94,6 +92,7 @@ void PlataformaDigital::imprimeNoArquivo(ofstream &outfile)
     //
 }
 
+/* Carregamento de arquivos para a plataforma */
 void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 {
     string linhaAtual;
@@ -422,14 +421,6 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
     }
 }
 
-void PlataformaDigital::imprimeGeneros()
-{
-    for (Midia::Genero *it : this->generosCadastrados)
-    {
-        cout << it->getSigla() << ';' << it->getNome() << "\n";
-    }
-}
-
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 {
     string primeiraLinha;
@@ -629,6 +620,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
     this->produtoresCadastrados.sort(ordenaPorNome<Produtor>);
 }
 
+/* Escrita de arquivos (relatórios) */
 void PlataformaDigital::imprimeUsuarios()
 {
     for (Assinante *it : this->assinantes)
@@ -677,6 +669,37 @@ void PlataformaDigital::geraRelatorioMidiasProdutores()
 void PlataformaDigital::geraRelatorioFavoritos()
 {
     ofstream favoritos;
+
+    favoritos.open("3-favoritos.csv");
+
+    favoritos << "Código Assinante;Tipo Mídia;Código Mídia;Gênero;Duração\n";
+
+    assinantes.sort(ordenaCrescPorCodigo<Assinante>);
+    for (Assinante *assinante : this->assinantes)
+    {
+        list <Midia *>favs = assinante->getFavoritos();
+        favs.sort(ordenaDecrescPorCodigo<Midia>);
+
+        for (Midia *midia : favs)
+        {
+            if (midia->getTipo() == 'P')
+            {
+            favoritos << assinante->getCodigo() << ";";
+            favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+            }
+        }
+        for (Midia *midia : favs)
+        {
+            if (midia->getTipo() == 'M')
+            {
+                favoritos << assinante->getCodigo() << ";";
+                favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+            }
+        }
+    }
+    favoritos << "\n";
+
+    favoritos.close();
 }
 
 void PlataformaDigital::geraRelatorioBackup()
@@ -684,7 +707,7 @@ void PlataformaDigital::geraRelatorioBackup()
     ofstream backup;
 
     backup.open("4-backup.txt");
-    this->assinantes.sort(ordenaPorCodigo<Assinante>);
+    this->assinantes.sort(ordenaCrescPorCodigo<Assinante>);
     backup << "Usuários:\n\n";
     if (backup.is_open())
     {
@@ -700,10 +723,6 @@ void PlataformaDigital::geraRelatorioBackup()
         }
     }
     backup.close();
-}
-
-void PlataformaDigital::geraRelatorios()
-{
 }
 
 float PlataformaDigital::tempoConsumido()

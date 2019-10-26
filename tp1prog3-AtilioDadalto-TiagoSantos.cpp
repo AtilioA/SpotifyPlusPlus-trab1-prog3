@@ -98,17 +98,18 @@ int main(int argc, char *argv[])
     spotifyzada->carregaArquivoFavoritos(fileFavs);
     // spotifyzada->imprimeUsuarios();
 
-    cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos ou \n";
-    cout << "Tempo total: " << spotifyzada->tempoConsumido() / 60 << " horas\n";
+    cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos.\n";
 
     spotifyzada->geraRelatorioMidiasProdutores();
     spotifyzada->geraRelatorioEstatisticas();
     spotifyzada->geraRelatorioBackup();
+    spotifyzada->geraRelatorioFavoritos();
 
     fileUser.close();
     fileGen.close();
     fileMidia.close();
     fileFavs.close();
     delete spotifyzada;
+
     return 0;
 }
