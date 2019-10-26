@@ -48,7 +48,22 @@ run:
 runV:
 	valgrind --leak-check=full ./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
-# RECEITINHAS PARA TESTES
+
+warns: $(SRC)/*.cpp
+	$(CXX) $(CXX_FLAGS) -Wextra -I$(INCLUDE) $^ -o $@
+
+# Limpa objetos e o executável do programa (para Linux)
+clean:
+	-rm $(OBJ)/*.o
+	-rm $(EXE)
+
+# Limpa objetos e o executável do programa (para Windows)
+cleanW:
+	del /F/Q/S "$(OBJ)\*.o"
+	del /F/Q/S "$(EXE).exe"
+
+
+# PARA TESTES
 # Entradas autorais
 run_a1:
 	./$(EXE) -u entradas_autorais/usuarios1.csv -f entradas_autorais/favoritos1.csv -g entradas_autorais/generos1.csv -m entradas_autorais/midias1.csv
@@ -105,12 +120,11 @@ run_e28:
 run_e29:
 	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e29.csv
 
-
-# Erro 3
 # Tipo de usuário sem correspondente (Não é A ou P ou U)
-run_e31: # (na verdade é erro de formatação?)
+run_e293:
 	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e31.csv -f entradas_autorais/testes_erro3/favoritos_e31.csv -g entradas_autorais/testes_erro3/generos_e31.csv -m entradas_autorais/testes_erro3/midias_e31.csv
 
+# Erro 3
 # Mídia sem sigla de gênero correspondente
 run_e32:
 	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e32.csv -f entradas_autorais/testes_erro3/favoritos_e32.csv -g entradas_autorais/testes_erro3/generos_e32.csv -m entradas_autorais/testes_erro3/midias_e32.csv
@@ -126,16 +140,3 @@ run_e34:
 # Favorito sem mídia correspondente
 run_e35:
 	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e35.csv -f entradas_autorais/testes_erro3/favoritos_e35.csv -g entradas_autorais/testes_erro3/generos_e35.csv -m entradas_autorais/testes_erro3/midias_e35.csv
-
-warns: $(SRC)/*.cpp
-	$(CXX) $(CXX_FLAGS) -Wextra -I$(INCLUDE) $^ -o $@
-
-# Limpa objetos e o executável do programa (para Linux)
-clean:
-	-rm $(OBJ)/*.o
-	-rm $(EXE)
-
-# Limpa objetos e o executável do programa (para Windows)
-cleanW:
-	del /F/Q/S "$(OBJ)\*.o"
-	del /F/Q/S "$(EXE).exe"

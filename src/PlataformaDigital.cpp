@@ -153,7 +153,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!(linhaAtualStream >> cod))
             {
-                throw "Erro de formatação (código de mídia não é número)\n";
+                throw "Erro de formatação (código de mídia não é número)";
             }
         }
         catch (const char *msg)
@@ -171,7 +171,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!(linhaAtualStream >> codProd))
             {
-                throw "Erro de formatação (código de produtor não é número)\n";
+                throw "Erro de formatação (código de produtor não é número)";
             }
         }
         catch (const char *msg)
@@ -192,7 +192,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             {
                 if (!(linhaAtualStream >> codProd))
                 {
-                    throw "Erro de formatação (código de produtor não é número)\n";
+                    throw "Erro de formatação (código de produtor não é número)";
                 }
             }
             catch (const char *msg)
@@ -227,7 +227,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!(streamDur >> floatDur))
             {
-                throw "Erro de formatação (duração não é número)\n";
+                throw "Erro de formatação (duração não é número)";
             }
         }
         catch (const char *msg)
@@ -256,7 +256,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             {
                 if (!(linhaAtualStream >> temporada))
                 {
-                    throw "Erro de formatação (código de temporada não é número)\n";
+                    throw "Erro de formatação (código de temporada não é número)";
                 }
             }
             catch (const char *msg)
@@ -277,7 +277,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!album.empty() && !(linhaAtualStream >> codAlbum) && tipo == 'M')
             {
-                throw "Erro de formatação (código de álbum não é número)\n";
+                throw "Erro de formatação (código de álbum não é número)";
             }
         }
         catch (const char *msg)
@@ -292,7 +292,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (!(linhaAtualStream >> anoPublicacao) && tipo == 'M')
             {
-                throw "Erro de formatação (ano de publicação não é número)\n";
+                throw "Erro de formatação (ano de publicação não é número)";
             }
         }
         catch (const char *msg)
@@ -317,7 +317,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (achouGenero == 0)
             {
-                throw "Inconsistências na entrada (não achou gênero)\n";
+                throw "Inconsistências na entrada (não achou gênero)";
             }
         }
         catch (const char *msg)
@@ -339,7 +339,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             }
             else
             {
-                throw "Inconsistências na entrada (tipo inválido de mídia)\n";
+                throw "Inconsistências na entrada (tipo inválido de mídia)";
             }
         }
         catch (const char *msg)
@@ -406,7 +406,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
         {
             if (produtoresEncontrados != produtores.size())
             {
-                throw "Inconsistências na entrada (não achou todos os produtores)\n";
+                throw "Inconsistências na entrada (não achou todos os produtores)";
             }
         }
         catch (const char *msg)
@@ -469,13 +469,13 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (!(linhaAtualStream >> cod))
             {
-                throw "Inconsistências na entrada (não achou todos os produtores)\n";
+                throw "Erro de formatação (código de mídia não é número)";
             }
         }
         catch (const char *msg)
         {
             cerr << msg << "\n";
-            exit(3);
+            exit(2);
         }
         linhaAtualStream.ignore(1, ';');
         if (linhaAtualStream.peek() == -1)
@@ -487,7 +487,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (!(linhaAtualStream >> favoritoAtual))
             {
-                throw "Erro de formatação (código de mídia não é número)\n";
+                throw "Erro de formatação (código de mídia não é número)";
             }
         }
         catch (const char *msg)
@@ -507,7 +507,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (!(linhaAtualStream >> favoritoAtual))
                 {
-                    throw "Erro de formatação (código de mídia fodase não é número)\n";
+                    throw "Erro de formatação (código de mídia fodase não é número)";
                 }
             }
             catch (const char *msg)
@@ -545,7 +545,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (assinanteAtual == NULL)
             {
-                throw "Inconsistências na entrada (código não pertence a nenhum assinante)\n";
+                throw "Inconsistências na entrada (código não pertence a nenhum assinante)";
             }
         }
         catch (const char *msg)
@@ -571,7 +571,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (achouFavorito == 0)
             {
-                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia)\n";
+                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenha mídia";
             }
         }
         catch (const char *msg)
@@ -606,7 +606,7 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
         {
             if (!(linhaAtualStream >> cod))
             {
-                throw "Erro de formatação (código de usuário não é número)\n";
+                throw "Erro de formatação (código de usuário não é número)";
             }
         }
         catch (const char *msg)
