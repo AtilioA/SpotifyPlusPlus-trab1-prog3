@@ -64,3 +64,6 @@ tags
 *.exe
 *.out
 main
+
+*.csv
+*.txt
