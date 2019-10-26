@@ -22,7 +22,7 @@ class Album
         Album();
         Album(string nome, int codigo, float duracao, int ano, int qtd);
         ~Album();
-        void imprimeNoArquivo(ofstream &outfiles);
+
         void setQtdMusicas(int qtdMusicas);
         int getQtdMusicas();
         void setNome(string nome);
@@ -36,6 +36,9 @@ class Album
         void setMusicas(list<Musica*> musicas);
         list<Musica*> getMusica();
         void adicionaMusica(Musica* musica);
+
+        // Imprime código e nome do objeto no arquivo
+        void imprimeNoArquivo(ofstream &outfiles);
 };
 
 

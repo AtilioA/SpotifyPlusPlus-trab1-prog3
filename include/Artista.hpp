@@ -4,6 +4,7 @@
 #include <list>
 #include "Produtor.hpp"
 #include "Album.hpp"
+#include "Aux.hpp"
 
 using namespace std;
 
@@ -13,15 +14,19 @@ class Artista : public Produtor
         list<Album*> albuns;
 
     public:
-        ~Artista();
         Artista(string _nome, int codigo);
-        void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);
+        ~Artista();
+
         void setAlbuns(list<Album*> albuns);
         void insereAlbum(Album* album);
         void insereMusica(Musica* musica);
-        Album* procuraAlbum(string album);
         list<Album*>* getAlbuns();
+
+        // Imprime código e nome do objeto no arquivo
+        void imprimeNoArquivo(ofstream &outfile);
+        void carregaArquivo(ifstream &infile);
+        // Retorna o álbum cujo nome é a string de entrada ou NULL se não houver
+        Album* procuraAlbum(string album);
 };
 
 #endif

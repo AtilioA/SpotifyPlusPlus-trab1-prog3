@@ -26,19 +26,21 @@ class Midia
                 string nome;
                 list<Midia*> midias;
             public:
+                Genero();
+                Genero(string nome, string sigla);
+                
                 string getNome();
                 string getSigla();
                 void setNome(string nome);
                 void setSigla(string sigla);
                 void adicionaMidia(Midia* midia);
-                Genero();
-                Genero(string nome, string sigla);
         };
 
         static int qtdProdutos;
         Midia();
-        virtual ~Midia() = 0;
         Midia(string nome, int codigo, Genero *genero, float duracao, int ano);
+        virtual ~Midia() = 0;
+
         int getCodigo();
         string getNome();
         void setNome(string nome);
@@ -50,8 +52,10 @@ class Midia
         void setProdutor(list<Produtor *> produtor);
         void adicionaProdutor(Produtor* produtor);
         int getAnoLancamento();
+
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;
+        // Imprime código e nome do objeto no arquivo
         virtual void imprimeNoArquivo(ofstream &outfile) = 0;
         virtual char getTipo() = 0;
 

@@ -4,6 +4,7 @@
 #include <list>
 #include "Produtor.hpp"
 #include "Podcast.hpp"
+#include "Aux.hpp"
 
 using namespace std;
 
@@ -13,12 +14,15 @@ class Podcaster : public Produtor
         list<Podcast*> podcasts;
 
     public:
-        ~Podcaster();
         Podcaster(string _nome, int codigo);
-        void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);
+        ~Podcaster();
+
         void inserePodcast(Podcast* podcast);
         list<Podcast*>* getPodcasts();
+
+        // Imprime código e nome do objeto no arquivo
+        void imprimeNoArquivo(ofstream &outfile);
+        void carregaArquivo(ifstream &infile);
 };
 
 #endif

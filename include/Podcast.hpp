@@ -13,12 +13,15 @@ class Podcast : public Midia
     public:
         Podcast();
         Podcast(string nome, int codigo, Midia::Genero* gen, int qtdTemp, float duracao, int ano);
+
         int getQtdTemporadas();
         void setQtdTemporadas(int qtdTemporadas);
-        void imprimeInfoProduto();
-        void imprimeNoArquivo(ofstream &outfile);
         int getTemporada();
         char getTipo();
+
+        void imprimeInfoProduto();
+        // Imprime código e nome do objeto no arquivo
+        void imprimeNoArquivo(ofstream &outfile);
 };
 
 #endif

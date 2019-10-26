@@ -17,12 +17,15 @@ class Musica : public Midia
     public:
         Musica();
         Musica(string nome, int codigo, Midia::Genero* genero, float duracao, int ano);
+
         void setAnoLancamento(int anoLancamento);
         Album* getAlbum();
         void setAlbum(Album* album);
-        void imprimeInfoProduto();
-        void imprimeNoArquivo(ofstream &outfile);
         char getTipo();
+        void imprimeInfoProduto();
+
+        // Imprime código e nome do objeto no arquivo
+        void imprimeNoArquivo(ofstream &outfile);
 };
 
 #endif

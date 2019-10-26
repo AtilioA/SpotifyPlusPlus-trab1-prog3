@@ -5,6 +5,30 @@ PlataformaDigital::PlataformaDigital()
     //
 }
 
+PlataformaDigital::~PlataformaDigital()
+{
+    for (Assinante *itAss : this->assinantes)
+    {
+        delete itAss;
+    }
+    for (Midia *itMidia : this->produtosCadastrados)
+    {
+        delete itMidia;
+    }
+    for (Midia::Genero *itGen : this->generosCadastrados)
+    {
+        delete itGen;
+    }
+    for (Produtor *itProd : this->produtoresCadastrados)
+    {
+        delete (Podcaster *)itProd;
+    }
+    for (Album *itAlbum : this->albunsCadastrados)
+    {
+        delete itAlbum;
+    }
+}
+
 PlataformaDigital::PlataformaDigital(string _nome)
 {
     this->nome = _nome;
@@ -93,6 +117,7 @@ void PlataformaDigital::imprimeNoArquivo(ofstream &outfile)
 }
 
 /* Carregamento de arquivos para a plataforma */
+// Lê arquivo midias.csv
 void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
 {
     string linhaAtual;
@@ -399,6 +424,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     }
 }
 
+// Lê arquivo generos.csv
 void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
 {
     string sigla;
@@ -421,6 +447,7 @@ void PlataformaDigital::carregaArquivoGeneros(ifstream &infile)
     }
 }
 
+// Lê arquivo favoritos.csv
 void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
 {
     string primeiraLinha;
@@ -557,6 +584,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
     }
 }
 
+// Lê arquivo usuarios.csv
 void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
 {
     string primeiraLinha;
@@ -620,7 +648,6 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
     this->produtoresCadastrados.sort(ordenaPorNome<Produtor>);
 }
 
-/* Escrita de arquivos (relatórios) */
 void PlataformaDigital::imprimeUsuarios()
 {
     for (Assinante *it : this->assinantes)
@@ -637,11 +664,13 @@ void PlataformaDigital::imprimeProdutores()
     }
 }
 
+/* Escrita de arquivos (relatórios) */
 void PlataformaDigital::exportaBiblioteca()
 {
     //
 }
 
+// Escreve arquivo 1-estatisticas.txt
 void PlataformaDigital::geraRelatorioEstatisticas()
 {
     ofstream estatistica;
@@ -650,6 +679,7 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     estatistica << "Horas Consumidas: " << this->tempoConsumido() << endl;
 }
 
+// Escreve arquivo 2-produtores.csv
 void PlataformaDigital::geraRelatorioMidiasProdutores()
 {
     ofstream midias_prods;
@@ -666,6 +696,7 @@ void PlataformaDigital::geraRelatorioMidiasProdutores()
     midias_prods.close();
 }
 
+// Escreve arquivo 3-favoritos.csv
 void PlataformaDigital::geraRelatorioFavoritos()
 {
     ofstream favoritos;
@@ -677,15 +708,15 @@ void PlataformaDigital::geraRelatorioFavoritos()
     assinantes.sort(ordenaCrescPorCodigo<Assinante>);
     for (Assinante *assinante : this->assinantes)
     {
-        list <Midia *>favs = assinante->getFavoritos();
+        list<Midia *> favs = assinante->getFavoritos();
         favs.sort(ordenaDecrescPorCodigo<Midia>);
 
         for (Midia *midia : favs)
         {
             if (midia->getTipo() == 'P')
             {
-            favoritos << assinante->getCodigo() << ";";
-            favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+                favoritos << assinante->getCodigo() << ";";
+                favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
             }
         }
         for (Midia *midia : favs)
@@ -702,6 +733,7 @@ void PlataformaDigital::geraRelatorioFavoritos()
     favoritos.close();
 }
 
+// Escreve arquivo 4-backup.txt
 void PlataformaDigital::geraRelatorioBackup()
 {
     ofstream backup;
@@ -725,6 +757,7 @@ void PlataformaDigital::geraRelatorioBackup()
     backup.close();
 }
 
+// Calcula o tempo total das mídias dos assinantes da plataforma
 float PlataformaDigital::tempoConsumido()
 {
     float tempoTotal = 0;
@@ -735,28 +768,4 @@ float PlataformaDigital::tempoConsumido()
     }
 
     return tempoTotal;
-}
-
-PlataformaDigital::~PlataformaDigital()
-{
-    for (Assinante *itAss : this->assinantes)
-    {
-        delete itAss;
-    }
-    for (Midia *itMidia : this->produtosCadastrados)
-    {
-        delete itMidia;
-    }
-    for (Midia::Genero *itGen : this->generosCadastrados)
-    {
-        delete itGen;
-    }
-    for (Produtor *itProd : this->produtoresCadastrados)
-    {
-        delete (Podcaster *)itProd;
-    }
-    for (Album *itAlbum : this->albunsCadastrados)
-    {
-        delete itAlbum;
-    }
 }

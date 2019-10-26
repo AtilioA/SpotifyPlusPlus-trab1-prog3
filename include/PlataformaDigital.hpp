@@ -11,6 +11,7 @@
 #include "Assinante.hpp"
 #include "Midia.hpp"
 #include "Album.hpp"
+#include "Aux.hpp"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class PlataformaDigital
         PlataformaDigital();
         PlataformaDigital(string _nome);
         ~PlataformaDigital();
+
         string getNome();
         void setNome(string nome);
         void setAssinantes(list<Assinante*> assinantes);
@@ -42,26 +44,36 @@ class PlataformaDigital
         int insereProduto(Midia * novoProduto, string nomeProdutor);
         int selecionaAssinante();
         void insereProdutoAssinante();
+        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
 
+        /* Escrita de relatórios */
+        // Lê arquivo midias.csv
         void carregaArquivoMidias(ifstream &infile);
+        // Lê arquivo generos.csv
         void carregaArquivoGeneros(ifstream &infile);
+        // Lê arquivo favoritos.csv
         void carregaArquivoFavoritos(ifstream &infile);
+        // Lê arquivo usuarios.csv
         void carregaArquivoUsuarios(ifstream &infile);
 
         void imprimeGeneros();
         void imprimeUsuarios();
         void imprimeProdutores();
 
+        /* Escrita de relatórios */
+        // Retorna tempo total consumido pelos favoritos de todos os assinantes
+        float tempoConsumido();
         void exportaBiblioteca();
-        void geraRelatorios();
+        // Escreve arquivo 1-estatistica.txt
         void geraRelatorioEstatisticas();
+        // Escreve arquivo 2-produtores.csv
         void geraRelatorioMidiasProdutores();
-
+        // Escreve arquivo 3-favoritos.csv
         void geraRelatorioFavoritos();
+        // Escreve arquivo 4-backup.txt
         void geraRelatorioBackup();
 
-        float tempoConsumido();
 };
 
 #endif

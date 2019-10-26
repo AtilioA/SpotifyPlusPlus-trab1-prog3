@@ -16,13 +16,17 @@ class Assinante : public Usuario
         Assinante();
         Assinante(string _nome, int codigo);
         ~Assinante();
+
         void imprimeFavoritos();
         void insereFavoritos(Midia *favorito);
         void removeFavorito();
         list<Midia*> getFavoritos();
         void setFavoritos(list<Midia*> favoritos);
+
+        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
         void carregaArquivo(ifstream &infile);
+        // Calcula o tempo de duração das mídias de favoritos de um assinante
         float calculaTempoFavs();
 };
 

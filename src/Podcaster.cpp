@@ -5,6 +5,7 @@ Podcaster::Podcaster(string _nome, int codigo) : Produtor(_nome, codigo) {}
 void Podcaster::imprimeNoArquivo(ofstream &outfile)
 {
     outfile << this->getNome() << ";";
+
     this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
     list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
     if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
@@ -15,6 +16,7 @@ void Podcaster::imprimeNoArquivo(ofstream &outfile)
     {
         outfile << ", " << (*it)->getNome();
     }
+
     outfile << "\n";
 }
 
@@ -31,7 +33,6 @@ list<Podcast *> *Podcaster::getPodcasts()
 void Podcaster::inserePodcast(Podcast *podcast)
 {
     this->podcasts.push_back(podcast);
-    //this->produtosDesenvolvidos.push_back(podcast);
 }
 
 Podcaster::~Podcaster()

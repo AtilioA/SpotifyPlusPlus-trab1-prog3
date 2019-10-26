@@ -35,12 +35,6 @@ list<Album *> *Artista::getAlbuns()
 
 Album *Artista::procuraAlbum(string album)
 {
-    /*
-    for(list<Album*>::iterator it = this->albuns.begin(); it != this->albuns.end(); it++){
-        if((*it)->getNome() == album){
-            return (*it);
-        }
-    }*/
     for (Album *it : this->albuns)
     {
         if (it->getNome().compare(album))
@@ -48,6 +42,7 @@ Album *Artista::procuraAlbum(string album)
             return it;
         }
     }
+
     return NULL;
 }
 
@@ -61,6 +56,7 @@ void Artista::insereMusica(Musica *musica)
     this->produtosDesenvolvidos.push_back(musica);
 }
 
-Artista::~Artista(){
+Artista::~Artista()
+{
     this->albuns.clear();
 }

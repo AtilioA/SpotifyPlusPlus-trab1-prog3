@@ -9,27 +9,6 @@ Produtor::Produtor(string _nome, int codigo) : Usuario(_nome, codigo)
 {
 }
 
-void Produtor::imprimeProdutosDesenvolvidos()
-{
-    //
-}
-
-void Produtor::imprimeNoArquivo(ofstream &outfile)
-{
-    outfile << this->getNome() << ";";
-    this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
-    list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
-    if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
-    {
-        outfile << (*it)->getNome();
-    }
-    for (advance(it, 1); it != this->produtosDesenvolvidos.end(); it++)
-    {
-        outfile << ", " << (*it)->getNome();
-    }
-    outfile << "\n";
-}
-
 void Produtor::carregaArquivo(ifstream &infile)
 {
     //
@@ -53,4 +32,22 @@ void Produtor::novoProduto(Midia *produto)
 Produtor::~Produtor()
 {
     this->produtosDesenvolvidos.clear();
+}
+
+void Produtor::imprimeNoArquivo(ofstream &outfile)
+{
+    outfile << this->getNome() << ";";
+
+    this->produtosDesenvolvidos.sort(ordenaPorNome<Midia>);
+    list<Midia *>::iterator it = this->produtosDesenvolvidos.begin();
+    if (this->produtosDesenvolvidos.begin() != this->produtosDesenvolvidos.end())
+    {
+        outfile << (*it)->getNome();
+    }
+    for (advance(it, 1); it != this->produtosDesenvolvidos.end(); it++)
+    {
+        outfile << ", " << (*it)->getNome();
+    }
+
+    outfile << "\n";
 }

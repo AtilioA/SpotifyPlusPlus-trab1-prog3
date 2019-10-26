@@ -16,9 +16,11 @@ void Podcast::imprimeInfoProduto()
 void Podcast::imprimeNoArquivo(ofstream &outfile)
 {
     outfile << this->getNome() << ";" << this->getTipo() << ";";
-    list<Produtor*>::iterator it = this->produtor.begin();
+
+    list<Produtor *>::iterator it = this->produtor.begin();
     outfile << (*it)->getNome();
-    for(it++; it != this->produtor.end(); it++){
+    for (it++; it != this->produtor.end(); it++)
+    {
         outfile << ", " << (*it)->getNome();
     }
     outfile << ";" << this->getDuracao() << ";" << this->getGenero()->getNome() << ";" << this->getTemporada() << ";;" << this->getAnoLancamento() << "\n";
@@ -34,10 +36,12 @@ void Podcast::setQtdTemporadas(int qtdTemporadas)
     this->qtdTemporadas = qtdTemporadas;
 }
 
-char Podcast::getTipo(){
+char Podcast::getTipo()
+{
     return 'P';
 }
 
-int Podcast::getTemporada(){
+int Podcast::getTemporada()
+{
     return this->qtdTemporadas;
 }
