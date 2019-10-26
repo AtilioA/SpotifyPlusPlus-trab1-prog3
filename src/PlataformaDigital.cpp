@@ -478,7 +478,9 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             exit(2);
         }
 
+        bool favoritoRepetido = false;
         favoritos.push_back(favoritoAtual);
+
         while (linhaAtualStream.peek() == ',')
         {
             linhaAtualStream.ignore(1, ',');
@@ -496,7 +498,19 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
                 exit(2);
             }
 
-            favoritos.push_back(favoritoAtual);
+            for (int favorito : favoritos)
+            {
+                if (favoritoAtual == favorito)
+                {
+                    favoritoRepetido = true;
+                    break;
+                }
+            }
+            if (!favoritoRepetido)
+            {
+                favoritos.push_back(favoritoAtual);
+            }
+            favoritoRepetido = false;
         }
 
         Assinante *assinanteAtual = NULL;
