@@ -19,13 +19,16 @@ Midia::Midia(string nome, int codigo, Midia::Genero *genero, float duracao, int 
 
 Midia::Genero::Genero()
 {
-    //
+    this->qtdMidias = 0;
+    this->favoritado = 0;
 }
 
 Midia::Genero::Genero(string nome, string sigla)
 {
     this->nome = nome;
     this->sigla = sigla;
+    this->qtdMidias = 0;
+    this->favoritado = 0;
 }
 
 int Midia::getCodigo()
@@ -90,6 +93,7 @@ void Midia::adicionaProdutor(Produtor *produtor)
 
 void Midia::Genero::adicionaMidia(Midia *midia)
 {
+    this->qtdMidias++;
     this->midias.push_back(midia);
 }
 
@@ -106,4 +110,24 @@ float Midia::getDuracao()
 int Midia::getAnoLancamento()
 {
     return this->anoLancamento;
+}
+
+int Midia::Genero::getQtdMidias(){
+    return this->qtdMidias;
+}
+
+float Midia::Genero::tempoGenero(){
+    float sum = 0;
+    for(Midia* it: this->midias){
+        sum += it->getDuracao();
+    }
+    return sum;
+}
+
+void Midia::Genero::favoritadoPorUser(){
+    this->favoritado++;
+}
+
+int Midia::Genero::getFavoritado(){
+    return this->favoritado;
 }

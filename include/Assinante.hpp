@@ -17,6 +17,8 @@ class Assinante : public Usuario
         Assinante(string _nome, int codigo);
         ~Assinante();
 
+        pair<float, Midia::Genero*> generoMaisOuvido();
+
         void imprimeFavoritos();
         void insereFavoritos(Midia *favorito);
         void removeFavorito();

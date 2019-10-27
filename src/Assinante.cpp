@@ -52,10 +52,15 @@ void Assinante::carregaArquivo(ifstream &infile)
 float Assinante::calculaTempoFavs()
 {
     float tempoTotal = 0;
-    ;
     for (Midia *itMidia : this->favoritos)
     {
         tempoTotal += itMidia->getDuracao();
     }
     return tempoTotal;
+}
+
+pair<float, Midia::Genero*> Assinante::generoMaisOuvido(){
+    for(Midia* it: this->favoritos){
+        
+    }
 }

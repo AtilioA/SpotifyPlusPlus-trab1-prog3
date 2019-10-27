@@ -561,6 +561,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (itFavs == itFavsM->getCodigo())
                 {
+                    itFavsM->getGenero()->favoritadoPorUser();
                     assinanteAtual->insereFavoritos(itFavsM);
                     achouFavorito = 1;
                 }
@@ -676,7 +677,12 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     ofstream estatistica;
 
     estatistica.open("1-estatisticas.txt");
-    estatistica << "Horas Consumidas: " << this->tempoConsumido() << endl;
+    estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
+    estatistica << "Genero mais ouvido: " << "placeholder" << "\n\n";
+    estatistica << "Midias por Genero:\n";
+    for(Midia::Genero* it : this->generosCadastrados){
+        estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
+    }
 }
 
 // Escreve arquivo 2-produtores.csv

@@ -25,12 +25,18 @@ class Midia
                 string sigla;
                 string nome;
                 list<Midia*> midias;
+                int qtdMidias;
+                int favoritado;
             public:
                 Genero();
                 Genero(string nome, string sigla);
                 
                 string getNome();
                 string getSigla();
+                int getQtdMidias();
+                float tempoGenero();
+                void favoritadoPorUser();
+                int getFavoritado();
                 void setNome(string nome);
                 void setSigla(string sigla);
                 void adicionaMidia(Midia* midia);
