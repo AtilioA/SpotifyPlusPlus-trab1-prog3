@@ -20,11 +20,6 @@ void Podcaster::imprimeNoArquivo(ofstream &outfile)
     outfile << "\n";
 }
 
-void Podcaster::carregaArquivo(ifstream &infile)
-{
-    //
-}
-
 list<Podcast *> *Podcaster::getPodcasts()
 {
     return &(this->podcasts);

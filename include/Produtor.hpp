@@ -29,7 +29,6 @@ class Produtor : public Usuario
 
         // Imprime código e nome do objeto no arquivo
         virtual void imprimeNoArquivo(ofstream &outfile);
-        virtual void carregaArquivo(ifstream &infile);
 };
 
 #endif

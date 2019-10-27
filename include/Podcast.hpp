@@ -19,7 +19,6 @@ class Podcast : public Midia
         int getTemporada();
         char getTipo();
 
-        void imprimeInfoProduto();
         // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
 };

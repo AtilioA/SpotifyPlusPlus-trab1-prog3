@@ -1,5 +1,13 @@
 #include "../include/Usuario.hpp"
 
+Usuario::Usuario() {}
+
+Usuario::Usuario(string _nome, int codigo)
+{
+    this->nome = _nome;
+    this->codigo = codigo;
+}
+
 void Usuario::setNome(string nome)
 {
     this->nome = nome;
@@ -17,13 +25,5 @@ int Usuario::getCodigo()
 
 void Usuario::setCodigo(int codigo)
 {
-    this->codigo = codigo;
-}
-
-Usuario::Usuario() {}
-
-Usuario::Usuario(string _nome, int codigo)
-{
-    this->nome = _nome;
     this->codigo = codigo;
 }

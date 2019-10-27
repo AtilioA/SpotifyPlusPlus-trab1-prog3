@@ -18,11 +18,6 @@ void Artista::imprimeNoArquivo(ofstream &outfile)
     outfile << "\n";
 }
 
-void Artista::carregaArquivo(ifstream &infile)
-{
-    //
-}
-
 void Artista::setAlbuns(list<Album *> albuns)
 {
     this->albuns = albuns;

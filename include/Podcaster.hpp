@@ -22,7 +22,6 @@ class Podcaster : public Produtor
 
         // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);
 };
 
 #endif

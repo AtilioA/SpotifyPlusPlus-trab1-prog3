@@ -9,10 +9,6 @@ Podcast::Podcast(string nome, int codigo, Midia::Genero *gen, int qtdTemp, float
     this->qtdTemporadas = qtdTemp;
 }
 
-void Podcast::imprimeInfoProduto()
-{
-}
-
 void Podcast::imprimeNoArquivo(ofstream &outfile)
 {
     outfile << this->getNome() << ";" << this->getTipo() << ";";

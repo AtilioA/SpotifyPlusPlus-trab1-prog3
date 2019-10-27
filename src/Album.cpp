@@ -14,10 +14,6 @@ Album::Album(string nome, int codigo, float duracao, int ano, int qtd)
     this->codigo = codigo;
 }
 
-void Album::imprimeNoArquivo(ofstream &outfile)
-{
-}
-
 void Album::setQtdMusicas(int qtdMusicas)
 {
     this->qtdMusicas = qtdMusicas;

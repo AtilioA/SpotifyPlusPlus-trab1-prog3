@@ -24,7 +24,6 @@ class Artista : public Produtor
 
         // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
-        void carregaArquivo(ifstream &infile);
         // Retorna o álbum cujo nome é a string de entrada ou NULL se não houver
         Album* procuraAlbum(string album);
 };

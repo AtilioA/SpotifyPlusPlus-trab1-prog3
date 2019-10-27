@@ -23,6 +23,19 @@ int main(int argc, char *argv[])
     string midia;
     string favs;
 
+    try
+    {
+        if (argc != 9)
+        {
+            throw "Erro de I/O";
+        }
+    }
+    catch (const char *msg)
+    {
+        cerr << msg << "\n";
+        exit(1);
+    }
+
     for (int i = 1; argv[i] != NULL; i++)
     {
         if (argv[i][0] == '-')
@@ -66,14 +79,22 @@ int main(int argc, char *argv[])
     fileGen.open(gen.c_str());
     fileMidia.open(midia.c_str());
     fileFavs.open(favs.c_str());
-    if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open()) // Verificação de arquivos (precisa do argv[1] == NULL?)
-    {
-        /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
-        * ou o programa não ter permissão para ler ou escrever em um arquivo
-        */
-       cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
 
-        cerr << "Erro de I/O\n";
+    try
+    {
+        if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open())
+        {
+            /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
+            * ou o programa não ter permissão para ler ou escrever em um arquivo
+            */
+            cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
+
+            throw "Erro de I/O";
+        }
+    }
+    catch (const char *msg)
+    {
+        cerr << msg << "\n";
         exit(1);
     }
 

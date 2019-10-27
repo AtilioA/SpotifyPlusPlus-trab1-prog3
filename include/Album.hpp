@@ -36,9 +36,6 @@ class Album
         void setMusicas(list<Musica*> musicas);
         list<Musica*> getMusica();
         void adicionaMusica(Musica* musica);
-
-        // Imprime código e nome do objeto no arquivo
-        void imprimeNoArquivo(ofstream &outfiles);
 };
 
 

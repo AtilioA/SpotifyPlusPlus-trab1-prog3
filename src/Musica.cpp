@@ -5,16 +5,6 @@ Musica::Musica()
     //
 }
 
-void Musica::formataDuracao(string duracao)
-{
-    //this->duracao recebe uma versão formatada da string
-}
-
-void Musica::imprimeInfoProduto()
-{
-    //
-}
-
 void Musica::setAnoLancamento(int anoLancamento)
 {
     this->anoLancamento = anoLancamento;

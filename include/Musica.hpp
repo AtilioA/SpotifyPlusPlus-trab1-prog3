@@ -11,7 +11,6 @@ using namespace std;
 class Musica : public Midia
 {
     private:
-        void formataDuracao(string duracao);
         Album* album;
 
     public:
@@ -22,7 +21,6 @@ class Musica : public Midia
         Album* getAlbum();
         void setAlbum(Album* album);
         char getTipo();
-        void imprimeInfoProduto();
 
         // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);

@@ -37,16 +37,6 @@ class PlataformaDigital
         list<Midia*> getProdutosCadastrados();
         list<Assinante*> getAssinantes();
 
-        void imprimeProdutos(string genero);
-        void imprimeAssinantes();
-        void insereAssinante();
-        void removeAssinante();
-        int insereProduto(Midia * novoProduto, string nomeProdutor);
-        int selecionaAssinante();
-        void insereProdutoAssinante();
-        // Imprime código e nome do objeto no arquivo
-        void imprimeNoArquivo(ofstream &outfile);
-
         pair<float, Midia::Genero*> generoMaisEscutado();
 
         /* Escrita de relatórios */

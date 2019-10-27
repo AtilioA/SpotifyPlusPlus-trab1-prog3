@@ -63,57 +63,12 @@ void PlataformaDigital::setProdutosCadastrados(list<Midia *> produtosCadastrados
 {
     this->produtosCadastrados = produtosCadastrados;
 }
-
-void PlataformaDigital::imprimeProdutos(string genero)
-{
-    //
-}
-
-void PlataformaDigital::imprimeAssinantes()
-{
-    //
-}
-
 void PlataformaDigital::imprimeGeneros()
 {
     for (Midia::Genero *it : this->generosCadastrados)
     {
         cout << it->getSigla() << ';' << it->getNome() << "\n";
     }
-}
-
-void PlataformaDigital::insereAssinante()
-{
-    //
-}
-
-void PlataformaDigital::removeAssinante()
-{
-    //
-}
-
-int PlataformaDigital::insereProduto(Midia *novoProduto, string nomeProdutor)
-{
-    //
-
-    return 0;
-}
-
-int PlataformaDigital::selecionaAssinante()
-{
-    //
-
-    return 0;
-}
-
-void PlataformaDigital::insereProdutoAssinante()
-{
-    //
-}
-
-void PlataformaDigital::imprimeNoArquivo(ofstream &outfile)
-{
-    //
 }
 
 /* Carregamento de arquivos para a plataforma */
@@ -145,10 +100,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     {
         getline(infile, linhaAtual);
         stringstream linhaAtualStream(linhaAtual);
-        // if (linhaAtual.empty())
-        // {
-        //     break;
-        // }
+
         try
         {
             if (!(linhaAtualStream >> cod))
@@ -161,7 +113,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             cerr << msg << "\n";
             exit(2);
         }
-        //cout << cod << "\n";
+
         linhaAtualStream.ignore(1, ';');
         getline(linhaAtualStream, nome, ';');
         linhaAtualStream >> tipo;

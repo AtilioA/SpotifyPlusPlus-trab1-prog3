@@ -32,7 +32,7 @@ class Midia
             public:
                 Genero();
                 Genero(string nome, string sigla);
-                
+
                 string getNome();
                 string getSigla();
                 int getQtdMidias();
@@ -66,7 +66,6 @@ class Midia
         int getFavoritado();
 
         static void imprimeQtdProdutos();
-        virtual void imprimeInfoProduto() = 0;
         // Imprime código e nome do objeto no arquivo
         virtual void imprimeNoArquivo(ofstream &outfile) = 0;
         virtual char getTipo() = 0;

@@ -14,20 +14,10 @@ Assinante::~Assinante()
     //
 }
 
-void Assinante::imprimeFavoritos()
-{
-    //
-}
-
 void Assinante::insereFavoritos(Midia *favorito)
 {
     this->favoritos.push_back(favorito);
     favorito->adicionadoAosFavs();
-}
-
-void Assinante::removeFavorito()
-{
-    //
 }
 
 list<Midia *> Assinante::getFavoritos()
@@ -43,11 +33,6 @@ void Assinante::setFavoritos(list<Midia *> favoritos)
 void Assinante::imprimeNoArquivo(ofstream &outfile)
 {
     outfile << this->codigo << ";" << this->nome << "\n";
-}
-
-void Assinante::carregaArquivo(ifstream &infile)
-{
-    //
 }
 
 float Assinante::calculaTempoFavs()
