@@ -27,6 +27,8 @@ class Produtor : public Usuario
         void novoProduto(Midia* produto);
         list<Midia*> getProdutosDesenvolvidos();
 
+        int getFavoritado();
+        void adicionadoAosFavoritos();
         // Imprime código e nome do objeto no arquivo
         virtual void imprimeNoArquivo(ofstream &outfile);
 };

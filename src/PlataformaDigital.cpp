@@ -649,6 +649,17 @@ void PlataformaDigital::geraRelatorioEstatisticas()
             break;
         }
     }
+    cnt = 0;
+    estatistica << "\nTop 10 Produtores\n";
+    this->produtoresCadastrados.sort(ordenaDecrescPorFavoritado<Produtor>);
+    for(Produtor* it: this->produtoresCadastrados){
+        if(cnt < 10){
+            estatistica << it->getNome() << ":" << it->getFavoritado()<< "\n";
+            cnt++;
+        }else{
+            break;
+        }
+    }
 }
 
 // Escreve arquivo 2-produtores.csv

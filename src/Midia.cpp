@@ -152,6 +152,9 @@ float Midia::Genero::getEscutado()
 void Midia::adicionadoAosFavs()
 {
     this->favoritado++;
+    for(Produtor* it: this->produtor){
+        it->adicionadoAosFavoritos();
+    }
 }
 
 int Midia::getFavoritado()
