@@ -685,6 +685,17 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     for(Midia::Genero* it : this->generosCadastrados){
         estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
     }
+    this->produtosCadastrados.sort(ordenaDecrescPorFavoritado<Midia>);
+    int cnt = 0;
+    estatistica << "\nTop 10 Midias:\n";
+    for(Midia* it: this->produtosCadastrados){
+        if(cnt < 10){
+            estatistica << it->getNome() << ":" << it->getGenero()->getSigla() << ":" << it->getFavoritado() << "\n";
+            cnt++;
+        }else{
+            break;
+        }
+    }
 }
 
 // Escreve arquivo 2-produtores.csv

@@ -16,6 +16,7 @@ class Produtor : public Usuario
 {
     protected:
         list<Midia*> produtosDesenvolvidos;
+        int favoritado;
 
     public:
         Produtor();

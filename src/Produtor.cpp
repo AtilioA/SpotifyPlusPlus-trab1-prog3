@@ -7,6 +7,7 @@ Produtor::Produtor()
 
 Produtor::Produtor(string _nome, int codigo) : Usuario(_nome, codigo)
 {
+    this->favoritado = 0;
 }
 
 void Produtor::carregaArquivo(ifstream &infile)

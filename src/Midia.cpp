@@ -5,7 +5,9 @@ Midia::Midia()
     Midia::qtdProdutos++;
 }
 
-Midia::~Midia() {}
+Midia::~Midia() {
+    this->favoritado = 0;
+}
 
 Midia::Midia(string nome, int codigo, Midia::Genero *genero, float duracao, int ano)
 {
@@ -14,6 +16,7 @@ Midia::Midia(string nome, int codigo, Midia::Genero *genero, float duracao, int 
     this->nome = nome;
     this->codigo = codigo;
     this->genero = genero;
+    this->favoritado = 0;
     Midia::qtdProdutos++;
 }
 
@@ -137,4 +140,12 @@ int Midia::Genero::getFavoritado(){
 
 float Midia::Genero::getEscutado(){
     return this->escutado;
+}
+
+void Midia::adicionadoAosFavs(){
+    this->favoritado++;
+}
+
+int Midia::getFavoritado(){
+    return this->favoritado;
 }

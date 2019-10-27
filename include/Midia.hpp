@@ -17,6 +17,7 @@ class Midia
         float duracao;
         int anoLancamento;
         list<Produtor *> produtor;
+        int favoritado;
 
     public:
         class Genero
@@ -60,6 +61,9 @@ class Midia
         void setProdutor(list<Produtor *> produtor);
         void adicionaProdutor(Produtor* produtor);
         int getAnoLancamento();
+
+        void adicionadoAosFavs();
+        int getFavoritado();
 
         static void imprimeQtdProdutos();
         virtual void imprimeInfoProduto() = 0;

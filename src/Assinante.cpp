@@ -22,6 +22,7 @@ void Assinante::imprimeFavoritos()
 void Assinante::insereFavoritos(Midia *favorito)
 {
     this->favoritos.push_back(favorito);
+    favorito->adicionadoAosFavs();
 }
 
 void Assinante::removeFavorito()
@@ -57,10 +58,4 @@ float Assinante::calculaTempoFavs()
         tempoTotal += itMidia->getDuracao();
     }
     return tempoTotal;
-}
-
-pair<float, Midia::Genero*> Assinante::generoMaisOuvido(){
-    for(Midia* it: this->favoritos){
-        
-    }
 }
