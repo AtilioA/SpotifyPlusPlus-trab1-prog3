@@ -47,6 +47,8 @@ class PlataformaDigital
         // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
 
+        pair<float, Midia::Genero*> generoMaisEscutado();
+
         /* Escrita de relatórios */
         // Lê arquivo midias.csv
         void carregaArquivoMidias(ifstream &infile);

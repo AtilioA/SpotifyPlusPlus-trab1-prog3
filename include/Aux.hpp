@@ -14,9 +14,19 @@ bool ordenaPorNome(clss *prod1, clss *prod2)
 };
 
 template <typename clss>
-bool ordenaPorFavoritado(clss *prod1, clss *prod2)
+bool ordenaDecrescPorFavoritado(clss *prod1, clss *prod2)
 {
-    if (prod1->getFavoritado() < prod2->getFavoritado())
+    if (prod1->getFavoritado() > prod2->getFavoritado())
+    {
+        return 1;
+    }
+    return 0;
+};
+
+template <typename clss>
+bool ordenaDecrescPorEscutado(clss *prod1, clss *prod2)
+{
+    if (prod1->getEscutado() > prod2->getEscutado())
     {
         return 1;
     }

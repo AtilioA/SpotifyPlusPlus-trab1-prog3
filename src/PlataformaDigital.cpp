@@ -561,7 +561,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (itFavs == itFavsM->getCodigo())
                 {
-                    itFavsM->getGenero()->favoritadoPorUser();
+                    itFavsM->getGenero()->favoritadoPorUser(itFavsM->getDuracao());
                     assinanteAtual->insereFavoritos(itFavsM);
                     achouFavorito = 1;
                 }
@@ -678,9 +678,10 @@ void PlataformaDigital::geraRelatorioEstatisticas()
 
     estatistica.open("1-estatisticas.txt");
     estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
-    estatistica << "Genero mais ouvido: " << "placeholder" << "\n\n";
+    pair<float, Midia::Genero*> par = this->generoMaisEscutado();
+    estatistica << "Genero mais ouvido: " << par.second->getSigla() << " - " << par.first << " minutos\n\n";
     estatistica << "Midias por Genero:\n";
-    this->generosCadastrados.sort(ordenaPorFavoritado<Midia::Genero>);
+    this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
     for(Midia::Genero* it : this->generosCadastrados){
         estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
     }
@@ -775,4 +776,16 @@ float PlataformaDigital::tempoConsumido()
     }
 
     return tempoTotal;
+}
+
+pair<float, Midia::Genero*> PlataformaDigital::generoMaisEscutado(){
+    this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
+    pair<float, Midia::Genero*> par;
+    if(this->generosCadastrados.begin() != this->generosCadastrados.end()){
+        par = make_pair((*this->generosCadastrados.begin())->getEscutado(), *this->generosCadastrados.begin());
+    }else{
+        par.first = 0;
+        par.second = NULL;
+    }
+    return par;
 }
