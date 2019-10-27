@@ -631,32 +631,42 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     estatistica.open("1-estatisticas.txt");
     estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
     pair<float, Midia::Genero *> par = this->generoMaisEscutado();
-    estatistica << "Genero mais ouvido: " << par.second->getSigla() << " - " << par.first << " minutos\n\n";
-    estatistica << "Midias por Genero:\n";
+    estatistica << "Gênero mais ouvido: " << par.second->getSigla() << " - " << par.first << " minutos\n\n";
+    estatistica << "Mídias por Gênero:\n";
     this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
     for (Midia::Genero *it : this->generosCadastrados)
     {
         estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
     }
     this->produtosCadastrados.sort(ordenaDecrescPorFavoritado<Midia>);
-    int cnt = 0;
-    estatistica << "\nTop 10 Midias:\n";
-    for(Midia* it: this->produtosCadastrados){
-        if(cnt < 10){
+
+    int nMidias = 0;
+    estatistica << "\nTop 10 Mídias:\n";
+    for (Midia *it : this->produtosCadastrados)
+    {
+        if (nMidias < 10)
+        {
             estatistica << it->getNome() << ":" << it->getGenero()->getSigla() << ":" << it->getFavoritado() << "\n";
-            cnt++;
-        }else{
+            nMidias++;
+        }
+        else
+        {
             break;
         }
     }
-    cnt = 0;
+
+    int nProdutores = 0;
     estatistica << "\nTop 10 Produtores\n";
     this->produtoresCadastrados.sort(ordenaDecrescPorFavoritado<Produtor>);
-    for(Produtor* it: this->produtoresCadastrados){
-        if(cnt < 10){
-            estatistica << it->getNome() << ":" << it->getFavoritado()<< "\n";
-            cnt++;
-        }else{
+    for (Produtor *it : this->produtoresCadastrados)
+    {
+        if (nProdutores < 10)
+        {
+            estatistica << it->getNome() << ":" << it->getFavoritado() << "\n";
+            nProdutores++;
+        }
+        else
+        {
             break;
         }
     }

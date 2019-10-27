@@ -84,10 +84,7 @@ int main(int argc, char *argv[])
     {
         if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open())
         {
-            /* Erros de entrada e saída de dados como, por exemplo, o arquivo especificado não existir
-            * ou o programa não ter permissão para ler ou escrever em um arquivo
-            */
-            cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << endl;
+            cout << argv[1] << fileGen.is_open() << fileMidia.is_open() << fileGen.is_open() << fileFavs.is_open() << "\n";
 
             throw "Erro de I/O";
         }
@@ -117,7 +114,6 @@ int main(int argc, char *argv[])
     cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
 
     spotifyzada->carregaArquivoFavoritos(fileFavs);
-    // spotifyzada->imprimeUsuarios();
 
     cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos.\n";
 
