@@ -123,10 +123,21 @@ int main(int argc, char *argv[])
     cout << "\nQuantidade de mídias: " << Midia::qtdProdutos << "\n";
     cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos.\n";
 
+    cout << "\nGerando relatório de produtores...\n";
     spotifyzada->geraRelatorioMidiasProdutores();
+    cout << "Relatório de produtores OK!\n";
+
+    cout << "Gerando relatório de estatísticas...\n";
     spotifyzada->geraRelatorioEstatisticas();
+    cout << "Relatório de estatísticas OK!\n";
+
+    cout << "Gerando relatório de backup...\n";
     spotifyzada->geraRelatorioBackup();
+    cout << "Relatório de bakcup OK!\n";
+
+    cout << "Gerando relatório de favoritos...\n";
     spotifyzada->geraRelatorioFavoritos();
+    cout << "Relatório de favoritos OK!\n";
 
     fileUser.close();
     fileGen.close();

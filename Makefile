@@ -63,7 +63,6 @@ cleanW:
 	del /F/Q/S "$(EXE).exe"
 
 
-# PARA TESTES
 # Entradas autorais
 run_a1:
 	./$(EXE) -u entradas_autorais/e1/usuarios.csv -f entradas_autorais/e1/favoritos.csv -g entradas_autorais/e1/generos.csv -m entradas_autorais/e1/midias.csv
@@ -78,6 +77,7 @@ run_pV:
 	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
 
 
+# RECEITAS PARA TESTES DE EXCEÇÕES
 # Entradas com erros
 # Erro 1
 run_e11:
