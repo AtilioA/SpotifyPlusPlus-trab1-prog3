@@ -680,6 +680,7 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
     estatistica << "Genero mais ouvido: " << "placeholder" << "\n\n";
     estatistica << "Midias por Genero:\n";
+    this->generosCadastrados.sort(ordenaPorFavoritado<Midia::Genero>);
     for(Midia::Genero* it : this->generosCadastrados){
         estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
     }
