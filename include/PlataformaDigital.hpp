@@ -11,7 +11,7 @@
 #include "Assinante.hpp"
 #include "Midia.hpp"
 #include "Album.hpp"
-#include "Aux.hpp"
+#include "utils.hpp"
 
 using namespace std;
 

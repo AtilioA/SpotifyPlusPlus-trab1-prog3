@@ -572,7 +572,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (achouFavorito == 0)
             {
-                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenha mídia";
+                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia";
             }
         }
         catch (const char *msg)
@@ -678,11 +678,12 @@ void PlataformaDigital::geraRelatorioEstatisticas()
 
     estatistica.open("1-estatisticas.txt");
     estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
-    pair<float, Midia::Genero*> par = this->generoMaisEscutado();
+    pair<float, Midia::Genero *> par = this->generoMaisEscutado();
     estatistica << "Genero mais ouvido: " << par.second->getSigla() << " - " << par.first << " minutos\n\n";
     estatistica << "Midias por Genero:\n";
     this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
-    for(Midia::Genero* it : this->generosCadastrados){
+    for (Midia::Genero *it : this->generosCadastrados)
+    {
         estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
     }
     this->produtosCadastrados.sort(ordenaDecrescPorFavoritado<Midia>);
@@ -789,12 +790,16 @@ float PlataformaDigital::tempoConsumido()
     return tempoTotal;
 }
 
-pair<float, Midia::Genero*> PlataformaDigital::generoMaisEscutado(){
+pair<float, Midia::Genero *> PlataformaDigital::generoMaisEscutado()
+{
     this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
-    pair<float, Midia::Genero*> par;
-    if(this->generosCadastrados.begin() != this->generosCadastrados.end()){
+    pair<float, Midia::Genero *> par;
+    if (this->generosCadastrados.begin() != this->generosCadastrados.end())
+    {
         par = make_pair((*this->generosCadastrados.begin())->getEscutado(), *this->generosCadastrados.begin());
-    }else{
+    }
+    else
+    {
         par.first = 0;
         par.second = NULL;
     }

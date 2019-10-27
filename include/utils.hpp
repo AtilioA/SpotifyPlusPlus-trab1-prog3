@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _AUX_
-#define _AUX_
+#ifndef _utils_
+#define _utils_
 #include <iostream>
 
 template <typename clss>

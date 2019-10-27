@@ -5,7 +5,8 @@ Midia::Midia()
     Midia::qtdProdutos++;
 }
 
-Midia::~Midia() {
+Midia::~Midia()
+{
     this->favoritado = 0;
 }
 
@@ -117,35 +118,43 @@ int Midia::getAnoLancamento()
     return this->anoLancamento;
 }
 
-int Midia::Genero::getQtdMidias(){
+int Midia::Genero::getQtdMidias()
+{
     return this->qtdMidias;
 }
 
-float Midia::Genero::tempoGenero(){
+float Midia::Genero::tempoGenero()
+{
     float sum = 0;
-    for(Midia* it: this->midias){
+    for (Midia *it : this->midias)
+    {
         sum += it->getDuracao();
     }
     return sum;
 }
 
-void Midia::Genero::favoritadoPorUser(float duracao){
+void Midia::Genero::favoritadoPorUser(float duracao)
+{
     this->favoritado++;
     this->escutado += duracao;
 }
 
-int Midia::Genero::getFavoritado(){
+int Midia::Genero::getFavoritado()
+{
     return this->favoritado;
 }
 
-float Midia::Genero::getEscutado(){
+float Midia::Genero::getEscutado()
+{
     return this->escutado;
 }
 
-void Midia::adicionadoAosFavs(){
+void Midia::adicionadoAosFavs()
+{
     this->favoritado++;
 }
 
-int Midia::getFavoritado(){
+int Midia::getFavoritado()
+{
     return this->favoritado;
 }

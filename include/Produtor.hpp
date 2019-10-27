@@ -6,7 +6,7 @@
 #include <limits>
 #include "Usuario.hpp"
 #include "Midia.hpp"
-#include "Aux.hpp"
+#include "utils.hpp"
 
 class Midia;
 
