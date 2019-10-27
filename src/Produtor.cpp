@@ -2,7 +2,7 @@
 
 Produtor::Produtor()
 {
-    //
+    this->favoritado = 0;
 }
 
 Produtor::Produtor(string _nome, int codigo) : Usuario(_nome, codigo)
@@ -51,4 +51,12 @@ void Produtor::imprimeNoArquivo(ofstream &outfile)
     }
 
     outfile << "\n";
+}
+
+int Produtor::getFavoritado(){
+    return this->favoritado;
+}
+
+void Produtor::adicionadoAosFavoritos(){
+    this->favoritado++;
 }
