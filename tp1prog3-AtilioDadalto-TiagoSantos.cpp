@@ -98,23 +98,29 @@ int main(int argc, char *argv[])
     PlataformaDigital *spotifyzada = new PlataformaDigital("Spotify==");
     cout << "Plataforma digital criada.\n";
 
+    cout << "\nCarregando gêneros...\n";
     spotifyzada->carregaArquivoGeneros(fileGen);
-    cout << "Generos:\n";
-    spotifyzada->imprimeGeneros();
+    cout << "Gêneros OK!\n";
 
+    // spotifyzada->imprimeGeneros();
+
+    cout << "Carregando usuários...\n";
     spotifyzada->carregaArquivoUsuarios(fileUser);
-    cout << "\nUsuarios:\n";
-    spotifyzada->imprimeUsuarios();
+    cout << "Usuários OK!\n";
 
-    cout << "\nProdutores:\n";
-    spotifyzada->imprimeProdutores();
-    cout << "\nMidias:\n";
+    // spotifyzada->imprimeUsuarios();
+
+    // cout << "\nProdutores:\n";
+    // spotifyzada->imprimeProdutores();
+    cout << "Carregando mídias...\n";
     spotifyzada->carregaArquivoMidias(fileMidia);
+    cout << "Mídias OK!\n";
 
-    cout << "\nQuantidade de midias: " << Midia::qtdProdutos << "\n";
-
+    cout << "Carregando favoritos...\n";
     spotifyzada->carregaArquivoFavoritos(fileFavs);
+    cout << "Favoritos OK!\n";
 
+    cout << "\nQuantidade de mídias: " << Midia::qtdProdutos << "\n";
     cout << "Tempo total: " << spotifyzada->tempoConsumido() << " minutos.\n";
 
     spotifyzada->geraRelatorioMidiasProdutores();

@@ -91,7 +91,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     string primeiraLinha;
     Midia *produto;
     list<int> produtores;
-    Album *albumNovo;
+    Album *albumNovo = NULL;
     int qtdGeneros = 0;
 
     getline(infile, primeiraLinha); // Ignorando primeira linha

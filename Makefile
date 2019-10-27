@@ -1,7 +1,7 @@
 OBJ      := obj
 SRC      := src
 INC      := include
-CXXFLAGS := -ggdb -g -Wall -Wextra -std=c++17
+CXXFLAGS := -ggdb -g -Wall -Wextra -Ofast -std=c++17
 EXE 	 := main
 PROJETO  := tp1prog3-AtilioDadalto-TiagoSantos
 
@@ -66,10 +66,10 @@ cleanW:
 # PARA TESTES
 # Entradas autorais
 run_a1:
-	./$(EXE) -u entradas_autorais/usuarios1.csv -f entradas_autorais/favoritos1.csv -g entradas_autorais/generos1.csv -m entradas_autorais/midias1.csv
+	./$(EXE) -u entradas_autorais/e1/usuarios.csv -f entradas_autorais/e1/favoritos.csv -g entradas_autorais/e1/generos.csv -m entradas_autorais/e1/midias.csv
 
 run_a2:
-	./$(EXE) -u entradas_autorais/usuarios2.csv -f entradas_autorais/favoritos2.csv -g entradas_autorais/generos2.csv -m entradas_autorais/midias2.csv
+	./$(EXE) -u entradas_autorais/e2/usuarios.csv -f entradas_autorais/e2/favoritos.csv -g entradas_autorais/e2/generos.csv -m entradas_autorais/e2/midias.csv
 
 run_p:
 	./$(EXE) -u entradas_autorais/python/usuarios_python.csv -f entradas_autorais/python/favoritos_python.csv -g entradas_autorais/python/generos_python.csv -m entradas_autorais/python/midias_python.csv
