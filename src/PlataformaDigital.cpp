@@ -731,6 +731,19 @@ void PlataformaDigital::geraRelatorioBackup()
 {
     ofstream backup;
 
+    // stringstream ss;
+    // string HC_str;
+
+    // size_t pos;
+    // ss << HC_str;
+    // getline(ss, HC_str);
+    // pos = HC_str.find('.');
+    // if (pos != npos)
+    // {
+    //     // Troca o ponto por uma vírgula
+    //     HC_str.replace(pos, 1, 1, ',');
+    // }
+
     backup.open("4-backup.txt");
     this->assinantes.sort(ordenaCrescPorCodigo<Assinante>);
     backup << "Usuários:\n\n";

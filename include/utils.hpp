@@ -11,7 +11,7 @@ bool ordenaPorNome(clss *prod1, clss *prod2)
         return 1;
     }
     return 0;
-};
+}
 
 template <typename clss>
 bool ordenaDecrescPorFavoritado(clss *prod1, clss *prod2)
@@ -21,7 +21,7 @@ bool ordenaDecrescPorFavoritado(clss *prod1, clss *prod2)
         return 1;
     }
     return 0;
-};
+}
 
 template <typename clss>
 bool ordenaDecrescPorEscutado(clss *prod1, clss *prod2)
@@ -31,7 +31,7 @@ bool ordenaDecrescPorEscutado(clss *prod1, clss *prod2)
         return 1;
     }
     return 0;
-};
+}
 
 template <typename clss>
 bool ordenaCrescPorCodigo(clss *prod1, clss *prod2)
@@ -41,7 +41,7 @@ bool ordenaCrescPorCodigo(clss *prod1, clss *prod2)
         return 1;
     }
     return 0;
-};
+}
 
 template <typename clss>
 bool ordenaDecrescPorCodigo(clss *prod1, clss *prod2)
@@ -51,6 +51,6 @@ bool ordenaDecrescPorCodigo(clss *prod1, clss *prod2)
         return 1;
     }
     return 0;
-};
+}
 
 #endif
