@@ -629,14 +629,14 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     ofstream estatistica;
 
     estatistica.open("1-estatisticas.txt");
-    estatistica << "Horas Consumidas: " << this->tempoConsumido() << "\n\n";
+    estatistica << "Horas Consumidas: " << this->tempoConsumido() << " minutos\n\n";
     pair<float, Midia::Genero *> par = this->generoMaisEscutado();
-    estatistica << "Gênero mais ouvido: " << par.second->getSigla() << " - " << par.first << " minutos\n\n";
+    estatistica << "Gênero mais ouvido: " << par.second->getNome() << " - " << par.first << " minutos\n\n";
     estatistica << "Mídias por Gênero:\n";
     this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
     for (Midia::Genero *it : this->generosCadastrados)
     {
-        estatistica << it->getSigla() << ":" << it->getFavoritado() << "\n";
+        estatistica << it->getNome() << ":" << it->getFavoritado() << "\n";
     }
     this->produtosCadastrados.sort(ordenaDecrescPorFavoritado<Midia>);
 
@@ -646,7 +646,7 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     {
         if (nMidias < 10)
         {
-            estatistica << it->getNome() << ":" << it->getGenero()->getSigla() << ":" << it->getFavoritado() << "\n";
+            estatistica << it->getNome() << ":" << it->getGenero()->getNome() << ":" << it->getFavoritado() << "\n";
             nMidias++;
         }
         else
@@ -656,7 +656,7 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     }
 
     int nProdutores = 0;
-    estatistica << "\nTop 10 Produtores\n";
+    estatistica << "\nTop 10 Produtores:\n";
     this->produtoresCadastrados.sort(ordenaDecrescPorFavoritado<Produtor>);
     for (Produtor *it : this->produtoresCadastrados)
     {
@@ -702,14 +702,14 @@ void PlataformaDigital::geraRelatorioFavoritos()
     for (Assinante *assinante : this->assinantes)
     {
         list<Midia *> favs = assinante->getFavoritos();
-        favs.sort(ordenaDecrescPorCodigo<Midia>);
+        favs.sort(ordenaCrescPorCodigo<Midia>);
 
         for (Midia *midia : favs)
         {
             if (midia->getTipo() == 'P')
             {
                 favoritos << assinante->getCodigo() << ";";
-                favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+                favoritos << "Podcast;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
             }
         }
         for (Midia *midia : favs)
@@ -717,7 +717,7 @@ void PlataformaDigital::geraRelatorioFavoritos()
             if (midia->getTipo() == 'M')
             {
                 favoritos << assinante->getCodigo() << ";";
-                favoritos << midia->getTipo() << ";" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+                favoritos << "Música;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
             }
         }
     }
@@ -740,6 +740,11 @@ void PlataformaDigital::geraRelatorioBackup()
         {
             it->imprimeNoArquivo(backup);
         }
+        for (Produtor *it : this->produtoresCadastrados)
+        {
+            backup << it->getCodigo() << ";" << it->getNome() << "\n";
+        }
+
         backup << "\nMídias:\n\n";
 
         for (Midia *itM : this->produtosCadastrados)

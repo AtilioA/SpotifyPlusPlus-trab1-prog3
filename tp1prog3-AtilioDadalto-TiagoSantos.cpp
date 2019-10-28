@@ -101,13 +101,12 @@ int main(int argc, char *argv[])
     cout << "\nCarregando gêneros...\n";
     spotifyzada->carregaArquivoGeneros(fileGen);
     cout << "Gêneros OK!\n";
-
     // spotifyzada->imprimeGeneros();
+
 
     cout << "Carregando usuários...\n";
     spotifyzada->carregaArquivoUsuarios(fileUser);
     cout << "Usuários OK!\n";
-
     // spotifyzada->imprimeUsuarios();
 
     // cout << "\nProdutores:\n";
@@ -133,7 +132,7 @@ int main(int argc, char *argv[])
 
     cout << "Gerando relatório de backup...\n";
     spotifyzada->geraRelatorioBackup();
-    cout << "Relatório de bakcup OK!\n";
+    cout << "Relatório de backup OK!\n";
 
     cout << "Gerando relatório de favoritos...\n";
     spotifyzada->geraRelatorioFavoritos();
