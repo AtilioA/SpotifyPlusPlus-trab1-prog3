@@ -5,11 +5,14 @@ CXXFLAGS := -ggdb -g -Wall -Wextra -Ofast -std=c++17
 EXE 	 := main
 PROJETO  := tp1prog3-AtilioDadalto-TiagoSantos
 
-main: $(OBJ)/Album.o $(OBJ)/Artista.o $(OBJ)/Assinante.o $(OBJ)/Midia.o $(OBJ)/Musica.o $(OBJ)/PlataformaDigital.o $(OBJ)/Podcast.o $(OBJ)/Podcaster.o $(OBJ)/Produtor.o $(OBJ)/Usuario.o $(OBJ)/$(PROJETO).o
+main: $(OBJ)/utils.o $(OBJ)/Album.o $(OBJ)/Artista.o $(OBJ)/Assinante.o $(OBJ)/Midia.o $(OBJ)/Musica.o $(OBJ)/PlataformaDigital.o $(OBJ)/Podcast.o $(OBJ)/Podcaster.o $(OBJ)/Produtor.o $(OBJ)/Usuario.o $(OBJ)/$(PROJETO).o
 	g++ $(OBJ)/*.o -o $(EXE) $(CXXFLAGS)
 
 $(OBJ)/$(PROJETO).o: $(PROJETO).cpp
 	g++ -c $(CXXFLAGS) $(PROJETO).cpp -o "$(OBJ)/$(PROJETO).o"
+
+$(OBJ)/utils.o: $(SRC)/utils.cpp $(INC)/utils.hpp
+	g++ -c $(CXXFLAGS) "$(SRC)/utils.cpp" -o "$(OBJ)/utils.o"
 
 $(OBJ)/Album.o: $(SRC)/Album.cpp $(INC)/Album.hpp
 	g++ -c $(CXXFLAGS) "$(SRC)/Album.cpp" -o "$(OBJ)/Album.o"

@@ -48,10 +48,12 @@ void Produtor::imprimeNoArquivo(ofstream &outfile)
     outfile << "\n";
 }
 
-int Produtor::getFavoritado(){
+int Produtor::getFavoritado()
+{
     return this->favoritado;
 }
 
-void Produtor::adicionadoAosFavoritos(){
+void Produtor::adicionadoAosFavoritos()
+{
     this->favoritado++;
 }

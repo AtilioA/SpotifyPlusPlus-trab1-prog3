@@ -38,9 +38,11 @@ void Assinante::imprimeNoArquivo(ofstream &outfile)
 float Assinante::calculaTempoFavs()
 {
     float tempoTotal = 0;
+    
     for (Midia *itMidia : this->favoritos)
     {
         tempoTotal += itMidia->getDuracao();
     }
+
     return tempoTotal;
 }

@@ -40,7 +40,9 @@ void Musica::imprimeNoArquivo(ofstream &outfile)
     {
         outfile << ", " << (*it)->getNome();
     }
-    outfile << ";" << this->getDuracao() << ";" << this->getGenero()->getNome() << ";;";
+
+    outfile << ";" << floatPontoParaVirgula(this->getDuracao()) << ";" << this->getGenero()->getNome() << ";;";
+
     if (this->getAlbum() == NULL)
     {
         outfile << ";";

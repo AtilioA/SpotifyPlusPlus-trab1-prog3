@@ -19,7 +19,8 @@ void Podcast::imprimeNoArquivo(ofstream &outfile)
     {
         outfile << ", " << (*it)->getNome();
     }
-    outfile << ";" << this->getDuracao() << ";" << this->getGenero()->getNome() << ";" << this->getTemporada() << ";;" << this->getAnoLancamento() << "\n";
+
+    outfile << ";" << floatPontoParaVirgula(this->getDuracao()) << ";" << this->getGenero()->getNome() << ";" << this->getTemporada() << ";;" << this->getAnoLancamento() << "\n";
 }
 
 int Podcast::getQtdTemporadas()

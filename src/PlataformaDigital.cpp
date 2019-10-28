@@ -524,7 +524,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
         {
             if (achouFavorito == 0)
             {
-                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia";
+                throw "Inconsistências na entrada (código de mídia de favorito não pertence a nenhuma mídia)";
             }
         }
         catch (const char *msg)
@@ -629,9 +629,9 @@ void PlataformaDigital::geraRelatorioEstatisticas()
     ofstream estatistica;
 
     estatistica.open("1-estatisticas.txt");
-    estatistica << "Horas Consumidas: " << this->tempoConsumido() << " minutos\n\n";
+    estatistica << "Horas Consumidas: " << floatPontoParaVirgula(this->tempoConsumido()) << " minutos\n\n";
     pair<float, Midia::Genero *> par = this->generoMaisEscutado();
-    estatistica << "Gênero mais ouvido: " << par.second->getNome() << " - " << par.first << " minutos\n\n";
+    estatistica << "Gênero mais ouvido: " << par.second->getNome() << " - " << floatPontoParaVirgula(par.first) << " minutos\n\n";
     estatistica << "Mídias por Gênero:\n";
     this->generosCadastrados.sort(ordenaDecrescPorFavoritado<Midia::Genero>);
     for (Midia::Genero *it : this->generosCadastrados)
@@ -709,7 +709,7 @@ void PlataformaDigital::geraRelatorioFavoritos()
             if (midia->getTipo() == 'P')
             {
                 favoritos << assinante->getCodigo() << ";";
-                favoritos << "Podcast;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+                favoritos << "Podcast;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << floatPontoParaVirgula(midia->getDuracao()) << "\n";
             }
         }
         for (Midia *midia : favs)
@@ -717,11 +717,10 @@ void PlataformaDigital::geraRelatorioFavoritos()
             if (midia->getTipo() == 'M')
             {
                 favoritos << assinante->getCodigo() << ";";
-                favoritos << "Música;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << midia->getDuracao() << "\n";
+                favoritos << "Música;" << midia->getCodigo() << ";" << midia->getGenero()->getNome() << ";" << floatPontoParaVirgula(midia->getDuracao()) << "\n";
             }
         }
     }
-    favoritos << "\n";
 
     favoritos.close();
 }
@@ -730,19 +729,6 @@ void PlataformaDigital::geraRelatorioFavoritos()
 void PlataformaDigital::geraRelatorioBackup()
 {
     ofstream backup;
-
-    // stringstream ss;
-    // string HC_str;
-
-    // size_t pos;
-    // ss << HC_str;
-    // getline(ss, HC_str);
-    // pos = HC_str.find('.');
-    // if (pos != npos)
-    // {
-    //     // Troca o ponto por uma vírgula
-    //     HC_str.replace(pos, 1, 1, ',');
-    // }
 
     backup.open("4-backup.txt");
     this->assinantes.sort(ordenaCrescPorCodigo<Assinante>);
