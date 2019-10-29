@@ -59,10 +59,7 @@ void Album::setMusicas(list<Musica *> musicas)
     this->musicas = musicas;
 }
 
-list<Musica *> Album::getMusica()
-{
-    return this->musicas;
-}
+
 
 void Album::adicionaMusica(Musica *musica)
 {
@@ -81,6 +78,13 @@ int Album::getCodigo()
     return this->codigo;
 }
 
+list<Musica*> *Album::getMusicas(){
+    return &(this->musicas);
+}
+
 Album::~Album()
 {
+    for(Musica* it: this->musicas){
+        delete it;
+    }
 }

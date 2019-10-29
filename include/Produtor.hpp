@@ -25,7 +25,7 @@ class Produtor : public Usuario
 
         void setProdutosDesenvolvidos(list<Midia*> produtosDesenvolvidos);
         void novoProduto(Midia* produto);
-        list<Midia*> getProdutosDesenvolvidos();
+        list<Midia*>* getProdutosDesenvolvidos();
 
         int getFavoritado();
         void adicionadoAosFavoritos();

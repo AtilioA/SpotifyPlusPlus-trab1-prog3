@@ -8,6 +8,9 @@ Midia::Midia()
 Midia::~Midia()
 {
     this->favoritado = 0;
+    for(Produtor* it: this->produtor){
+        it->getProdutosDesenvolvidos()->remove(this);
+    }
 }
 
 Midia::Midia(string nome, int codigo, Midia::Genero *genero, float duracao, int ano)

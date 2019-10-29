@@ -16,7 +16,7 @@ class Musica : public Midia
     public:
         Musica();
         Musica(string nome, int codigo, Midia::Genero* genero, float duracao, int ano);
-
+        ~Musica();
         void setAnoLancamento(int anoLancamento);
         Album* getAlbum();
         void setAlbum(Album* album);

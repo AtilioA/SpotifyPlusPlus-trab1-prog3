@@ -15,9 +15,9 @@ void Produtor::setProdutosDesenvolvidos(list<Midia *> produtosDesenvolvidos)
     this->produtosDesenvolvidos = produtosDesenvolvidos;
 }
 
-list<Midia *> Produtor::getProdutosDesenvolvidos()
+list<Midia *>* Produtor::getProdutosDesenvolvidos()
 {
-    return this->produtosDesenvolvidos;
+    return &(this->produtosDesenvolvidos);
 }
 
 void Produtor::novoProduto(Midia *produto)

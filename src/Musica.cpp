@@ -54,3 +54,9 @@ void Musica::imprimeNoArquivo(ofstream &outfile)
 
     outfile << this->getAnoLancamento() << "\n";
 }
+
+Musica::~Musica(){
+    if(album != NULL){
+        this->album->getMusicas()->remove(this);
+    }
+}
