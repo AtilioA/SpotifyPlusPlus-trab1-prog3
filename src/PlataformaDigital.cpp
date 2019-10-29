@@ -725,7 +725,7 @@ void PlataformaDigital::geraRelatorioBackup()
     ofstream backup;
 
     backup.open("4-backup.txt");
-    this->assinantes.sort(ordenaCrescPorCodigo<Assinante>);
+    //this->assinantes.sort(ordenaCrescPorCodigo<Assinante>);
     backup << "Usuários:\n\n";
     if (backup.is_open())
     {
