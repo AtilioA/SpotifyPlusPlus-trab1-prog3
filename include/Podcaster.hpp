@@ -7,6 +7,7 @@
 #include "utils.hpp"
 
 using namespace std;
+class Podcast;
 
 class Podcaster : public Produtor
 {

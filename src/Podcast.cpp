@@ -42,3 +42,9 @@ int Podcast::getTemporada()
 {
     return this->qtdTemporadas;
 }
+
+Podcast::~Podcast(){
+    for(Produtor* it: this->produtor){
+        ((Podcaster*)it)->getPodcasts()->remove(this);
+    }
+}

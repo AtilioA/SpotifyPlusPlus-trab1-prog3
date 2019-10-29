@@ -21,7 +21,7 @@ PlataformaDigital::~PlataformaDigital()
     }
     for (Produtor *itProd : this->produtoresCadastrados)
     {
-        delete (Podcaster *)itProd;
+        delete itProd;
     }
     for (Album *itAlbum : this->albunsCadastrados)
     {
