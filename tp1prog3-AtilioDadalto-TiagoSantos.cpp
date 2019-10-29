@@ -18,11 +18,6 @@ int Midia::qtdProdutos = 0;
 
 int main(int argc, char *argv[])
 {
-    string gen;
-    string user;
-    string midia;
-    string favs;
-
     try
     {
         if (argc != 9)
@@ -36,6 +31,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    string gen;
+    string user;
+    string midia;
+    string favs;
+
     for (int i = 1; argv[i] != NULL; i++)
     {
         if (argv[i][0] == '-')
@@ -43,17 +43,17 @@ int main(int argc, char *argv[])
             switch (argv[i][1]) // Switch para identificar argumentos passados pelo terminal
             {
             case 'g':
-                cout << "--GENERO--    " << argv[i + 1] << endl;
+                cout << "--GÊNEROS--   " << argv[i + 1] << endl;
                 gen = argv[i + 1];
                 i++;
                 break;
             case 'u':
-                cout << "--USUARIO--   " << argv[i + 1] << endl;
+                cout << "--USUÁRIOS--  " << argv[i + 1] << endl;
                 user = argv[i + 1];
                 i++;
                 break;
             case 'm':
-                cout << "--MIDIA--     " << argv[i + 1] << endl;
+                cout << "--MÍDIAS--    " << argv[i + 1] << endl;
                 midia = argv[i + 1];
                 i++;
                 break;
@@ -68,7 +68,6 @@ int main(int argc, char *argv[])
             }
         }
     }
-    // cout << "\n|Usuarios: " << user << "| |Genero: " << gen << "| |Midia: " << midia << "| |Favoritos: " << favs << "|\n";
 
     // Abrindo arquivos de entrada
     ifstream fileUser;
@@ -102,7 +101,6 @@ int main(int argc, char *argv[])
     spotifyzada->carregaArquivoGeneros(fileGen);
     cout << "Gêneros OK!\n";
     // spotifyzada->imprimeGeneros();
-
 
     cout << "Carregando usuários...\n";
     spotifyzada->carregaArquivoUsuarios(fileUser);

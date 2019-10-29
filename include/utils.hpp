@@ -16,7 +16,7 @@ bool ordenaPorNome(clss *prod1, clss *prod2)
     string nomeProd1 = converteParaMinusculas(prod1->getNome());
     string nomeProd2 = converteParaMinusculas(prod2->getNome());
 
-    if (nomeProd1.compare(nomeProd2) < 0)
+    if (nomeProd1.compare(nomeProd2) < 0) // Comparando duas strings em minúsculo
     {
         return 1;
     }

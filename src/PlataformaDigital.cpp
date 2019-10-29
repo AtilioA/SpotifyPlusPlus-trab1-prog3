@@ -81,7 +81,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
     char tipo;
     int codProd;
     float floatDur;
-    //int intDur;
     string strDur;
     string primeiroGenero;
     int temporada;
@@ -174,7 +173,6 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
             }
         }
         stringstream streamDur(strDur);
-
         try
         {
             if (!(streamDur >> floatDur))
@@ -334,7 +332,7 @@ void PlataformaDigital::carregaArquivoMidias(ifstream &infile)
                     {
                         ((Podcaster *)itProdutoresCad)->inserePodcast((Podcast *)produto);
                     }
-                    else
+                    else if (tipo == 'M')
                     {
                         if (!album.empty())
                         {
@@ -429,7 +427,9 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             cerr << msg << "\n";
             exit(2);
         }
+
         linhaAtualStream.ignore(1, ';');
+
         if (linhaAtualStream.peek() == -1)
         {
             continue;
@@ -459,7 +459,7 @@ void PlataformaDigital::carregaArquivoFavoritos(ifstream &infile)
             {
                 if (!(linhaAtualStream >> favoritoAtual))
                 {
-                    throw "Erro de formatação (código de mídia fodase não é número)";
+                    throw "Erro de formatação (código de mídia não é número)";
                 }
             }
             catch (const char *msg)
@@ -568,7 +568,6 @@ void PlataformaDigital::carregaArquivoUsuarios(ifstream &infile)
             exit(2);
         }
 
-        // Verificar se é número (Erro 2)
         linhaAtualStream.ignore(1, ';');
         linhaAtualStream >> tipo;
         linhaAtualStream.ignore(1, ';');
@@ -618,11 +617,6 @@ void PlataformaDigital::imprimeProdutores()
 }
 
 /* Escrita de arquivos (relatórios) */
-void PlataformaDigital::exportaBiblioteca()
-{
-    //
-}
-
 // Escreve arquivo 1-estatisticas.txt
 void PlataformaDigital::geraRelatorioEstatisticas()
 {
