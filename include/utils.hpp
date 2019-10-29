@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 
+/* Biblioteca para funções auxiliares */
+
 using namespace std;
 
 string floatPontoParaVirgula(float floatComPonto);

@@ -100,14 +100,16 @@ def gera_midias(nMidias, arquivoGeneros, arquivoUsuarios):
             generosM = list()
             nGenerosM = round(abs(random.gauss(1, 1.5)))
             for i in range(nGenerosM if nGenerosM > 0 else 1):
-                while str(genero := random.choice(generoCSV[25:])) in 'nan' or genero in generosM:
+                genero = random.choice(generoCSV[25:])
+                while str(genero) in 'nan' or genero in generosM:
                     genero = random.choice(generoCSV[25:])
                 generosM.append(genero)
 
             generosP = list()
             nGenerosP = round(abs(random.gauss(1, 0.5)))
             for i in range(nGenerosP if nGenerosP > 0 else 1):
-                while str(genero := random.choice(generoCSV[:25])) in 'nan' or genero in generosP:
+                genero = random.choice(generoCSV[:25])
+                while str(genero) in 'nan' or genero in generosP:
                     genero = random.choice(generoCSV[:25])
                 generosP.append(genero)
 

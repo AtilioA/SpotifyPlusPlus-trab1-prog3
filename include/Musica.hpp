@@ -22,7 +22,6 @@ class Musica : public Midia
         void setAlbum(Album* album);
         char getTipo();
 
-        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
 };
 

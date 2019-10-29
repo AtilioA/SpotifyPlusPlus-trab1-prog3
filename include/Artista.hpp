@@ -22,7 +22,6 @@ class Artista : public Produtor
         void insereMusica(Musica* musica);
         list<Album*>* getAlbuns();
 
-        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
         // Retorna o álbum cujo nome é a string de entrada ou NULL se não houver
         Album* procuraAlbum(string album);

@@ -21,7 +21,6 @@ class Podcaster : public Produtor
         void inserePodcast(Podcast* podcast);
         list<Podcast*>* getPodcasts();
 
-        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
 };
 

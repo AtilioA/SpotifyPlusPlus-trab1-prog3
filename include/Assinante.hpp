@@ -21,7 +21,6 @@ class Assinante : public Usuario
         list<Midia*> getFavoritos();
         void setFavoritos(list<Midia*> favoritos);
 
-        // Imprime código e nome do objeto no arquivo
         void imprimeNoArquivo(ofstream &outfile);
         // Calcula o tempo de duração das mídias de favoritos de um assinante
         float calculaTempoFavs();

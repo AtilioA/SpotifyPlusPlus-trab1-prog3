@@ -66,7 +66,7 @@ class Midia
         int getFavoritado();
 
         static void imprimeQtdProdutos();
-        // Imprime código e nome do objeto no arquivo
+
         virtual void imprimeNoArquivo(ofstream &outfile) = 0;
         virtual char getTipo() = 0;
 

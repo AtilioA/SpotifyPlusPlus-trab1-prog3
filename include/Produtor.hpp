@@ -29,7 +29,7 @@ class Produtor : public Usuario
 
         int getFavoritado();
         void adicionadoAosFavoritos();
-        // Imprime código e nome do objeto no arquivo
+
         virtual void imprimeNoArquivo(ofstream &outfile);
 };
 
