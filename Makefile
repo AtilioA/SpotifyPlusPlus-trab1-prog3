@@ -84,62 +84,62 @@ run_pV:
 # Entradas com erros
 # Erro 1
 run_e11:
-	./$(EXE) -u entradas/naoexiste.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas/naoexiste.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
 run_e12:
-	./$(EXE) -u entradas/usuarios.csv -f entradas/naoexiste.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas/usuarios.csv -f entradas/naoexiste.csv -g entradas/generos.csv -m entradas/midias_corrigidas.csv
 
 run_e13:
-	./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/naoexiste.csv -m entradas/midias_corrigidas.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/naoexiste.csv -m entradas/midias_corrigidas.csv
 
 run_e14:
-	./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/naoexiste.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas/usuarios.csv -f entradas/favoritos.csv -g entradas/generos.csv -m entradas/naoexiste.csv
 
 # Erro 2
 run_e21:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e21.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e21.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e21.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e21.csv
 
 run_e22:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e22.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e22.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e22.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e22.csv
 
 run_e23:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e23.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e23.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e23.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e23.csv
 
 run_e24:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e24.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e24.csv
 
 run_e25:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e25.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e25.csv
 
 run_e26:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e26.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e26.csv
 
 run_e27:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e27.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e27.csv
 
 run_e28:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e28.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e28.csv
 
 run_e29:
-	./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e29.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro2/usuarios_e2.csv -f entradas_autorais/testes_erro2/favoritos_e2.csv -g entradas_autorais/testes_erro2/generos_e2.csv -m entradas_autorais/testes_erro2/midias_e29.csv
 
 # Tipo de usuário sem correspondente (Não é A ou P ou U)
 run_e293:
-	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e31.csv -f entradas_autorais/testes_erro3/favoritos_e31.csv -g entradas_autorais/testes_erro3/generos_e31.csv -m entradas_autorais/testes_erro3/midias_e31.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e31.csv -f entradas_autorais/testes_erro3/favoritos_e31.csv -g entradas_autorais/testes_erro3/generos_e31.csv -m entradas_autorais/testes_erro3/midias_e31.csv
 
 # Erro 3
 # Mídia sem sigla de gênero correspondente
 run_e32:
-	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e32.csv -f entradas_autorais/testes_erro3/favoritos_e32.csv -g entradas_autorais/testes_erro3/generos_e32.csv -m entradas_autorais/testes_erro3/midias_e32.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e32.csv -f entradas_autorais/testes_erro3/favoritos_e32.csv -g entradas_autorais/testes_erro3/generos_e32.csv -m entradas_autorais/testes_erro3/midias_e32.csv
 
 # Mídia sem tipo correspondente
 run_e33:
-	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e33.csv -f entradas_autorais/testes_erro3/favoritos_e33.csv -g entradas_autorais/testes_erro3/generos_e33.csv -m entradas_autorais/testes_erro3/midias_e33.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e33.csv -f entradas_autorais/testes_erro3/favoritos_e33.csv -g entradas_autorais/testes_erro3/generos_e33.csv -m entradas_autorais/testes_erro3/midias_e33.csv
 
 # Mídia sem código de produtor correspondente
 run_e34:
-	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e34.csv -f entradas_autorais/testes_erro3/favoritos_e34.csv -g entradas_autorais/testes_erro3/generos_e34.csv -m entradas_autorais/testes_erro3/midias_e34.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e34.csv -f entradas_autorais/testes_erro3/favoritos_e34.csv -g entradas_autorais/testes_erro3/generos_e34.csv -m entradas_autorais/testes_erro3/midias_e34.csv
 
 # Favorito sem mídia correspondente
 run_e35:
-	./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e35.csv -f entradas_autorais/testes_erro3/favoritos_e35.csv -g entradas_autorais/testes_erro3/generos_e35.csv -m entradas_autorais/testes_erro3/midias_e35.csv
+	valgrind --leak-check=full ./$(EXE) -u entradas_autorais/testes_erro3/usuarios_e35.csv -f entradas_autorais/testes_erro3/favoritos_e35.csv -g entradas_autorais/testes_erro3/generos_e35.csv -m entradas_autorais/testes_erro3/midias_e35.csv

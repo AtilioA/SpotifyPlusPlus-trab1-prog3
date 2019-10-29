@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     string midia;
     string favs;
 
+
     for (int i = 1; argv[i] != NULL; i++)
     {
         if (argv[i][0] == '-')
@@ -79,6 +80,7 @@ int main(int argc, char *argv[])
     fileMidia.open(midia.c_str());
     fileFavs.open(favs.c_str());
 
+    // exit(1);
     try
     {
         if (argv[1] == NULL || !fileUser.is_open() || !fileGen.is_open() || !fileMidia.is_open() || !fileFavs.is_open())
@@ -91,6 +93,10 @@ int main(int argc, char *argv[])
     catch (const char *msg)
     {
         cerr << msg << "\n";
+        fileUser.close();
+        fileGen.close();
+        fileMidia.close();
+        fileFavs.close();
         exit(1);
     }
 
